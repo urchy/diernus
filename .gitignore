@@ -1,0 +1,13 @@
+# OS / editor noise
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Backup of the old landing page (kept locally, not part of the live site)
+index.legacy.html
+
+# Future: build artifacts (none yet — site is no-build)
+# node_modules/
+# dist/
+# .cache/

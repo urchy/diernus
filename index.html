@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Da ideia à peça · Diernus</title>
+<meta name="description" content="Esboços à mão, moodboards, folha de produção e um sofá que se monta sozinho no ecrã — o percurso Diernus da primeira ideia à peça montada.">
+<meta property="og:title" content="Diernus — da ideia à peça">
+<meta property="og:description" content="Scroll para percorrer o processo: esboço, conceção, desenho técnico e a peça a construir-se à tua frente.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%232C49C7'/%3E%3Ctext x='32' y='45' font-family='Courier New,monospace' font-weight='bold' font-size='38' fill='%23EDEAE3' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#EDEAE3;
+    --bone-2:#E4E0D6;
+    --graphite:#23211C;
+    --graphite-60:rgba(35,33,28,.6);
+    --graphite-35:rgba(35,33,28,.35);
+    --graphite-15:rgba(35,33,28,.15);
+    --cobalt:#2C49C7;
+    --blueprint:#12235B;
+    --blueprint-2:#0B163E;
+    --wood-top:#DCBC82;
+    --wood-front:#C9A16B;
+    --wood-side:#A98250;
+    --wood-bottom:#8F6C41;
+    --ink:#EAF0FF;
+    --ink-60:rgba(234,240,255,.6);
+    --ink-35:rgba(234,240,255,.35);
+    --ink-line:rgba(234,240,255,.16);
+    --hud-line:rgba(159,180,255,.85);
+    --stamp:#B3232E;
+    --display:"Archivo",system-ui,sans-serif;
+    --body:"Newsreader",Georgia,serif;
+    --mono:"IBM Plex Mono","Courier New",monospace;
+    --pad:clamp(1.25rem,4vw,4rem);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--bone);color:var(--graphite);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--cobalt);color:var(--bone)}
+  a{color:inherit}
+
+  /* ---------- top bar ---------- */
+  .bar{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;gap:1rem;
+    padding:.65rem var(--pad);background:color-mix(in srgb,var(--bone) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--graphite-15)}
+  .bar .wordmark{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-decoration:none;white-space:nowrap}
+  .bar .wordmark b{color:var(--cobalt)}
+  .bar .sheetcode{font-family:var(--mono);font-size:.72rem;color:var(--graphite-60);margin-left:auto;white-space:nowrap}
+  .bar .barcta{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-decoration:none;background:var(--cobalt);color:#fff;padding:.42rem .85rem;border-radius:999px;white-space:nowrap;transition:background .25s}
+  .bar .barcta:hover{background:#3a58e0}
+  @media (max-width:480px){.bar .barcta{display:none}}
+  .bar .lang{display:flex;border:1px solid var(--graphite-35);border-radius:999px;overflow:hidden}
+  .bar .lang button{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;padding:.3rem .65rem;border:0;background:transparent;color:var(--graphite-60);cursor:pointer}
+  .bar .lang button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
+  .buildbar{position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:transparent}
+  .buildbar i{display:block;height:100%;width:0;background:var(--cobalt);transition:background .3s}
+  .buildbar.done i{background:var(--stamp)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:calc(var(--pad) + 3rem) var(--pad) 0;overflow:hidden;
+    background-image:
+      linear-gradient(var(--graphite-15) 1px,transparent 1px),
+      linear-gradient(90deg,var(--graphite-15) 1px,transparent 1px);
+    background-size:72px 72px;background-position:center top}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 10%,transparent 30%,var(--bone) 78%);pointer-events:none}
+  .hero>*{position:relative;z-index:1}
+  .hero .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:1rem}
+  .hero h1{font-family:var(--display);font-variation-settings:"wdth" 68,"wght" 900;
+    font-size:clamp(3.6rem,12.5vw,10.5rem);line-height:.88;letter-spacing:-.01em;text-transform:uppercase}
+  .hero .sub{max-width:34em;font-size:clamp(1.1rem,1.6vw,1.35rem);margin:1.4rem 0 2.2rem;color:var(--graphite);font-style:italic}
+  .hero .sub b{font-style:normal}
+  .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+  .chips a,.chips span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;padding:.35rem .7rem;border:1px solid var(--graphite-35);border-radius:999px;background:var(--bone);text-decoration:none;transition:border-color .25s,color .25s}
+  .chips a:hover{border-color:var(--graphite);color:var(--graphite)}
+  .chips a.hot,.chips span.hot{border-color:var(--stamp);color:var(--stamp)}
+  .hero .elev{display:block;width:min(920px,100%);margin:0 0 1rem;overflow:visible}
+  .hero .elev path,.hero .elev line,.hero .elev rect,.hero .elev circle{fill:none;stroke:var(--cobalt);stroke-width:2.5;vector-effect:non-scaling-stroke}
+  .hero .elev .dim{stroke:var(--graphite-60);stroke-width:1}
+  .hero .elev text{font-family:var(--mono);font-size:26px;fill:var(--graphite-60);stroke:none}
+  .drawn{stroke-dasharray:1;stroke-dashoffset:1}
+  .hero.ready .drawn{animation:draw 2.4s cubic-bezier(.6,0,.2,1) forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .cue{display:flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;color:var(--graphite-60);padding:1.2rem 0 1.6rem;border-top:1px solid var(--graphite-15)}
+  .cue svg{width:14px;height:22px;overflow:visible}
+  .cue svg path{stroke:var(--cobalt);stroke-width:2;fill:none;animation:cue 1.6s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(6px);opacity:.4}}
+
+  /* ---------- build stage ---------- */
+  .buildwrap{position:relative;height:560vh;background:linear-gradient(180deg,var(--blueprint) 0%,var(--blueprint-2) 100%)}
+  .stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;color:var(--ink)}
+  .stage svg.iso{position:absolute;inset:0;width:100%;height:100%}
+  .stage .grid line{stroke:var(--ink-line);stroke-width:1;vector-effect:non-scaling-stroke}
+  .stage .meta{position:absolute;top:calc(1rem + 3rem);left:var(--pad);font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink-60);display:flex;flex-direction:column;gap:.2rem}
+  .stage .meta b{color:var(--ink);font-weight:500}
+  .stage .pct{position:absolute;top:calc(1rem + 3rem);right:var(--pad);text-align:right;font-family:var(--mono);color:var(--ink-60);font-size:.68rem;letter-spacing:.14em}
+  .stage .pct output{display:block;font-size:2rem;color:var(--ink);letter-spacing:0;line-height:1.1}
+  .hud{position:absolute;left:var(--pad);bottom:calc(var(--pad) * .8);max-width:30rem;z-index:3}
+  .hud .ph-eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;color:var(--hud-line);margin-bottom:.5rem;min-height:1em}
+  .hud .ph-title{font-family:var(--display);font-variation-settings:"wdth" 72,"wght" 800;font-size:clamp(1.8rem,4vw,3.2rem);line-height:1;text-transform:uppercase;letter-spacing:.01em}
+  .hud .ph-desc{font-size:1rem;color:var(--ink-60);margin-top:.6rem;max-width:26em;font-style:italic}
+  .hud .ph-title,.hud .ph-eyebrow,.hud .ph-desc{transition:opacity .35s,transform .35s}
+  .hud.swap .ph-title,.hud.swap .ph-eyebrow,.hud.swap .ph-desc{opacity:0;transform:translateY(8px)}
+  .swatches{display:flex;gap:.5rem;margin-top:1rem}
+  .swatches .sw{display:flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;
+    color:var(--ink-60);border:1px solid var(--ink-line);border-radius:999px;padding:.28rem .6rem .28rem .3rem;
+    opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s,border-color .4s}
+  .swatches .sw i{width:1.05rem;height:1.05rem;border-radius:50%;flex:none}
+  .swatches .sw.on{opacity:1;transform:none;border-color:var(--hud-line);color:var(--ink)}
+  .sw .burl{background:radial-gradient(circle at 30% 30%,#8a5a2e,#4a2c12 70%)}
+  .sw .velvet{background:linear-gradient(135deg,#3d5578,#22304a)}
+  .sw .stripe{background:repeating-linear-gradient(90deg,#5c7699 0 3px,#2e405c 3px 6px)}
+  .checklist{position:absolute;right:var(--pad);bottom:calc(var(--pad) * .8);z-index:3;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;display:flex;flex-direction:column;gap:.55rem;text-align:left}
+  .checklist li{list-style:none;display:flex;align-items:center;gap:.55rem;color:var(--ink-35);transition:color .3s}
+  .checklist li i{width:.9rem;height:.9rem;border:1px solid var(--ink-35);border-radius:2px;display:grid;place-items:center;transition:all .3s;font-style:normal;font-size:.6rem;line-height:1}
+  .checklist li.on{color:var(--ink)}
+  .checklist li.on i{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  .checklist li.on i::before{content:"✓"}
+  .stamp{position:absolute;z-index:4;right:clamp(1rem,12vw,14rem);top:22%;transform:rotate(-8deg) scale(2.6);opacity:0;
+    font-family:var(--mono);letter-spacing:.18em;color:var(--stamp);border:3px solid var(--stamp);border-radius:.4rem;
+    padding:.5rem 1rem;font-size:clamp(.8rem,1.6vw,1.1rem);text-align:center;background:rgba(179,35,46,.06);pointer-events:none}
+  .stamp small{display:block;font-size:.6em;letter-spacing:.3em;margin-top:.15rem}
+  /* iso svg text */
+  svg.iso text{font-family:var(--mono);fill:var(--ink);letter-spacing:.06em}
+  svg.iso .lblline{stroke:var(--hud-line);stroke-width:1.4;fill:none;vector-effect:non-scaling-stroke}
+  svg.iso .lblbox{fill:rgba(11,22,62,.72);stroke:rgba(159,180,255,.5);vector-effect:non-scaling-stroke}
+  svg.iso .dimline{stroke:var(--ink-60);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
+  svg.iso .dimtxt{fill:var(--ink-60)}
+  svg.iso .ink-part path,svg.iso .ink-part polygon{fill:rgba(18,35,91,.0);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  svg.iso .mat-part path,svg.iso .mat-part polygon{stroke:rgba(12,16,30,.55);stroke-width:1;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+
+  /* ---------- sheet sections ---------- */
+  section.sheet{padding:clamp(4rem,9vw,8rem) var(--pad)}
+  .sheet .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:.8rem}
+  .sheet h2{font-family:var(--display);font-variation-settings:"wdth" 70,"wght" 850;font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:.95;text-transform:uppercase;max-width:14em}
+  .sheet .lede{max-width:36em;margin-top:1.2rem;font-size:1.15rem;color:var(--graphite);font-style:italic}
+  .specs{background:var(--bone)}
+  .specgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--graphite-15);border:1px solid var(--graphite-15);margin-top:2.6rem}
+  @media (max-width:1100px){.specgrid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:520px){.specgrid{grid-template-columns:repeat(2,1fr)}}
+  .spec{background:var(--bone);padding:1.4rem 1.2rem}
+  .spec output{display:block;font-family:var(--display);font-variation-settings:"wdth" 64,"wght" 900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1}
+  .spec output sub{font-family:var(--mono);font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:var(--graphite-60)}
+  .spec label{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--graphite-60);display:block;margin-top:.5rem;text-transform:uppercase}
+  .materials{background:var(--bone-2)}
+  .matgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:1.2rem;margin-top:2.6rem}
+  .mat{border:1px solid var(--graphite-35);background:var(--bone);border-radius:.35rem;overflow:hidden;display:flex;flex-direction:column}
+  .mat .tex{height:150px;position:relative}
+  .mat .tex::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+  .tex.t-burl{background:
+    radial-gradient(90px 60px at 20% 30%,rgba(255,205,140,.28),transparent 60%),
+    radial-gradient(140px 90px at 75% 70%,rgba(30,12,2,.5),transparent 65%),
+    radial-gradient(60px 44px at 60% 25%,rgba(255,190,120,.22),transparent 60%),
+    radial-gradient(100px 70px at 35% 80%,rgba(20,8,0,.42),transparent 60%),
+    linear-gradient(120deg,#6b4220,#4a2c12 55%,#5c3a1c)}
+  .tex.t-velvet{background:
+    radial-gradient(220px 120px at 30% 0%,rgba(255,255,255,.14),transparent 60%),
+    linear-gradient(160deg,#3d5578,#22304a 70%)}
+  .tex.t-stripe{background:repeating-linear-gradient(90deg,#5c7699 0 7px,#33445e 7px 14px,#8fa6c4 14px 16px,#33445e 16px 23px)}
+  .mat .body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+  .mat .code{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--stamp)}
+  .mat h3{font-family:var(--display);font-variation-settings:"wdth" 74,"wght" 750;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
+  .mat p{font-size:.95rem;color:var(--graphite-60)}
+  .mat .ref{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:var(--graphite-60);margin-top:auto;padding-top:.6rem;border-top:1px dashed var(--graphite-35)}
+  .notes{background:var(--bone)}
+  .notegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.2rem;margin-top:2.6rem}
+  .note{border:1.5px solid var(--graphite);border-radius:.35rem;padding:1.2rem 1.3rem 1.4rem;background:var(--bone);position:relative}
+  .note .nh{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--stamp);margin-bottom:.6rem}
+  .note h3{font-family:var(--display);font-variation-settings:"wdth" 74,"wght" 750;font-size:1.3rem;line-height:1.1;text-transform:uppercase;margin-bottom:.5rem}
+  .note p{font-size:.98rem;color:var(--graphite-60)}
+  .foam{margin-top:1rem;display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em}
+  .foam div{display:flex;align-items:center;gap:.6rem}
+  .foam i{flex:none;height:16px;border-radius:2px}
+  .foam .f1{width:110px;background:#E8722C}
+  .foam .f2{width:150px;background:#177E70}
+  .foam .f3{width:190px;background:#7A72C4}
+  .process{background:var(--blueprint);color:var(--ink)}
+  .process .kicker{color:var(--hud-line)}
+  .process .lede{color:var(--ink-60)}
+  .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-line);border:1px solid var(--ink-line);margin-top:2.6rem}
+  @media (max-width:860px){.revs{grid-template-columns:1fr}}
+  .rev-item{background:var(--blueprint);padding:1.3rem 1.2rem 1.5rem}
+  .rev-item .rn{font-family:var(--mono);font-size:1.6rem;color:var(--hud-line)}
+  .rev-item .rd{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--ink-60);margin:.3rem 0 .7rem}
+  .rev-item p{font-size:.95rem;color:var(--ink-60)}
+  .rev-item.last .rn{color:#fff;background:var(--stamp);display:inline-block;padding:0 .4em;border-radius:.2em}
+  .cta{background:var(--blueprint-2);color:var(--ink);text-align:left}
+  .cta h2{max-width:11em}
+  .cta .lede{color:var(--ink-60)}
+  .cta .chips{margin:1.8rem 0 0}
+  .cta .chips span{background:transparent;border-color:var(--ink-35);color:var(--ink)}
+  .cta .row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:2.4rem}
+  .btn{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+    padding:1rem 1.6rem;border-radius:.35rem;border:1px solid transparent;display:inline-block}
+  .btn.primary{background:var(--cobalt);color:#fff;box-shadow:0 8px 24px -6px rgba(44,73,199,.55)}
+  .btn.primary:hover{background:#3a58e0}
+  .btn.ghost{border-color:var(--ink-35);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--ink)}
+  footer{background:var(--blueprint-2);color:var(--ink-35);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
+    padding:1.6rem var(--pad) 2.2rem;border-top:1px solid var(--ink-line);display:flex;flex-wrap:wrap;gap:.6rem 2rem}
+  footer b{color:var(--ink-60);font-weight:500}
+
+  /* ---------- chapter bands ---------- */
+  .chap{position:relative;padding:clamp(3.5rem,8vw,6.5rem) var(--pad) clamp(1.2rem,3vw,2rem);overflow:hidden;background:var(--bone)}
+  .chap .num{position:absolute;right:calc(var(--pad) * .4);top:50%;transform:translateY(-50%);
+    font-family:var(--display);font-variation-settings:"wdth" 64,"wght" 900;
+    font-size:clamp(8rem,24vw,19rem);line-height:1;color:transparent;
+    -webkit-text-stroke:2px var(--chap-accent,var(--cobalt));opacity:.15;pointer-events:none;user-select:none}
+  /* chapter 03 hides the watermark — chair viewer sits on the right */
+  .chap#cap-03 .num{display:none}
+  .chap .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--chap-accent,var(--cobalt));margin-bottom:.7rem}
+  .chap h2{font-family:var(--display);font-variation-settings:"wdth" 70,"wght" 850;font-size:clamp(2.4rem,6vw,4.6rem);text-transform:uppercase;line-height:.95;max-width:12em}
+  .chap .cp{max-width:34em;margin-top:1rem;font-size:1.12rem;font-style:italic;color:var(--graphite-60)}
+  .chap.chap-b2{background:var(--bone-2)}
+  .chap.on-navy{background:var(--blueprint);color:var(--ink)}
+  .chap.on-navy .cp{color:var(--ink-60)}
+
+  /* ---------- chapter 03 · two-col + chair viewer (port from index.html) ---------- */
+  .chap.two-col{display:grid;grid-template-columns:1fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:start}
+  .chap.two-col .text-col{position:relative;z-index:1}
+  @media (min-width:900px){
+    .chap.two-col{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,4vw,3.5rem);align-items:center}
+  }
+
+  /* chair figure — compact, sits inline on the right */
+  .chair{margin:0;display:flex;flex-direction:column;align-items:center;gap:.9rem;
+    align-self:start;justify-self:end;width:min(100%,360px)}
+
+  /* the 3D/2D stage — same approach as index.html, just smaller */
+  .fig-stage{position:relative;width:100%;aspect-ratio:56/66}
+  .fig-stage > svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:opacity .45s ease}
+  .fig-stage.mode3d > svg{opacity:0;pointer-events:none}
+
+  .scene{
+    position:absolute;inset:0;perspective:900px;
+    opacity:0;pointer-events:none;transition:opacity .45s ease;
+    touch-action:none;cursor:grab;
+  }
+  .scene.on{opacity:1;pointer-events:auto}
+  .scene:active{cursor:grabbing}
+  .obj{
+    position:absolute;left:50%;top:54%;width:0;height:0;
+    transform-style:preserve-3d;
+    transform:rotateX(var(--rx,16deg)) rotateY(var(--ry,-28deg));
+  }
+  .part{position:absolute;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.55,0,.15,1)}
+  .face{
+    position:absolute;left:50%;top:50%;
+    border:1px solid rgba(35,33,28,.5);
+    backface-visibility:hidden;
+  }
+  .gshadow{
+    position:absolute;width:280px;height:240px;left:-140px;top:-120px;
+    transform:rotateX(90deg) translateZ(-150px);
+    background:radial-gradient(closest-side,rgba(35,33,28,.32),rgba(35,33,28,0) 72%);
+  }
+
+  .fig-ui{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;width:100%}
+  .fig-toggle{display:flex;border:1px solid var(--graphite-35);border-radius:999px;overflow:hidden;background:var(--bone)}
+  .fig-toggle button,.fig-explode{
+    font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:.38rem .75rem;border:0;background:transparent;color:var(--graphite-60);cursor:pointer;
+  }
+  .fig-toggle button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
+  .fig-explode{border:1px solid var(--graphite-35);border-radius:999px;background:var(--bone)}
+  .fig-explode[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  .fig-hint{color:var(--graphite-60);font-size:.58rem;letter-spacing:.08em}
+
+  /* chair SVG linework (port from index.html) */
+  .tk{stroke:var(--graphite);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .tk-thin{stroke:var(--graphite);stroke-width:1;fill:none;stroke-linecap:round}
+  .tk-dash{stroke:var(--graphite);stroke-width:1;fill:none;stroke-dasharray:.012 .014;opacity:.5}
+  .tk-dim{stroke:var(--cobalt);stroke-width:1.2;fill:none;opacity:.9}
+  .svg-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;fill:var(--graphite)}
+  .svg-dim-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;fill:var(--cobalt)}
+  .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.3s cubic-bezier(.5,0,.2,1) forwards;animation-delay:calc(var(--i)*.11s + .25s)}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .fade{opacity:0;animation:fadein .7s ease forwards;animation-delay:calc(var(--i)*.1s + 1.7s)}
+  @keyframes fadein{to{opacity:1}}
+
+  /* chair meta line above the stage */
+  .chair-meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;align-self:stretch;
+    font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--graphite-60)}
+  .chair-meta b{color:var(--cobalt);font-weight:600;letter-spacing:.18em}
+  .chair-meta .cm-r{text-align:right}
+
+  @media (prefers-reduced-motion:reduce){
+    .part{transition:none}
+    .draw{animation:none;stroke-dashoffset:0}
+    .fade{animation:none;opacity:1}
+  }
+
+  /* ---------- capítulo 01 · sketch collage ---------- */
+  .ideas{padding:1.5rem var(--pad) clamp(4rem,9vw,7rem);background:var(--bone)}
+  .sk-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.2rem,2.5vw,2.2rem);align-items:start;max-width:1240px}
+  .hookrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.4rem;margin-top:clamp(2.2rem,5vw,3.5rem);padding-top:1.2rem;border-top:1px solid var(--graphite-15)}
+  .hookrow p{font-style:italic;color:var(--graphite-60);font-size:1.05rem}
+  .hookrow a{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--cobalt);text-decoration:none;border-bottom:1px solid var(--cobalt);padding-bottom:.15rem;transition:color .25s}
+  .hookrow a:hover{color:#3a58e0}
+  .moods .hookrow{margin-left:var(--pad);margin-right:var(--pad)}
+  .sk-card{position:relative;margin:0;background:#fff;border:1px solid var(--graphite-15);
+    box-shadow:0 2px 6px rgba(35,33,28,.08),0 26px 50px -26px rgba(35,33,28,.38);
+    padding:.7rem .7rem 3rem;
+    transform:translate3d(0,var(--py,0px),0) rotate(var(--rot,0deg));
+    transition:box-shadow .45s}
+  .sk-card:hover{transform:translate3d(0,calc(var(--py,0px) - 8px),0) rotate(0deg) scale(1.015);
+    box-shadow:0 8px 18px rgba(35,33,28,.14),0 44px 80px -30px rgba(35,33,28,.5);z-index:2}
+  .sk-card img{display:block;width:100%;height:auto}
+  .sk-card.crop img{aspect-ratio:3/2;object-fit:cover;object-position:50% 100%}
+  .sk-card .tape{position:absolute;top:-13px;left:50%;width:120px;height:28px;
+    transform:translateX(-50%) rotate(-2deg);background:var(--tape,rgba(217,142,74,.5));
+    box-shadow:0 1px 3px rgba(35,33,28,.18)}
+  .sk-card figcaption{position:absolute;left:1rem;right:1rem;bottom:.9rem;display:flex;justify-content:space-between;gap:.6rem;
+    font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:var(--graphite-60)}
+  .sk-card figcaption b{color:var(--graphite);font-weight:500}
+  .sk-a{grid-column:1/span 6}
+  .sk-b{grid-column:8/span 4;margin-top:clamp(2rem,6vw,5rem)}
+  @media (max-width:860px){
+    .sk-a,.sk-b{grid-column:1/-1;margin-top:0}
+    .sk-a{max-width:540px}
+    .sk-b{max-width:390px;margin-left:auto}
+  }
+
+  /* ---------- capítulo 02 · moodboard marquee ---------- */
+  .moods{background:var(--bone-2);padding:1.5rem 0 clamp(4.5rem,9vw,7rem);overflow:hidden}
+  .mq-row{overflow:hidden;padding:1.1rem 0}
+  .mq{display:flex;gap:clamp(1rem,2vw,1.6rem);width:max-content;will-change:transform}
+  .mq figure{position:relative;margin:0;height:clamp(220px,30vw,330px);flex:none;
+    border:1px solid var(--graphite-15);background:#fff;padding:.45rem .45rem 2.2rem;
+    box-shadow:0 2px 6px rgba(35,33,28,.08),0 18px 40px -22px rgba(35,33,28,.35);
+    transform:rotate(var(--rot,0deg));transition:transform .4s}
+  .mq figure:hover{transform:rotate(0deg) scale(1.04);z-index:2}
+  .mq img{height:100%;width:auto;display:block}
+  .mq figcaption{position:absolute;left:.75rem;bottom:.65rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--graphite-60);white-space:nowrap}
+  .mq figcaption i{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--dot,var(--cobalt));margin-right:.45rem;vertical-align:middle}
+  .moods.static .mq{width:auto;flex-wrap:wrap;padding:0 var(--pad)}
+
+  /* reveals */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  /* sketch cards keep their own transform through the reveal */
+  .sk-card.rv{opacity:0;transform:translate3d(0,calc(var(--py,0px) + 24px),0) rotate(var(--rot,0deg))}
+  .sk-card.rv.in{opacity:1;transform:translate3d(0,var(--py,0px),0) rotate(var(--rot,0deg))}
+  .sk-card.rv.in:hover{transform:translate3d(0,calc(var(--py,0px) - 8px),0) rotate(0deg) scale(1.015)}
+
+  @media (max-width:720px){
+    .stage .meta{display:none}
+    .checklist{right:auto;left:var(--pad);bottom:auto;top:calc(1rem + 3.4rem);flex-direction:row;flex-wrap:wrap;gap:.45rem .8rem;font-size:.6rem}
+    .hud{max-width:75vw;bottom:1.2rem}
+    .hud .ph-desc{display:none}
+    .stamp{right:1rem;top:16%}
+    .stage .pct{top:auto;bottom:1.2rem;right:var(--pad)}
+    .bar .sheetcode{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none}
+    .cue svg path{animation:none}
+    .hero.ready .drawn{animation:none;stroke-dashoffset:0}
+  }
+</style>
+</head>
+<body id="top">
+
+<!-- ============ TOP BAR ============ -->
+<nav class="bar">
+  <a class="wordmark" href="#top"><b>◂</b> DIERNUS</a>
+  <span class="sheetcode">FOLHA L-SE-01 · PROJETO CONFIDENCIAL · R3 · ESC 1:20 · A3</span>
+  <a class="barcta" href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="barCta">FALAR CONNOSCO</a>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <div class="buildbar" aria-hidden="true"><i id="buildfill"></i></div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <p class="eyebrow" data-i="heroEyebrow">DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO</p>
+  <h1 data-i="heroH1">DA IDEIA<br>À PEÇA</h1>
+  <p class="sub" data-i="heroSub">Esboço à mão, conceção do ambiente, folha de produção — e, no fim, a peça a montar-se sozinha. Faz scroll e percorre o processo completo.</p>
+  <div class="chips">
+    <a href="#cap-01" data-i="chip01">01 · IDEIA</a><a href="#cap-02" data-i="chip02">02 · CONCEÇÃO</a><a href="#cap-03" data-i="chip03">03 · DESENHO TÉCNICO</a><a href="#cap-04" class="hot" data-i="chip04">04 · A PEÇA</a>
+  </div>
+  <div class="cue">
+    <svg viewBox="0 0 14 22"><path d="M2 3 L7 9 L12 3 M2 12 L7 18 L12 12"/></svg>
+    <span data-i="cue">SCROLL PARA COMEÇAR</span>
+  </div>
+</header>
+
+<!-- ============ CAPÍTULO 01 · A IDEIA ============ -->
+<section class="chap" id="cap-01" style="--chap-accent:#D98E4A">
+  <span class="num" aria-hidden="true">01</span>
+  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 01</p>
+  <h2 class="rv" data-i="c1t">A ideia começa num traço</h2>
+  <p class="cp rv" data-i="c1p">Esboços à mão, versões A e B, um detalhe de latão que muda tudo. Antes de qualquer máquina, o desenho pensa.</p>
+</section>
+<section class="ideas">
+  <div class="sk-grid">
+    <figure class="sk-card sk-a rv" data-speed="0.05" style="--rot:-1.2deg;--tape:rgba(217,142,74,.55)">
+      <span class="tape" aria-hidden="true"></span>
+      <img src="assets/sketch-vitrine.jpg" width="1600" height="1132" loading="lazy" alt="Esboço à mão de uma vitrine de loja em cedro vermelho com portas de vidro e lista de materiais">
+      <figcaption><b data-i="g_sk1">VITRINE · RETALHO</b><span><span data-i="skLbl">ESBOÇO</span> 01</span></figcaption>
+    </figure>
+    <figure class="sk-card sk-b rv" data-speed="0.09" style="--rot:1.4deg;--tape:rgba(127,164,118,.5)">
+      <span class="tape" aria-hidden="true"></span>
+      <img src="assets/sketch-cama-ab.jpg" width="724" height="1024" loading="lazy" alt="Esboço à mão de cama com cabeceira estofada, versões A e B, estrutura em madeira">
+      <figcaption><b data-i="g_sk2">CAMA · VERSÕES A + B</b><span><span data-i="skLbl">ESBOÇO</span> 02</span></figcaption>
+    </figure>
+  </div>
+  <div class="hookrow rv">
+    <p data-i="hook1">Tens uma peça na cabeça? Nós pomo-la no papel.</p>
+    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO 02 · A CONCEÇÃO ============ -->
+<section class="chap chap-b2" id="cap-02" style="--chap-accent:#7FA476">
+  <span class="num" aria-hidden="true">02</span>
+  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 02</p>
+  <h2 class="rv" data-i="c2t">O ambiente ganha corpo</h2>
+  <p class="cp rv" data-i="c2p">Moodboards com materiais reais — nogueira, carvalho, estofos, luz. O cliente vê o espaço antes de ele existir.</p>
+</section>
+<section class="moods" id="moods">
+  <div class="mq-row">
+    <div class="mq" data-dir="1">
+      <figure style="--rot:-.5deg"><img src="assets/mood-sala-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala de estar: sofás, cortinados, carpete e aparador em carvalho"><figcaption><i style="--dot:#D98E4A"></i><span data-i="g_m1">SALA DE ESTAR · I</span></figcaption></figure>
+      <figure style="--rot:.6deg"><img src="assets/mood-quarto-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto principal: cabeceira estofada, nogueira e carvalho claro"><figcaption><i style="--dot:#7FA476"></i><span data-i="g_m3">QUARTO PRINCIPAL · I</span></figcaption></figure>
+      <figure style="--rot:-.4deg"><img src="assets/mood-escritorio-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório: secretária em raiz de nogueira e candeeiros de pé"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m6">ESCRITÓRIO · I</span></figcaption></figure>
+      <figure style="--rot:.5deg"><img src="assets/mood-quarto-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto: cortinados, poltrona de pele verde e mesa de cabeceira preta"><figcaption><i style="--dot:#7FA476"></i><span data-i="g_m4">QUARTO PRINCIPAL · II</span></figcaption></figure>
+      <figure style="--rot:-.6deg"><img src="assets/mood-crianca.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto de criança: cama verde, nogueira e secretária com cadeira vermelha"><figcaption><i style="--dot:#C9848C"></i><span data-i="g_m5">QUARTO DE CRIANÇA</span></figcaption></figure>
+      <figure style="--rot:.4deg"><img src="assets/mood-sala-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala com lareira, candeeiro suspenso e poltrona"><figcaption><i style="--dot:#D98E4A"></i><span data-i="g_m2">SALA DE ESTAR · II</span></figcaption></figure>
+      <figure style="--rot:-.5deg"><img src="assets/mood-escritorio-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório com cadeiras e poltronas de pele"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m7">ESCRITÓRIO · II</span></figcaption></figure>
+      <figure style="--rot:.5deg"><img src="assets/mood-escritorio-3.jpg" width="1131" height="1600" loading="lazy" alt="Painel de escritório: cadeiras, tecidos e estantes em carvalho"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m8">ESCRITÓRIO · III</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="hookrow rv">
+    <p data-i="hook2">O teu espaço podia estar neste carrossel.</p>
+    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO 03 · O DESENHO TÉCNICO ============ -->
+<section class="chap two-col" id="cap-03" style="--chap-accent:var(--cobalt)">
+  <span class="num" aria-hidden="true">03</span>
+  <div class="text-col">
+    <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 03</p>
+    <h2 class="rv" data-i="c3t">A folha decide</h2>
+    <p class="cp rv" data-i="c3p">Cotas, materiais e notas de produção num desenho que a oficina lê à primeira. O exemplo abaixo é a folha L-CH-01, de um projeto de hotelaria confidencial.</p>
+  </div>
+
+  <!-- ============ CHAIR VIEWER (2D ↔ 3D) ============ -->
+  <figure class="chair rv">
+    <header class="chair-meta">
+      <span class="cm-l"><b>L-CH-01</b> · <span data-i="chPiece">CADEIRA</span></span>
+      <span class="cm-r" data-i="chSheet">FOLHA DE DETALHE · ESC 1:5</span>
+    </header>
+    <div class="fig-stage" id="chairStage">
+      <svg viewBox="0 0 560 660" role="img" aria-label="Desenho técnico de uma cadeira — alçado frontal">
+        <!-- centreline -->
+        <line class="tk-dash draw" style="--i:0" pathLength="1" x1="280" y1="24" x2="280" y2="636"/>
+
+        <!-- 01 backrest -->
+        <rect class="tk draw" style="--i:1" pathLength="1" x="180" y="36" width="200" height="64" rx="10"/>
+        <line class="tk-thin draw" style="--i:2" pathLength="1" x1="230" y1="52" x2="230" y2="84" opacity=".55"/>
+        <line class="tk-thin draw" style="--i:2" pathLength="1" x1="280" y1="52" x2="280" y2="84" opacity=".55"/>
+        <line class="tk-thin draw" style="--i:2" pathLength="1" x1="330" y1="52" x2="330" y2="84" opacity=".55"/>
+
+        <!-- back posts with tenons -->
+        <rect class="tk draw" style="--i:3" pathLength="1" x="170" y="130" width="18" height="120" rx="4"/>
+        <rect class="tk draw" style="--i:3" pathLength="1" x="372" y="130" width="18" height="120" rx="4"/>
+        <rect class="tk-thin draw" style="--i:4" pathLength="1" x="174" y="116" width="10" height="14"/>
+        <rect class="tk-thin draw" style="--i:4" pathLength="1" x="376" y="116" width="10" height="14"/>
+
+        <!-- 02 seat -->
+        <rect class="tk draw" style="--i:5" pathLength="1" x="150" y="286" width="260" height="20" rx="5"/>
+        <line class="tk-thin draw" style="--i:6" pathLength="1" x1="168" y1="296" x2="392" y2="296" opacity=".4"/>
+
+        <!-- dowels -->
+        <circle class="tk draw" style="--i:7" pathLength="1" cx="200" cy="336" r="6"/>
+        <circle class="tk draw" style="--i:7" pathLength="1" cx="360" cy="336" r="6"/>
+
+        <!-- 03 apron -->
+        <rect class="tk draw" style="--i:8" pathLength="1" x="168" y="362" width="224" height="28" rx="4"/>
+
+        <!-- 04 legs + stretcher -->
+        <path class="tk draw" style="--i:9" pathLength="1" d="M176 418 L196 418 L190 598 L181 598 Z"/>
+        <path class="tk draw" style="--i:9" pathLength="1" d="M364 418 L384 418 L379 598 L370 598 Z"/>
+        <line class="tk-dash draw" style="--i:10" pathLength="1" x1="216" y1="418" x2="212" y2="598"/>
+        <line class="tk-dash draw" style="--i:10" pathLength="1" x1="344" y1="418" x2="340" y2="598"/>
+        <rect class="tk-thin draw" style="--i:10" pathLength="1" x="196" y="512" width="168" height="12" rx="3"/>
+
+        <!-- ground line + hatching -->
+        <line class="tk-thin draw" style="--i:11" pathLength="1" x1="120" y1="606" x2="460" y2="606"/>
+        <g class="tk-thin draw" style="--i:12" opacity=".5">
+          <line pathLength="1" x1="150" y1="618" x2="162" y2="606"/>
+          <line pathLength="1" x1="205" y1="618" x2="217" y2="606"/>
+          <line pathLength="1" x1="260" y1="618" x2="272" y2="606"/>
+          <line pathLength="1" x1="315" y1="618" x2="327" y2="606"/>
+          <line pathLength="1" x1="370" y1="618" x2="382" y2="606"/>
+          <line pathLength="1" x1="425" y1="618" x2="437" y2="606"/>
+        </g>
+
+        <!-- alignment dashes -->
+        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="188" y1="106" x2="188" y2="282"/>
+        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="372" y1="106" x2="372" y2="282"/>
+        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="188" y1="310" x2="188" y2="358"/>
+        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="372" y1="310" x2="372" y2="358"/>
+
+        <!-- dimension: height -->
+        <g class="fade" style="--i:0">
+          <line class="tk-dim" x1="486" y1="36" x2="486" y2="598"/>
+          <line class="tk-dim" x1="384" y1="36" x2="492" y2="36" opacity=".45"/>
+          <line class="tk-dim" x1="392" y1="598" x2="492" y2="598" opacity=".45"/>
+          <line class="tk-dim" x1="481" y1="41" x2="491" y2="31"/>
+          <line class="tk-dim" x1="481" y1="603" x2="491" y2="593"/>
+          <text class="svg-dim-label" transform="translate(504 340) rotate(-90)" text-anchor="middle">820 MM</text>
+        </g>
+        <!-- dimension: width -->
+        <g class="fade" style="--i:1">
+          <line class="tk-dim" x1="150" y1="634" x2="410" y2="634"/>
+          <line class="tk-dim" x1="145" y1="639" x2="155" y2="629"/>
+          <line class="tk-dim" x1="405" y1="639" x2="415" y2="629"/>
+          <text class="svg-dim-label" x="280" y="654" text-anchor="middle">440 MM</text>
+        </g>
+
+        <!-- part labels -->
+        <g class="fade" style="--i:2">
+          <text class="svg-label" x="30" y="72" data-i="svgL1">01 · ENCOSTO</text>
+          <line class="tk-thin" x1="136" y1="68" x2="176" y2="68" opacity=".5"/>
+        </g>
+        <g class="fade" style="--i:3">
+          <text class="svg-label" x="30" y="300" data-i="svgL2">02 · ASSENTO</text>
+          <line class="tk-thin" x1="134" y1="296" x2="146" y2="296" opacity=".5"/>
+        </g>
+        <g class="fade" style="--i:4">
+          <text class="svg-label" x="30" y="340" data-i="svgDowel">CAVILHA Ø8</text>
+          <line class="tk-thin" x1="122" y1="336" x2="190" y2="336" opacity=".5"/>
+        </g>
+        <g class="fade" style="--i:5">
+          <text class="svg-label" x="30" y="380" data-i="svgL3">03 · SAIA</text>
+          <line class="tk-thin" x1="98" y1="376" x2="164" y2="376" opacity=".5"/>
+        </g>
+        <g class="fade" style="--i:6">
+          <text class="svg-label" x="30" y="470" data-i="svgL4">04 · PERNA</text>
+          <line class="tk-thin" x1="110" y1="466" x2="176" y2="466" opacity=".5"/>
+        </g>
+      </svg>
+      <div class="scene" id="chairScene" role="img" aria-label="Modelo 3D interativo de uma cadeira — arraste para rodar">
+        <div class="obj" id="chairObj"><div class="gshadow"></div></div>
+      </div>
+    </div>
+    <div class="fig-ui">
+      <div class="fig-toggle" role="group" aria-label="Vista">
+        <button type="button" id="chairBtn2d" aria-pressed="true" data-i="figD2">DESENHO 2D</button>
+        <button type="button" id="chairBtn3d" aria-pressed="false" data-i="figD3">MODELO 3D</button>
+      </div>
+      <button type="button" class="fig-explode" id="chairExplode" aria-pressed="false" data-i="figExplode" hidden>VISTA EXPLODIDA</button>
+      <span class="fig-hint mono" id="chairHint" data-i="figHint" hidden>ARRASTE PARA RODAR</span>
+    </div>
+  </figure>
+</section>
+
+<!-- ============ SPECS ============ -->
+<section class="sheet specs">
+  <p class="kicker rv" data-i="specsKicker">FICHA TÉCNICA</p>
+  <h2 class="rv" data-i="specsTitle">Desenhado ao milímetro, pesado ao quilo</h2>
+  <p class="lede rv" data-i="specsLede">Tudo o que a oficina precisa está na folha — dimensões, pesos, quantidades, tolerâncias. Nada fica por dizer.</p>
+  <div class="specgrid rv">
+    <div class="spec"><output data-n="2032">0<sub>MM</sub></output><label data-i="sp1">COMPRIMENTO</label></div>
+    <div class="spec"><output data-n="762">0<sub>MM</sub></output><label data-i="sp2">PROFUNDIDADE</label></div>
+    <div class="spec"><output data-n="762">0<sub>MM</sub></output><label data-i="sp3">ALTURA</label></div>
+    <div class="spec"><output data-n="254">0<sub>MM Ø</sub></output><label data-i="sp4">ROLOS</label></div>
+    <div class="spec"><output data-n="204">0<sub>MM</sub></output><label data-i="sp5">ALMOFADA</label></div>
+    <div class="spec"><output data-n="90">0<sub>KG</sub></output><label data-i="sp6">PESO</label></div>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section class="sheet materials">
+  <p class="kicker rv" data-i="matKicker">LISTA DE MATERIAIS</p>
+  <h2 class="rv" data-i="matTitle">Três materiais, zero ambiguidade</h2>
+  <p class="lede rv" data-i="matLede">Referências reais de fornecedor, direção de risca, brilho do verniz — especificado uma vez, cumprido sempre.</p>
+  <div class="matgrid">
+    <article class="mat rv">
+      <div class="tex t-burl"></div>
+      <div class="body">
+        <span class="code">A1 · WDF-05</span>
+        <h3>Mapa Burl</h3>
+        <p data-i="matA1">Folheado de raiz tingido escuro, verniz mate 15%. Aplicado só depois da montagem — juntas invisíveis na peça final.</p>
+        <span class="ref" data-i="matA1ref">AMOSTRA DE CONTROLO DO DESIGNER</span>
+      </div>
+    </article>
+    <article class="mat rv">
+      <div class="tex t-velvet"></div>
+      <div class="body">
+        <span class="code">A2 · FBF-24</span>
+        <h3>Zak+Fox · Bayan</h3>
+        <p data-i="matA2">Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.</p>
+        <span class="ref">REF. ZFBY-10 (BLUE-10)</span>
+      </div>
+    </article>
+    <article class="mat rv">
+      <div class="tex t-stripe"></div>
+      <div class="body">
+        <span class="code">A3 · FBF-20</span>
+        <h3>Clarence House · New Kenya</h3>
+        <p data-i="matA3">Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê. Direção da risca conforme render.</p>
+        <span class="ref">REF. 56792-09 (BLUES)</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ NOTES ============ -->
+<section class="sheet notes">
+  <p class="kicker rv" data-i="ntKicker">NOTAS DE PRODUÇÃO</p>
+  <h2 class="rv" data-i="ntTitle">O que a oficina lê antes de cortar</h2>
+  <p class="lede rv" data-i="ntLede">Uma boa folha responde às perguntas antes de elas chegarem ao telefone. Estas são quatro notas reais da L-SE-01.</p>
+  <div class="notegrid">
+    <article class="note rv">
+      <p class="nh" data-i="nh1">NOTA · MONTAGEM</p>
+      <h3 data-i="nt1t">Folheado após montagem</h3>
+      <p data-i="nt1p">O folheado burl é aplicado apenas depois dos 4 módulos montados, garantindo a ausência de juntas visíveis. O sofá é entregue em obra já montado.</p>
+    </article>
+    <article class="note rv">
+      <p class="nh" data-i="nh2">NOTA · CONFORTO</p>
+      <h3 data-i="nt2t">Assento sem molas</h3>
+      <p data-i="nt2p">Almofada fixa com aro de madeira e pressintas elásticas. Espuma de alta densidade coberta por espuma macia, dacron e penas — compressão suave, forma recuperada.</p>
+      <div class="foam" aria-hidden="true">
+        <div><i class="f1"></i><span data-i="fm1">PENAS / PLUMAS</span></div>
+        <div><i class="f2"></i><span data-i="fm2">CMHR 25–30 KG/M³ + DACRON</span></div>
+        <div><i class="f3"></i><span data-i="fm3">CMHR 40–45 KG/M³</span></div>
+      </div>
+    </article>
+    <article class="note rv">
+      <p class="nh" data-i="nh3">NOTA · FIXAÇÃO</p>
+      <h3 data-i="nt3t">Rolos que não fogem</h3>
+      <p data-i="nt3p">Os rolos Ø254 fixam-se aos braços com velcro para evitar deslocamento — e o braço direito tem perfil superior curvo para os receber.</p>
+    </article>
+    <article class="note rv">
+      <p class="nh" data-i="nh4">NOTA · OBRA</p>
+      <h3 data-i="nt4t">Detalhes que não se veem</h3>
+      <p data-i="nt4p">Forro preto no fundo, pés niveladores transparentes reguláveis, peso confirmado com estrutura reforçada em madeira. Tudo na folha, nada ao acaso.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PROCESS / REVISIONS ============ -->
+<section class="sheet process">
+  <p class="kicker rv" data-i="prKicker">CONTROLO DE REVISÕES</p>
+  <h2 class="rv" data-i="prTitle">Três revisões, zero adivinhas</h2>
+  <p class="lede rv" data-i="prLede">Cada pedido do cliente fica registado na folha. A oficina constrói a última palavra — não a memória de uma reunião.</p>
+  <div class="revs rv">
+    <div class="rev-item">
+      <span class="rn">R1</span>
+      <span class="rd">29/04/2026 · <span data-i="rvReq">PEDIDO CLIENTE</span></span>
+      <p data-i="r1p">Primeira emissão da folha: geometria, módulos e intenção de materiais.</p>
+    </div>
+    <div class="rev-item">
+      <span class="rn">R2</span>
+      <span class="rd">07/05/2026 · <span data-i="rvReq2">PEDIDO CLIENTE</span></span>
+      <p data-i="r2p">Afinação de estofos e notas de conforto — espumas, pressintas, suporte do assento.</p>
+    </div>
+    <div class="rev-item last">
+      <span class="rn">R3</span>
+      <span class="rd">28/05/2026 · <span data-i="rvVal">VALIDADA</span></span>
+      <p data-i="r3p">Folha validada para produção: 7 páginas, bilingue PT/EN, pronta para a oficina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO 04 · A PEÇA ============ -->
+<section class="chap on-navy" id="cap-04" style="--chap-accent:#9FB4FF">
+  <span class="num" aria-hidden="true">04</span>
+  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 04</p>
+  <h2 class="rv" data-i="c4t">A peça constrói-se</h2>
+  <p class="cp rv" data-i="c4p">Um sofá real, módulo a módulo, do risco ao acabamento. Continua a fazer scroll.</p>
+</section>
+
+<!-- ============ BUILD STAGE ============ -->
+<div class="buildwrap" id="buildwrap">
+  <div class="stage" id="stage">
+    <svg class="iso" id="iso" viewBox="-1500 -1250 4200 3100" preserveAspectRatio="xMidYMid meet" aria-label="Sofá L-SE-01 em vista isométrica, explodido e montado"></svg>
+    <div class="meta">
+      <span><b>L-SE-01</b> · SOFA AT LOWER SEATING AREAS</span>
+      <span data-i="metaProj">PROJETO: HOTELARIA · CONFIDENCIAL · 2 UNI · 90 KG</span>
+      <span>762 × 2032 × 762 MM · ESC 1:20</span>
+    </div>
+    <div class="pct"><span data-i="pctLabel">CONSTRUÇÃO</span><output id="pct">0%</output></div>
+    <div class="hud" id="hud">
+      <p class="ph-eyebrow" id="phEyebrow">FASE 01 · FOLHA</p>
+      <h2 class="ph-title" id="phTitle">Vista montada</h2>
+      <p class="ph-desc" id="phDesc">Cada linha vem da folha de produção.</p>
+      <div class="swatches" id="swatches">
+        <span class="sw"><i class="burl"></i>A1 · WDF-05 MAPA BURL</span>
+        <span class="sw"><i class="velvet"></i>A2 · FBF-24 BAYAN</span>
+        <span class="sw"><i class="stripe"></i>A3 · FBF-20 NEW KENYA</span>
+      </div>
+    </div>
+    <ul class="checklist" id="checklist">
+      <li data-part="mod01"><i></i>MOD-01</li>
+      <li data-part="mod02"><i></i>MOD-02</li>
+      <li data-part="mod03"><i></i>MOD-03</li>
+      <li data-part="mod04"><i></i>MOD-04</li>
+      <li data-part="uph"><i></i><span data-i="ckUph">ESTOFO</span></li>
+      <li data-part="fin"><i></i><span data-i="ckFin">ACABAMENTO</span></li>
+    </ul>
+    <div class="stamp" id="stamp">R3 · <span data-i="stampTxt">VALIDADO</span><small>28/05/2026 · DIERNUS</small></div>
+  </div>
+</div>
+
+<!-- ============ CTA ============ -->
+<section class="sheet cta">
+  <p class="kicker rv" data-i="ctaKicker">DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO</p>
+  <h2 class="rv" data-i="ctaTitle">O próximo desenho pode ser o teu</h2>
+  <p class="lede rv" data-i="ctaLede">Por trás de cada folha está uma equipa com anos de bancada e de obra — design, modelação 3D e desenho técnico debaixo do mesmo traço. Já desenhámos hotelaria, residencial e retalho; sabemos o que a oficina precisa de ler à primeira.</p>
+  <div class="chips cta-chips rv">
+    <span data-i="ctaC1">HOTELARIA</span><span data-i="ctaC2">RESIDENCIAL</span><span data-i="ctaC3">RETALHO</span><span data-i="ctaC4">3D + CNC</span>
+  </div>
+  <div class="row rv">
+    <a class="btn primary" href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="ctaBtn">Falar com o estúdio</a>
+    <a class="btn ghost" href="#top" data-i="ctaBack">← Topo</a>
+  </div>
+</section>
+
+<footer>
+  <span><b>DIERNUS</b> · <span data-i="ftTag">DESENHADO AO MILÍMETRO</span></span>
+  <span data-i="ftNote">PROJETOS APRESENTADOS COMO EXEMPLOS · REFERÊNCIAS DE CLIENTE REMOVIDAS</span>
+  <span>© 2026</span>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ==================================================================
+   0 · i18n — same pattern & storage key as index.html
+================================================================== */
+var dict = {
+  pt: {
+    heroEyebrow:"DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO",
+    heroH1:"DA IDEIA<br>À PEÇA",
+    heroSub:'Esboço à mão, conceção do ambiente, folha de produção — e, no fim, a peça a montar-se sozinha. Faz scroll e percorre o processo completo.',
+    chip01:"01 · IDEIA", chip02:"02 · CONCEÇÃO", chip03:"03 · DESENHO TÉCNICO", chip04:"04 · A PEÇA",
+    cue:"SCROLL PARA COMEÇAR",
+    capLbl:"CAPÍTULO", skLbl:"ESBOÇO",
+    c1t:"A ideia começa num traço",
+    c1p:"Esboços à mão, versões A e B, um detalhe de latão que muda tudo. Antes de qualquer máquina, o desenho pensa.",
+    c2t:"O ambiente ganha corpo",
+    c2p:"Moodboards com materiais reais — nogueira, carvalho, estofos, luz. O cliente vê o espaço antes de ele existir.",
+    c3t:"A folha decide",
+    c3p:"Cotas, materiais e notas de produção num desenho que a oficina lê à primeira. O exemplo abaixo é a folha L-CH-01, de um projeto de hotelaria confidencial.",
+    c4t:"A peça constrói-se",
+    c4p:"Um sofá real, módulo a módulo, do risco ao acabamento. Continua a fazer scroll.",
+    chPiece:"CADEIRA", chSheet:"FOLHA DE DETALHE · ESC 1:5",
+    chBackrest:"ENCOSTO", chSeat:"ASSENTO", chSkirt:"SAIA", chLeg:"PERNA",
+    chMode2d:"DESENHO 2D", chMode3d:"MODELO 3D",
+    svgL1:"01 · ENCOSTO", svgL2:"02 · ASSENTO", svgL3:"03 · SAIA", svgL4:"04 · PERNA", svgDowel:"CAVILHA Ø8",
+    figD2:"DESENHO 2D", figD3:"MODELO 3D", figExplode:"VISTA EXPLODIDA", figHint:"ARRASTE PARA RODAR",
+    g_sk1:"VITRINE · RETALHO", g_sk2:"CAMA · VERSÕES A + B",
+    hook1:"Tens uma peça na cabeça? Nós pomo-la no papel.",
+    hook2:"O teu espaço podia estar neste carrossel.",
+    hookBtn:"Falar com o estúdio →", barCta:"FALAR CONNOSCO",
+    ctaC1:"HOTELARIA", ctaC2:"RESIDENCIAL", ctaC3:"RETALHO", ctaC4:"3D + CNC",
+    g_m1:"SALA DE ESTAR · I", g_m2:"SALA DE ESTAR · II", g_m3:"QUARTO PRINCIPAL · I", g_m4:"QUARTO PRINCIPAL · II",
+    g_m5:"QUARTO DE CRIANÇA", g_m6:"ESCRITÓRIO · I", g_m7:"ESCRITÓRIO · II", g_m8:"ESCRITÓRIO · III",
+    metaProj:"PROJETO: HOTELARIA · CONFIDENCIAL · 2 UNI · 90 KG", pctLabel:"CONSTRUÇÃO",
+    ckUph:"ESTOFO", ckFin:"ACABAMENTO", stampTxt:"VALIDADO",
+    specsKicker:"FICHA TÉCNICA", specsTitle:"Desenhado ao milímetro, pesado ao quilo",
+    specsLede:"Tudo o que a oficina precisa está na folha — dimensões, pesos, quantidades, tolerâncias. Nada fica por dizer.",
+    sp1:"COMPRIMENTO", sp2:"PROFUNDIDADE", sp3:"ALTURA", sp4:"ROLOS", sp5:"ALMOFADA", sp6:"PESO",
+    matKicker:"LISTA DE MATERIAIS", matTitle:"Três materiais, zero ambiguidade",
+    matLede:"Referências reais de fornecedor, direção de risca, brilho do verniz — especificado uma vez, cumprido sempre.",
+    matA1:"Folheado de raiz tingido escuro, verniz mate 15%. Aplicado só depois da montagem — juntas invisíveis na peça final.",
+    matA1ref:"AMOSTRA DE CONTROLO DO DESIGNER",
+    matA2:"Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.",
+    matA3:"Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê. Direção da risca conforme render.",
+    ntKicker:"NOTAS DE PRODUÇÃO", ntTitle:"O que a oficina lê antes de cortar",
+    ntLede:"Uma boa folha responde às perguntas antes de elas chegarem ao telefone. Estas são quatro notas reais da L-SE-01.",
+    nh1:"NOTA · MONTAGEM", nt1t:"Folheado após montagem",
+    nt1p:"O folheado burl é aplicado apenas depois dos 4 módulos montados, garantindo a ausência de juntas visíveis. O sofá é entregue em obra já montado.",
+    nh2:"NOTA · CONFORTO", nt2t:"Assento sem molas",
+    nt2p:"Almofada fixa com aro de madeira e pressintas elásticas. Espuma de alta densidade coberta por espuma macia, dacron e penas — compressão suave, forma recuperada.",
+    fm1:"PENAS / PLUMAS", fm2:"CMHR 25–30 KG/M³ + DACRON", fm3:"CMHR 40–45 KG/M³",
+    nh3:"NOTA · FIXAÇÃO", nt3t:"Rolos que não fogem",
+    nt3p:"Os rolos Ø254 fixam-se aos braços com velcro para evitar deslocamento — e o braço direito tem perfil superior curvo para os receber.",
+    nh4:"NOTA · OBRA", nt4t:"Detalhes que não se veem",
+    nt4p:"Forro preto no fundo, pés niveladores transparentes reguláveis, peso confirmado com estrutura reforçada em madeira. Tudo na folha, nada ao acaso.",
+    prKicker:"CONTROLO DE REVISÕES", prTitle:"Três revisões, zero adivinhas",
+    prLede:"Cada pedido do cliente fica registado na folha. A oficina constrói a última palavra — não a memória de uma reunião.",
+    rvReq:"PEDIDO CLIENTE", rvReq2:"PEDIDO CLIENTE", rvVal:"VALIDADA",
+    r1p:"Primeira emissão da folha: geometria, módulos e intenção de materiais.",
+    r2p:"Afinação de estofos e notas de conforto — espumas, pressintas, suporte do assento.",
+    r3p:"Folha validada para produção: 7 páginas, bilingue PT/EN, pronta para a oficina.",
+    ctaKicker:"DIERNUS · A EQUIPA POR TRÁS DO TRAÇO", ctaTitle:"O próximo desenho pode ser o teu",
+    ctaLede:"Por trás de cada folha está uma equipa com anos de bancada e de obra — design, modelação 3D e desenho técnico debaixo do mesmo traço. Já desenhámos hotelaria, residencial e retalho; sabemos o que a oficina precisa de ler à primeira.",
+    ctaBtn:"Falar com o estúdio", ctaBack:"← Topo",
+    ftTag:"DESENHADO AO MILÍMETRO", ftNote:"PROJETOS APRESENTADOS COMO EXEMPLOS · REFERÊNCIAS DE CLIENTE REMOVIDAS",
+    phases:[
+      ["FASE 01 · FOLHA","Vista montada","Cada linha vem da folha de produção L-SE-01."],
+      ["FASE 02 · EXPLOSÃO","4 módulos, 7 componentes","A peça abre-se como no desenho de montagem — cada parte com nome e cota."],
+      ["FASE 03 · MATERIAIS","O desenho ganha matéria","Burl escuro mate, veludo Bayan, risca New Kenya — as referências da lista de materiais."],
+      ["FASE 04 · MONTAGEM","MOD-01 → MOD-04","Os módulos encaixam pela ordem da folha. O estofo entra no fim, os rolos rolam para o lugar."],
+      ["FASE 05 · ACABAMENTO","Juntas invisíveis","Folheado aplicado após montagem, niveladores afinados. Entregue em obra já montado."]
+    ],
+    lbl:{ mod01:["MOD-01","MÓDULO ESQUERDO"], mod02:["MOD-02","PLATAFORMA DE ASSENTO"],
+      mod03:["MOD-03","BRAÇO DIREITO · TOPO CURVO"], mod04:["MOD-04","ENCOSTO · FOLHEADO BURL"],
+      cushion:["FBF-24","ALMOFADA FIXA · VELUDO"], bolA:["FBF-20","ROLO Ø254 · VIVO + BOTÃO"],
+      bolB:["FBF-20","ROLO Ø254 · VELCRO"], glides:["COMP. 1","PÉS NIVELADORES"] }
+  },
+  en: {
+    heroEyebrow:"DIERNUS · FURNITURE DRAWING STUDIO",
+    heroH1:"FROM IDEA<br>TO PIECE",
+    heroSub:'A hand sketch, a concept for the room, a production sheet — and, at the end, the piece assembling itself. Scroll through the whole process.',
+    chip01:"01 · IDEA", chip02:"02 · CONCEPT", chip03:"03 · TECHNICAL DRAWING", chip04:"04 · THE PIECE",
+    cue:"SCROLL TO START",
+    capLbl:"CHAPTER", skLbl:"SKETCH",
+    c1t:"It starts with a line",
+    c1p:"Hand sketches, options A and B, a brass detail that changes everything. Before any machine runs, the drawing thinks.",
+    c2t:"The room takes shape",
+    c2p:"Moodboards with real materials — walnut, oak, fabrics, light. The client sees the space before it exists.",
+    c3t:"The sheet decides",
+    c3p:"Dimensions, materials and production notes in a drawing the workshop reads first time. The example below is sheet L-CH-01, from a confidential hospitality project.",
+    c4t:"The piece builds itself",
+    c4p:"A real sofa, module by module, from line work to finish. Keep scrolling.",
+    chPiece:"CHAIR", chSheet:"DETAIL SHEET · SCALE 1:5",
+    chBackrest:"BACKREST", chSeat:"SEAT", chSkirt:"SKIRT", chLeg:"LEG",
+    chMode2d:"2D DRAWING", chMode3d:"3D MODEL",
+    svgL1:"01 · BACKREST", svgL2:"02 · SEAT", svgL3:"03 · APRON", svgL4:"04 · LEG", svgDowel:"DOWEL Ø8",
+    figD2:"2D DRAWING", figD3:"3D MODEL", figExplode:"EXPLODED VIEW", figHint:"DRAG TO ROTATE",
+    g_sk1:"DISPLAY CASE · RETAIL", g_sk2:"BED · OPTIONS A + B",
+    hook1:"Got a piece in your head? We'll put it on paper.",
+    hook2:"Your space could be on this reel.",
+    hookBtn:"Talk to the studio →", barCta:"TALK TO US",
+    ctaC1:"HOSPITALITY", ctaC2:"RESIDENTIAL", ctaC3:"RETAIL", ctaC4:"3D + CNC",
+    g_m1:"LIVING ROOM · I", g_m2:"LIVING ROOM · II", g_m3:"MAIN BEDROOM · I", g_m4:"MAIN BEDROOM · II",
+    g_m5:"KIDS' ROOM", g_m6:"HOME OFFICE · I", g_m7:"HOME OFFICE · II", g_m8:"HOME OFFICE · III",
+    metaProj:"PROJECT: HOSPITALITY · CONFIDENTIAL · 2 UNITS · 90 KG", pctLabel:"BUILD",
+    ckUph:"UPHOLSTERY", ckFin:"FINISH", stampTxt:"VALIDATED",
+    specsKicker:"TECHNICAL DATA", specsTitle:"Drawn to the millimetre, weighed to the kilo",
+    specsLede:"Everything the workshop needs is on the sheet — dimensions, weights, quantities, tolerances. Nothing left unsaid.",
+    sp1:"LENGTH", sp2:"DEPTH", sp3:"HEIGHT", sp4:"BOLSTERS", sp5:"CUSHION", sp6:"WEIGHT",
+    matKicker:"LIST OF MATERIALS", matTitle:"Three materials, zero ambiguity",
+    matLede:"Real supplier references, stripe direction, sheen level — specified once, honoured always.",
+    matA1:"Dark-stained burl veneer, matte 15% clear coat. Applied only after assembly — no visible joints in the final piece.",
+    matA1ref:"TO MATCH DESIGNER'S CONTROL SAMPLE",
+    matA2:"Blue velvet for the fixed bench seat cushion. Exposed seams blind-stitched, threads to match.",
+    matA3:"Bolster stripe with self welt and self-fabric buttons with a slight tufting effect. Stripe direction follows the rendering.",
+    ntKicker:"PRODUCTION NOTES", ntTitle:"What the workshop reads before cutting",
+    ntLede:"A good sheet answers the questions before they reach the phone. These are four real notes from L-SE-01.",
+    nh1:"NOTE · ASSEMBLY", nt1t:"Veneer after assembly",
+    nt1p:"The burl veneer is applied only after the 4 modules are assembled, ensuring no visible joints. The sofa is delivered to site fully assembled.",
+    nh2:"NOTE · COMFORT", nt2t:"A seat with no springs",
+    nt2p:"Fixed cushion on a timber frame with elastic webbing. High-density foam topped with soft foam, dacron and down — gentle compression, shape recovered.",
+    fm1:"DOWN WRAP", fm2:"CMHR FOAM 25–30 KG/M³ + DACRON", fm3:"CMHR FOAM 40–45 KG/M³",
+    nh3:"NOTE · FIXING", nt3t:"Bolsters that stay put",
+    nt3p:"The Ø254 bolsters are secured to the arms with velcro straps to prevent displacement — and the right arm has a curved top profile to receive them.",
+    nh4:"NOTE · ON SITE", nt4t:"Details you never see",
+    nt4p:"Black lining underneath, adjustable clear glides, weight confirmed with a fully reinforced timber structure. All on the sheet, nothing left to chance.",
+    prKicker:"REVISION CONTROL", prTitle:"Three revisions, zero guesswork",
+    prLede:"Every client request is recorded on the sheet. The workshop builds the last word — not the memory of a meeting.",
+    rvReq:"CLIENT REQUEST", rvReq2:"CLIENT REQUEST", rvVal:"VALIDATED",
+    r1p:"First issue of the sheet: geometry, modules and material intent.",
+    r2p:"Upholstery and comfort tuning — foams, webbing, seat support.",
+    r3p:"Sheet validated for production: 7 pages, bilingual PT/EN, workshop-ready.",
+    ctaKicker:"DIERNUS · THE TEAM BEHIND THE LINE", ctaTitle:"The next drawing could be yours",
+    ctaLede:"Behind every sheet is a team with years of workshop and site experience — design, 3D modelling and technical drawing under the same line. We've drawn hospitality, residential and retail; we know what the workshop needs to read first time.",
+    ctaBtn:"Talk to the studio", ctaBack:"← Top",
+    ftTag:"DRAWN TO THE MILLIMETRE", ftNote:"PROJECTS SHOWN AS SAMPLES · CLIENT REFERENCES REMOVED",
+    phases:[
+      ["PHASE 01 · SHEET","Assembled view","Every line comes from production sheet L-SE-01."],
+      ["PHASE 02 · EXPLODED","4 modules, 7 components","The piece opens up like the assembly drawing — every part named and dimensioned."],
+      ["PHASE 03 · MATERIALS","The drawing takes on matter","Dark matte burl, Bayan velvet, New Kenya stripe — straight from the list of materials."],
+      ["PHASE 04 · ASSEMBLY","MOD-01 → MOD-04","Modules land in sheet order. Upholstery goes in last; the bolsters roll into place."],
+      ["PHASE 05 · FINISH","Invisible joints","Veneer applied after assembly, glides levelled. Delivered to site fully assembled."]
+    ],
+    lbl:{ mod01:["MOD-01","LEFT MODULE"], mod02:["MOD-02","SEAT PLATFORM"],
+      mod03:["MOD-03","RIGHT ARM · CURVED TOP"], mod04:["MOD-04","BACKREST · BURL VENEER"],
+      cushion:["FBF-24","FIXED CUSHION · VELVET"], bolA:["FBF-20","BOLSTER Ø254 · WELT + BUTTON"],
+      bolB:["FBF-20","BOLSTER Ø254 · VELCRO"], glides:["COMP. 1","ADJUSTABLE GLIDES"] }
+  }
+};
+var lang = "pt";
+try { lang = localStorage.getItem("diernus-lang") || "pt"; } catch(e){}
+if (!dict[lang]) lang = "pt";
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  var d = dict[lang];
+  document.querySelectorAll("[data-i]").forEach(function(el){
+    var k = el.getAttribute("data-i");
+    if (d[k] != null) el.innerHTML = d[k];
+  });
+  document.querySelectorAll(".bar .lang button").forEach(function(b){
+    b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+  });
+  refreshLabels();
+  lastPhase = -1; /* force HUD re-render */
+}
+document.querySelectorAll(".bar .lang button").forEach(function(b){
+  b.addEventListener("click", function(){
+    lang = b.dataset.lang;
+    try { localStorage.setItem("diernus-lang", lang); } catch(e){}
+    applyLang();
+  });
+});
+
+/* ==================================================================
+   0.5 · Chair viewer (cap 03) — ported from index.html
+   SVG 2D front-elevation + CSS 3D scene with drag-rotate + explode
+================================================================== */
+(function(){
+  var stage      = document.getElementById("chairStage");
+  var scene      = document.getElementById("chairScene");
+  var chair      = document.getElementById("chairObj");
+  var btn2d      = document.getElementById("chairBtn2d");
+  var btn3d      = document.getElementById("chairBtn3d");
+  var btnExplode = document.getElementById("chairExplode");
+  var figHint    = document.getElementById("chairHint");
+  if (!stage || !chair) return;
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* [w,h,d, x,y,z, explodeX,explodeY,explodeZ] — chair in mm-ish px, y down */
+  var PARTS = [
+    [170, 60, 14,    0,-118, -93,    0, -70, -40],  /* backrest */
+    [ 16,150, 16,  -93, -75, -93,  -34, -26, -26],  /* back posts */
+    [ 16,150, 16,   93, -75, -93,   34, -26, -26],
+    [220, 14,200,    0,   7,   0,    0,   0,   0],  /* seat */
+    [180, 24, 12,    0,  34,  80,    0,  34,  48],  /* aprons */
+    [180, 24, 12,    0,  34, -80,    0,  34, -48],
+    [ 12, 24,160,  -84,  34,   0,  -46,  34,   0],
+    [ 12, 24,160,   84,  34,   0,   46,  34,   0],
+    [ 16,168, 16,  -93,  98,  93,  -30,  70,  30],  /* legs */
+    [ 16,168, 16,   93,  98,  93,   30,  70,  30],
+    [ 16,168, 16,  -93,  98, -93,  -30,  70, -30],
+    [ 16,168, 16,   93,  98, -93,   30,  70, -30],
+    [ 12, 12,150,  -93, 140,   0,  -60,  96,   0],  /* stretchers */
+    [ 12, 12,150,   93, 140,   0,   60,  96,   0],
+    [174, 12, 12,    0, 152,   0,    0, 116,   0]
+  ];
+  var FACE_BG = {
+    top:    "var(--wood-top)",
+    bottom: "var(--wood-bottom)",
+    front:  "var(--wood-front)",
+    back:   "var(--wood-front)",
+    left:   "var(--wood-side)",
+    right:  "var(--wood-side)"
+  };
+
+  function face(w, h, t, bg){
+    var f = document.createElement("div");
+    f.className = "face";
+    f.style.width  = w + "px";
+    f.style.height = h + "px";
+    f.style.transform = t;
+    f.style.background = bg;
+    return f;
+  }
+  function cuboid(p){
+    var w=p[0], h=p[1], d=p[2], x=p[3], y=p[4], z=p[5], ex=p[6], ey=p[7], ez=p[8];
+    var el = document.createElement("div");
+    el.className = "part";
+    el.style.transform =
+      "translate3d(" +
+        "calc(" + x + "px + var(--ex,0)*" + ex + "px)," +
+        "calc(" + y + "px + var(--ex,0)*" + ey + "px)," +
+        "calc(" + z + "px + var(--ex,0)*" + ez + "px))";
+    var C = "translate(-50%,-50%) ";
+    el.appendChild(face(w, h, C + "translateZ(" +  d/2 + "px)", FACE_BG.front));
+    el.appendChild(face(w, h, C + "rotateY(180deg) translateZ(" +  d/2 + "px)", FACE_BG.back));
+    el.appendChild(face(d, h, C + "rotateY(90deg)  translateZ(" +  w/2 + "px)", FACE_BG.right));
+    el.appendChild(face(d, h, C + "rotateY(-90deg) translateZ(" +  w/2 + "px)", FACE_BG.left));
+    el.appendChild(face(w, d, C + "rotateX(90deg)  translateZ(" +  h/2 + "px)", FACE_BG.top));
+    el.appendChild(face(w, d, C + "rotateX(-90deg) translateZ(" +  h/2 + "px)", FACE_BG.bottom));
+    return el;
+  }
+
+  var built = false, mode3d = false, exploded = false;
+  var rx = 16, ry = -28, autoSpin = true, dragging = false, rafId = null;
+
+  function render(){
+    chair.style.setProperty("--rx", rx.toFixed(2) + "deg");
+    chair.style.setProperty("--ry", ry.toFixed(2) + "deg");
+  }
+  function loop(){
+    if (!mode3d) { rafId = null; return; }
+    if (autoSpin && !dragging && !reduceMotion) { ry += 0.12; render(); }
+    rafId = requestAnimationFrame(loop);
+  }
+  function build(){
+    /* avoid double-build if user toggles back to 2D then to 3D again */
+    if (built) return;
+    PARTS.forEach(function(p){ chair.appendChild(cuboid(p)); });
+    built = true;
+  }
+  function setExploded(on){
+    exploded = on;
+    chair.style.setProperty("--ex", on ? 1 : 0);
+    btnExplode.setAttribute("aria-pressed", String(on));
+  }
+  function setMode(m3){
+    mode3d = m3;
+    if (m3) {
+      build();
+      if (!reduceMotion) {
+        /* assembly moment: parts fly in from exploded positions */
+        chair.style.setProperty("--ex", 1);
+        void chair.offsetWidth;
+        requestAnimationFrame(function(){ chair.style.setProperty("--ex", 0); });
+      }
+    }
+    stage.classList.toggle("mode3d", m3);
+    scene.classList.toggle("on", m3);
+    btn2d.setAttribute("aria-pressed", String(!m3));
+    btn3d.setAttribute("aria-pressed", String(m3));
+    btnExplode.hidden = !m3;
+    figHint.hidden   = !m3;
+    render();
+    if (m3 && rafId === null) rafId = requestAnimationFrame(loop);
+  }
+
+  btn2d.addEventListener("click", function(){ setMode(false); });
+  btn3d.addEventListener("click", function(){ setMode(true); });
+  btnExplode.addEventListener("click", function(){ setExploded(!exploded); });
+
+  /* drag-to-rotate */
+  var px = 0, py = 0;
+  scene.addEventListener("pointerdown", function(e){
+    dragging = true; autoSpin = false;
+    px = e.clientX; py = e.clientY;
+    try { scene.setPointerCapture(e.pointerId); } catch(_){}
+  });
+  scene.addEventListener("pointermove", function(e){
+    if (!dragging) return;
+    ry += (e.clientX - px) * 0.4;
+    rx = Math.min(55, Math.max(-8, rx - (e.clientY - py) * 0.3));
+    px = e.clientX; py = e.clientY;
+    render();
+  });
+  ["pointerup","pointercancel"].forEach(function(ev){
+    scene.addEventListener(ev, function(){ dragging = false; });
+  });
+
+  setMode(false);
+  /* honour ?fig=3d from URL, same as index.html */
+  try {
+    if (new URLSearchParams(location.search).get("fig") === "3d") setMode(true);
+  } catch(e){}
+})();
+
+/* ==================================================================
+   1 · Isometric engine — real mm from sheet L-SE-01
+================================================================== */
+var SVG = "http://www.w3.org/2000/svg";
+var COS = Math.cos(Math.PI/6), SIN = 0.5;
+function P(x,y,z){ return [(x - y) * COS, (x + y) * SIN - z]; }
+function pts(list){ return list.map(function(p){ return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "); }
+function el(tag, attrs, parent){
+  var n = document.createElementNS(SVG, tag);
+  for (var k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+
+var iso = document.getElementById("iso");
+var defs = el("defs", {}, iso);
+
+/* --- material defs --- */
+defs.innerHTML =
+  '<pattern id="burl" width="620" height="620" patternUnits="userSpaceOnUse">' +
+    '<rect width="620" height="620" fill="#5e3a1c"/>' +
+    '<image id="burlImg" width="620" height="620"/>' +
+  '</pattern>' +
+  '<linearGradient id="velv" x1="0" y1="0" x2="1" y2="1">' +
+    '<stop offset="0" stop-color="#42597c"/><stop offset=".55" stop-color="#2e4160"/><stop offset="1" stop-color="#22304a"/>' +
+  '</linearGradient>' +
+  '<pattern id="stripeA" width="46" height="46" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">' +
+    '<rect width="46" height="46" fill="#33445e"/>' +
+    '<rect width="20" height="46" fill="#5c7699"/><rect x="20" width="4" height="46" fill="#8fa6c4"/>' +
+  '</pattern>' +
+  '<pattern id="stripeB" width="46" height="46" patternUnits="userSpaceOnUse" patternTransform="rotate(150)">' +
+    '<rect width="46" height="46" fill="#33445e"/>' +
+    '<rect width="20" height="46" fill="#5c7699"/><rect x="20" width="4" height="46" fill="#8fa6c4"/>' +
+  '</pattern>' +
+  '<radialGradient id="shadowG" cx=".5" cy=".5" r=".5">' +
+    '<stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>' +
+  '</radialGradient>' +
+  '<linearGradient id="sheenG" x1="0" y1="0" x2="1" y2="0">' +
+    '<stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/>' +
+    '<stop offset="1" stop-color="#fff" stop-opacity="0"/>' +
+  '</linearGradient>';
+
+/* burl texture: rasterised ONCE to a bitmap — live SVG filters re-render on
+   every camera move and hang the compositor, a canvas tile does not */
+(function makeBurl(){
+  var S = 512, c = document.createElement("canvas");
+  c.width = c.height = S;
+  var g = c.getContext("2d");
+  var seed = 42;
+  function rnd(){ seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+  var grad = g.createLinearGradient(0, 0, S, S);
+  grad.addColorStop(0, "#6b4423"); grad.addColorStop(.5, "#54331a"); grad.addColorStop(1, "#5e3a1e");
+  g.fillStyle = grad; g.fillRect(0, 0, S, S);
+  /* wrap every mark across tile edges so the pattern tiles seamlessly */
+  var offs = [[0,0],[S,0],[-S,0],[0,S],[0,-S]];
+  var i, j, x, y, r;
+  for (i = 0; i < 170; i++){
+    x = rnd() * S; y = rnd() * S; r = 4 + rnd() * 38;
+    var sq = 0.45 + rnd() * 0.5, a0 = rnd() * Math.PI, arc = Math.PI * (1.2 + rnd() * 0.8);
+    var col = "rgba(" + (i % 3 ? "32,17,6" : "18,9,3") + "," + (0.14 + rnd() * 0.22).toFixed(2) + ")";
+    var lw = 1 + rnd() * 2.4;
+    for (j = 0; j < offs.length; j++){
+      g.beginPath();
+      g.ellipse(x + offs[j][0], y + offs[j][1], r, r * sq, a0, 0, arc);
+      g.strokeStyle = col; g.lineWidth = lw; g.stroke();
+    }
+  }
+  for (i = 0; i < 90; i++){
+    x = rnd() * S; y = rnd() * S; r = 1 + rnd() * 6;
+    var a1 = rnd() * Math.PI, fc = "rgba(205,150,90," + (0.05 + rnd() * 0.1).toFixed(2) + ")";
+    for (j = 0; j < offs.length; j++){
+      g.beginPath();
+      g.ellipse(x + offs[j][0], y + offs[j][1], r * 2, r, a1, 0, Math.PI * 2);
+      g.fillStyle = fc; g.fill();
+    }
+  }
+  for (i = 0; i < 26; i++){
+    x = rnd() * S; y = rnd() * S; r = 2 + rnd() * 5;
+    for (j = 0; j < offs.length; j++){
+      g.beginPath(); g.arc(x + offs[j][0], y + offs[j][1], r, 0, 7);
+      g.fillStyle = "rgba(24,12,4,.55)"; g.fill();
+      g.beginPath(); g.arc(x + offs[j][0], y + offs[j][1], r + 2 + rnd() * 3, 0, 7);
+      g.strokeStyle = "rgba(30,15,5,.35)"; g.lineWidth = 1.2; g.stroke();
+    }
+  }
+  document.getElementById("burlImg").setAttribute("href", c.toDataURL("image/png"));
+})();
+
+/* --- layers --- */
+var gGrid   = el("g", {class:"grid"}, iso);
+var gShadow = el("g", {}, iso);
+var gParts  = el("g", {}, iso);
+var gDims   = el("g", {}, iso);
+var gLabels = el("g", {}, iso);
+var gSheen  = el("g", {}, iso);
+
+/* floor grid (iso) */
+(function(){
+  var i, a, b, STEP = 254, N = 8;
+  for (i = -N; i <= N + 8; i++){
+    a = P(i * STEP, -900, 0); b = P(i * STEP, 1800, 0);
+    el("line", {x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, gGrid);
+  }
+  for (i = -4; i <= 8; i++){
+    a = P(-1200, i * STEP, 0); b = P(3300, i * STEP, 0);
+    el("line", {x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, gGrid);
+  }
+})();
+
+/* ground shadow */
+var shadowEl = el("ellipse", {fill:"url(#shadowG)"}, gShadow);
+var shC = P(1016, 381, 0);
+
+/* --- geometry builders ------------------------------------------- */
+/* box faces: top (z=z1), left (x=x0 plane), front (y=y0 plane) */
+function boxFaces(x0,y0,z0,x1,y1,z1){
+  return {
+    top:  [P(x0,y0,z1), P(x1,y0,z1), P(x1,y1,z1), P(x0,y1,z1)],
+    left: [P(x0,y0,z0), P(x0,y0,z1), P(x0,y1,z1), P(x0,y1,z0)],
+    front:[P(x0,y0,z0), P(x1,y0,z0), P(x1,y0,z1), P(x0,y0,z1)]
+  };
+}
+function addBox(gInk, gMat, x0,y0,z0,x1,y1,z1, fill, shades){
+  var f = boxFaces(x0,y0,z0,x1,y1,z1);
+  ["left","front","top"].forEach(function(name){
+    el("polygon", {points:pts(f[name])}, gInk);
+    el("polygon", {points:pts(f[name]), fill:fill}, gMat);
+    el("polygon", {points:pts(f[name]), fill:shades[name], "class":"shade"}, gMat);
+  });
+}
+/* cylinder along axis 'x' or 'y' — cx etc are centre of cap A (the visible cap) */
+function addCyl(gInk, gMat, axis, c0, len, cy, cz, r, fill, capFill){
+  var STEPS = 28, capA = [], i, t, y, z, p;
+  for (i = 0; i < STEPS; i++){
+    t = i / STEPS * Math.PI * 2;
+    if (axis === "x"){ p = P(c0, cy + r * Math.cos(t), cz + r * Math.sin(t)); }
+    else             { p = P(cy + r * Math.cos(t), c0, cz + r * Math.sin(t)); }
+    capA.push(p);
+  }
+  var d = (axis === "x") ? P(len,0,0).map(function(v,k){ return v - P(0,0,0)[k]; })
+                         : P(0,len,0).map(function(v,k){ return v - P(0,0,0)[k]; });
+  /* silhouette split via signed distance to axis dir */
+  var imax = 0, imin = 0, smax = -1e9, smin = 1e9;
+  capA.forEach(function(pp, idx){
+    var s = d[0] * (pp[1]) - d[1] * (pp[0]); /* cross(d, p) */
+    if (s > smax){ smax = s; imax = idx; }
+    if (s < smin){ smin = s; imin = idx; }
+  });
+  function slice(a, from, to){
+    var out = [], i2 = from;
+    while (true){ out.push(a[i2]); if (i2 === to) break; i2 = (i2 + 1) % a.length; }
+    return out;
+  }
+  var sideA = slice(capA, imax, imin);
+  var capB = capA.map(function(pp){ return [pp[0] + d[0], pp[1] + d[1]]; });
+  var sideB = slice(capB, imin, imax);
+  var body = sideA.concat(sideB);
+  /* far cap then body then near cap */
+  el("polygon", {points:pts(capB)}, gInk);
+  el("polygon", {points:pts(body)}, gInk);
+  el("polygon", {points:pts(capA)}, gInk);
+  el("polygon", {points:pts(capB), fill:fill}, gMat);
+  el("polygon", {points:pts(body), fill:fill}, gMat);
+  el("polygon", {points:pts(body), fill:"rgba(8,12,24,.24)"}, gMat);
+  el("polygon", {points:pts(capA), fill:capFill || fill}, gMat);
+  el("polygon", {points:pts(capA), fill:"rgba(255,255,255,.07)"}, gMat);
+  /* button + tuft on visible cap */
+  var bc = (axis === "x") ? P(c0, cy, cz) : P(cy, c0, cz);
+  el("circle", {cx:bc[0], cy:bc[1], r:r*0.14, fill:"rgba(10,16,30,.55)", stroke:"rgba(255,255,255,.25)","stroke-width":2}, gMat);
+}
+
+/* --- parts (mm, from the sheet: 2032 × 762 × 762) ----------------- */
+var SH = { /* shade overlays for wood / fabric */
+  wood:  {top:"rgba(255,214,150,.16)", left:"rgba(0,0,0,.33)",  front:"rgba(0,0,0,.12)"},
+  velvet:{top:"rgba(255,255,255,.10)", left:"rgba(0,0,0,.30)",  front:"rgba(0,0,0,.10)"}
+};
+var partDefs = [
+  { id:"glides", explode:[0, 0, -230], anchor:[1016, 60, -40], side:-1, small:true,
+    build:function(ink, mat){
+      /* front row only — rear feet are fully occluded from this camera */
+      var GSH = {top:"rgba(255,255,255,.25)", left:"rgba(0,0,0,.28)", front:"rgba(0,0,0,.12)"};
+      [[100,80],[1000,80],[1930,80]].forEach(function(c){
+        addBox(ink, mat, c[0]-25, c[1]-25, -22, c[0]+25, c[1]+25, 0, "#cfd6df", GSH);
+      });
+    }},
+  { id:"mod04", explode:[0, 320, 470], anchor:[1050, 762, 700], side:1,
+    build:function(ink, mat){
+      addBox(ink, mat,  90, 672, 300, 2032, 762, 762, "url(#burl)", SH.wood); /* back panel */
+      addBox(ink, mat,   0,   0, 300,   90, 762, 762, "url(#burl)", SH.wood); /* left wing  */
+    }},
+  { id:"mod01", explode:[-560, 0, 40], anchor:[0, 240, 150], side:-1,
+    build:function(ink, mat){ addBox(ink, mat, 0, 0, 0, 410, 762, 300, "url(#burl)", SH.wood); }},
+  { id:"mod02", explode:[0, -200, -60], anchor:[1016, 0, 60], side:-1,
+    build:function(ink, mat){ addBox(ink, mat, 410, 0, 0, 1622, 762, 300, "url(#burl)", SH.wood); }},
+  { id:"mod03", explode:[600, 0, 40], anchor:[2032, 240, 260], side:1, lab:[-80, 330],
+    build:function(ink, mat){ addBox(ink, mat, 1622, 0, 0, 2032, 762, 530, "url(#burl)", SH.wood); }},
+  { id:"cushion", explode:[-60, -170, 560], anchor:[400, 30, 420], side:-1,
+    build:function(ink, mat){ addBox(ink, mat, 100, 30, 300, 1612, 672, 504, "url(#velv)", SH.velvet); }},
+  { id:"bolA", explode:[60, -40, 950], anchor:[140, 545, 640], side:-1,
+    build:function(ink, mat){ addCyl(ink, mat, "x", 140, 1420, 545, 631, 127, "url(#stripeA)", "url(#stripeA)"); }},
+  { id:"bolB", explode:[260, 0, 860], anchor:[1827, 60, 700], side:1,
+    build:function(ink, mat){ addCyl(ink, mat, "y", 60, 640, 1827, 657, 127, "url(#stripeB)", "url(#stripeB)"); }}
+];
+
+var parts = {};
+partDefs.forEach(function(def){
+  var g    = el("g", {class:"part", id:"p-" + def.id}, gParts);
+  var gInk = el("g", {class:"ink-part"}, g);
+  var gMat = el("g", {class:"mat-part", opacity:0}, g);
+  def.build(gInk, gMat);
+  var dv = P(def.explode[0], def.explode[1], def.explode[2]);
+  parts[def.id] = { def:def, g:g, ink:gInk, mat:gMat, dx:dv[0], dy:dv[1] };
+});
+
+/* --- labels + leader lines --------------------------------------- */
+var labelEls = {};
+function makeLabel(id, side){
+  var def = partDefs.filter(function(d){ return d.id === id; })[0];
+  var a = P(def.anchor[0], def.anchor[1], def.anchor[2]);
+  var ex = P(def.anchor[0] + def.explode[0], def.anchor[1] + def.explode[1], def.anchor[2] + def.explode[2]);
+  var off = def.lab || [side * 330, -130];
+  var lx = ex[0] + off[0], ly = ex[1] + off[1];
+  var g = el("g", {class:"lbl"}, gLabels);
+  el("polyline", {class:"lblline", points: ex[0] + "," + ex[1] + " " + (lx - side * 40) + "," + ly + " " + (lx + side * 300) + "," + ly}, g);
+  el("circle", {cx:ex[0], cy:ex[1], r:10, fill:"var(--hud-line)"}, g);
+  var box = el("rect", {class:"lblbox", x: side > 0 ? lx - 40 : lx - 300, y: ly - 92, width:380, height:82, rx:8}, g);
+  var t1 = el("text", {x:0, y:ly - 58, "font-size":34, "font-weight":"bold"}, g);
+  var t2 = el("text", {x:0, y:ly - 24, "font-size":24, style:"fill:var(--ink-60)"}, g);
+  labelEls[id] = {g:g, t1:t1, t2:t2, box:box, side:side, lx:lx, ly:ly};
+  return g;
+}
+partDefs.forEach(function(d){ if (!d.small || d.id === "glides") makeLabel(d.id, d.side); });
+function refreshLabels(){
+  var L = dict[lang].lbl;
+  Object.keys(labelEls).forEach(function(id){
+    var le = labelEls[id], txt = L[id] || ["",""];
+    le.t1.textContent = txt[0]; le.t2.textContent = txt[1];
+    var w = 380;
+    try {
+      var bb1 = le.t1.getBBox(), bb2 = le.t2.getBBox();
+      w = Math.max(230, Math.max(bb1.width, bb2.width) + 48);
+    } catch(e){}
+    var x0 = le.side > 0 ? le.lx - 40 : le.lx - 300;
+    le.box.setAttribute("x", x0); le.box.setAttribute("width", w);
+    le.t1.setAttribute("x", x0 + 24); le.t2.setAttribute("x", x0 + 24);
+  });
+}
+
+/* --- dimension lines (exploded phase) ----------------------------- */
+function dim(p1, p2, txt, tOff){
+  var g = el("g", {class:"dim"}, gDims);
+  var a = P.apply(null, p1), b = P.apply(null, p2);
+  el("line", {class:"dimline", x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, g);
+  [[a,b],[b,a]].forEach(function(pair){
+    var p = pair[0], q = pair[1];
+    var ang = Math.atan2(q[1] - p[1], q[0] - p[0]);
+    var s = 26;
+    el("polygon", {points:pts([[p[0],p[1]],[p[0]+Math.cos(ang-.4)*s, p[1]+Math.sin(ang-.4)*s],[p[0]+Math.cos(ang+.4)*s, p[1]+Math.sin(ang+.4)*s]]), fill:"var(--ink-60)"}, g);
+  });
+  var m = [(a[0]+b[0])/2 + (tOff ? tOff[0] : 0), (a[1]+b[1])/2 + (tOff ? tOff[1] : 20)];
+  el("text", {class:"dimtxt", x:m[0], y:m[1], "font-size":34, "text-anchor":"middle"}, g).textContent = txt;
+  return g;
+}
+var dims = [
+  dim([0,-160,0],[2032,-160,0], "2032", [0,64]),
+  dim([-170,0,0],[-170,762,0], "762", [-90,10]),
+  dim([2032+170,762,0],[2032+170,762,762], "762", [110,0]),
+  dim([100,-60,300],[100,-60,504], "204", [-100,10])
+];
+
+/* sheen sweep polygon (over whole assembled sofa) */
+var sheenEl = el("polygon", {points:pts([P(-100,-80,820),P(600,-80,820),P(300,900,-40),P(-400,900,-40)]), fill:"url(#sheenG)", opacity:0}, gSheen);
+
+/* ==================================================================
+   2 · Choreography
+================================================================== */
+function clamp01(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+function seg(p, a, b){ return clamp01((p - a) / (b - a)); }
+function ioCubic(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; }
+function outCubic(t){ return 1 - Math.pow(1 - t, 3); }
+function outBack(t){ var c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(t-1, 3) + c * Math.pow(t-1, 2); }
+
+/* per-part timing: [explodeStart, explodeEnd, buildStart, buildEnd] */
+var timing = {
+  mod04:  [.07, .26, .655, .755],
+  mod01:  [.09, .28, .545, .625],
+  mod02:  [.10, .27, .545, .60 ],
+  mod03:  [.11, .30, .60 , .675],
+  glides: [.12, .30, .72 , .775],
+  cushion:[.10, .29, .745, .825],
+  bolA:   [.12, .31, .79 , .87 ],
+  bolB:   [.13, .32, .825, .90 ]
+};
+var matWin = { mod01:[.34,.42], mod02:[.36,.44], mod03:[.38,.46], mod04:[.40,.48],
+               glides:[.42,.5], cushion:[.44,.52], bolA:[.46,.54], bolB:[.48,.56] };
+var lblWin = [.24, .32, .50, .575];  /* in-start, in-end, out-start, out-end */
+
+/* camera keyframes: viewBox [x,y,w,h] */
+var VB_A = [-1150, -1160, 3650, 2700];   /* assembled */
+var VB_E = [-1620, -1500, 4400, 3260];   /* exploded  */
+var VB_F = [-1050, -1230, 3450, 2560];   /* finish    */
+function lerpVB(a, b, t){
+  return a.map(function(v, i){ return v + (b[i] - v) * t; });
+}
+
+var phaseAt = [0, .07, .33, .55, .90];  /* start p of each phase */
+var lastPhase = -1;
+var hud = document.getElementById("hud");
+var phEyebrow = document.getElementById("phEyebrow"), phTitle = document.getElementById("phTitle"), phDesc = document.getElementById("phDesc");
+var swatches = document.getElementById("swatches");
+var checklist = document.getElementById("checklist");
+var stampEl = document.getElementById("stamp");
+var pctEl = document.getElementById("pct");
+var buildFill = document.getElementById("buildfill");
+var buildBarWrap = document.querySelector(".buildbar");
+
+function setPhase(i){
+  if (i === lastPhase) return;
+  lastPhase = i;
+  hud.classList.add("swap");
+  setTimeout(function(){
+    var ph = dict[lang].phases[i];
+    phEyebrow.textContent = ph[0]; phTitle.textContent = ph[1]; phDesc.textContent = ph[2];
+    hud.classList.remove("swap");
+  }, 180);
+  swatches.querySelectorAll(".sw").forEach(function(s, idx){
+    s.classList.toggle("on", i === 2);
+    if (i === 2) s.style.transitionDelay = (idx * .12) + "s"; else s.style.transitionDelay = "0s";
+  });
+}
+var ckParts = { mod01:"mod01", mod02:"mod02", mod03:"mod03", mod04:"mod04" };
+
+function render(p){
+  /* phase */
+  var ph = 0;
+  for (var i = phaseAt.length - 1; i >= 0; i--){ if (p >= phaseAt[i]){ ph = i; break; } }
+  setPhase(ph);
+
+  /* explode factor per part: 0 = home, 1 = exploded */
+  Object.keys(parts).forEach(function(id){
+    var pr = parts[id], t = timing[id];
+    var k;
+    if (p < t[2]) k = ioCubic(seg(p, t[0], t[1]));
+    else {
+      var bt = seg(p, t[2], t[3]);
+      k = 1 - (bt >= 1 ? 1 : outBack(bt));
+      if (bt >= 1) k = 0;
+    }
+    var rot = "";
+    if ((id === "bolA" || id === "bolB") && p >= t[2] && p < t[3]){
+      var bt2 = seg(p, t[2], t[3]);
+      rot = " rotate(" + ((1 - outCubic(bt2)) * (id === "bolA" ? -10 : 10)) + " " +
+            P(parts[id].def.anchor[0], parts[id].def.anchor[1], parts[id].def.anchor[2]).join(" ") + ")";
+    }
+    pr.g.setAttribute("transform", "translate(" + (pr.dx * k).toFixed(1) + " " + (pr.dy * k).toFixed(1) + ")" + rot);
+
+    /* ink ↔ material crossfade */
+    var mw = matWin[id];
+    var mk = ioCubic(seg(p, mw[0], mw[1]));
+    pr.mat.setAttribute("opacity", mk.toFixed(3));
+    pr.ink.setAttribute("opacity", (1 - mk * 0.92).toFixed(3));
+
+    /* checklist ticks on landing */
+    if (ckParts[id]){
+      var li = checklist.querySelector('[data-part="' + id + '"]');
+      if (li) li.classList.toggle("on", p >= timing[id][3] - .005);
+    }
+  });
+  var liU = checklist.querySelector('[data-part="uph"]');
+  if (liU) liU.classList.toggle("on", p >= timing.bolB[3] - .005);
+  var liF = checklist.querySelector('[data-part="fin"]');
+  if (liF) liF.classList.toggle("on", p >= .965);
+
+  /* labels + dims */
+  var lk = ioCubic(seg(p, lblWin[0], lblWin[1])) * (1 - ioCubic(seg(p, lblWin[2], lblWin[3])));
+  gLabels.setAttribute("opacity", lk.toFixed(3));
+  gDims.setAttribute("opacity", lk.toFixed(3));
+
+  /* camera */
+  var vb;
+  if (p < .33) vb = lerpVB(VB_A, VB_E, ioCubic(seg(p, .06, .30)));
+  else if (p < .56) vb = VB_E;
+  else if (p < .90) vb = lerpVB(VB_E, VB_A, ioCubic(seg(p, .58, .88)));
+  else vb = lerpVB(VB_A, VB_F, ioCubic(seg(p, .90, 1)));
+  iso.setAttribute("viewBox", vb.map(function(v){ return v.toFixed(0); }).join(" "));
+
+  /* shadow: widen + soften while exploded */
+  var ek = ioCubic(seg(p, .07, .30)) * (1 - ioCubic(seg(p, .56, .88)));
+  shadowEl.setAttribute("cx", shC[0]); shadowEl.setAttribute("cy", shC[1] + 40);
+  shadowEl.setAttribute("rx", 1500 + ek * 500);
+  shadowEl.setAttribute("ry", 330 + ek * 110);
+  shadowEl.setAttribute("opacity", (0.75 - ek * 0.35).toFixed(3));
+
+  /* sheen sweep at finish */
+  var sk = seg(p, .90, .985);
+  if (sk > 0 && sk < 1){
+    sheenEl.setAttribute("opacity", Math.sin(sk * Math.PI).toFixed(3));
+    var off = -600 + sk * 3400;
+    sheenEl.setAttribute("transform", "translate(" + off + " 0)");
+  } else sheenEl.setAttribute("opacity", 0);
+
+  /* stamp */
+  var stk = outBack(seg(p, .945, .985));
+  stampEl.style.opacity = seg(p, .945, .965);
+  stampEl.style.transform = "rotate(-8deg) scale(" + (2.6 - 1.6 * stk) + ")";
+
+  /* progress readouts */
+  var pc = Math.round(p * 100);
+  pctEl.textContent = pc + "%";
+  buildFill.style.width = pc + "%";
+  buildBarWrap.classList.toggle("done", pc >= 100);
+}
+
+/* ==================================================================
+   3 · Scroll driver (sticky + lerp scrub)
+================================================================== */
+var wrap = document.getElementById("buildwrap");
+var target = 0, current = -1, raf = null, stageVisible = true;
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if ("IntersectionObserver" in window){
+  new IntersectionObserver(function(en){ stageVisible = en[0].isIntersecting; }).observe(wrap);
+}
+function measure(){
+  var r = wrap.getBoundingClientRect();
+  var total = wrap.offsetHeight - window.innerHeight;
+  target = clamp01(-r.top / (total || 1));
+}
+function tick(){
+  if (stageVisible && !(window.__lse && window.__lse.frozen)){
+    var eased = current + (target - current) * 0.16;
+    if (current < 0) eased = target;
+    if (Math.abs(eased - target) < 0.0004) eased = target;
+    if (eased !== current){ current = eased; render(current); }
+  }
+  galleryTick();
+  raf = requestAnimationFrame(tick);
+}
+window.addEventListener("scroll", measure, {passive:true});
+window.addEventListener("resize", measure);
+measure();
+
+if (reduceMotion){
+  /* static money-shot: exploded view with labels, no pin scrub */
+  render(0.44);
+  window.removeEventListener("scroll", measure);
+} else {
+  raf = requestAnimationFrame(tick);
+}
+
+/* ==================================================================
+   3b · Galleries — sketch parallax + moodboard marquee
+================================================================== */
+var skCards = Array.prototype.slice.call(document.querySelectorAll(".sk-card"));
+var ideasSec = document.querySelector(".ideas");
+var moodsSec = document.getElementById("moods");
+var ideasVis = false, moodsVis = false;
+if ("IntersectionObserver" in window){
+  if (ideasSec) new IntersectionObserver(function(en){ ideasVis = en[0].isIntersecting; }).observe(ideasSec);
+  if (moodsSec) new IntersectionObserver(function(en){ moodsVis = en[0].isIntersecting; }).observe(moodsSec);
+} else { ideasVis = moodsVis = true; }
+
+var tracks = Array.prototype.slice.call(document.querySelectorAll(".mq")).map(function(t){
+  return { el:t, dir:parseFloat(t.getAttribute("data-dir") || 1), off:0, half:0 };
+});
+function measureTracks(){
+  tracks.forEach(function(tr){ tr.half = tr.el.scrollWidth / 2; });
+}
+if (!reduceMotion){
+  tracks.forEach(function(tr){ tr.el.innerHTML += tr.el.innerHTML; }); /* duplicate for a seamless loop */
+  window.addEventListener("load", measureTracks);
+  window.addEventListener("resize", measureTracks);
+  measureTracks();
+} else if (moodsSec){
+  moodsSec.classList.add("static");
+}
+
+var lastY = window.scrollY, vel = 0;
+function galleryTick(){
+  if (reduceMotion) return;
+  var y = window.scrollY;
+  vel = vel * 0.9 + (y - lastY) * 0.1;
+  lastY = y;
+  if (moodsVis) tracks.forEach(function(tr){
+    if (tr.el.parentNode.matches && tr.el.parentNode.matches(":hover")) return;
+    if (!tr.half) return;
+    var sp = (0.55 + Math.min(2.4, Math.abs(vel) * 0.12)) * tr.dir;
+    tr.off -= sp;
+    if (tr.off <= -tr.half) tr.off += tr.half;
+    if (tr.off > 0) tr.off -= tr.half;
+    tr.el.style.transform = "translate3d(" + tr.off.toFixed(1) + "px,0,0)";
+  });
+  if (ideasVis) skCards.forEach(function(c){
+    var r = c.getBoundingClientRect();
+    var mid = r.top + r.height / 2 - window.innerHeight / 2;
+    c.style.setProperty("--py", (mid * -parseFloat(c.getAttribute("data-speed") || 0)).toFixed(1) + "px");
+  });
+}
+
+/* ==================================================================
+   4 · Hero draw-in, reveals, counters
+================================================================== */
+requestAnimationFrame(function(){ document.getElementById("hero").classList.add("ready"); });
+
+var rvs = document.querySelectorAll(".rv");
+if ("IntersectionObserver" in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, {threshold:.12});
+  rvs.forEach(function(el2){ io.observe(el2); });
+} else rvs.forEach(function(el2){ el2.classList.add("in"); });
+
+/* animated counters */
+var specs = document.querySelectorAll(".spec output[data-n]");
+function runCounter(o){
+  var end = parseInt(o.getAttribute("data-n"), 10);
+  var sub = o.querySelector("sub") ? o.querySelector("sub").outerHTML : "";
+  if (reduceMotion){ o.innerHTML = end + sub; return; }
+  var t0 = null;
+  function step(ts){
+    if (!t0) t0 = ts;
+    var k = clamp01((ts - t0) / 1100);
+    o.innerHTML = Math.round(end * outCubic(k)) + sub;
+    if (k < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+if ("IntersectionObserver" in window){
+  var io2 = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ runCounter(en.target); io2.unobserve(en.target); }
+    });
+  }, {threshold:.6});
+  specs.forEach(function(o){ io2.observe(o); });
+} else specs.forEach(runCounter);
+
+applyLang();
+refreshLabels();
+window.addEventListener("load", refreshLabels); /* re-measure once webfonts are in */
+render(0);
+
+/* debug/test hook: force a build state synchronously */
+window.__lse = {
+  render: function(p){ window.__lse.frozen = true; target = p; current = p; render(p); },
+  setP: function(p){
+    var y = wrap.offsetTop + p * (wrap.offsetHeight - window.innerHeight);
+    window.scrollTo({top:y, behavior:"instant"});
+    target = p; current = p; render(p);
+  }
+};
+})();
+</script>
+</body>
+</html>
