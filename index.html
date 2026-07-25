@@ -269,6 +269,16 @@
   .fig-toggle button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
   .fig-explode{border:1px solid var(--graphite-35);border-radius:999px;background:var(--bone)}
   .fig-explode[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+  .fig-spin{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:28px;height:28px;border:1px solid var(--graphite-35);border-radius:999px;
+    background:var(--bone);color:var(--graphite);
+    font-size:.95rem;line-height:1;cursor:pointer;
+    transition:transform .6s ease, background-color .12s ease, border-color .12s ease;
+  }
+  .fig-spin:hover{background:rgba(44,73,199,.06);border-color:var(--cobalt);color:var(--cobalt)}
+  .fig-spin.spinning{animation:fig-spin-rot 1.4s linear infinite;color:var(--cobalt);border-color:var(--cobalt)}
+  @keyframes fig-spin-rot{to{transform:rotate(360deg)}}
   .fig-hint{color:var(--graphite-60);font-size:.58rem;letter-spacing:.08em}
 
   /* chair SVG linework (port from index.html) */
@@ -559,6 +569,7 @@
         <button type="button" id="chairBtn3d" aria-pressed="false" data-i="figD3">MODELO 3D</button>
       </div>
       <button type="button" class="fig-explode" id="chairExplode" aria-pressed="false" data-i="figExplode" hidden>VISTA EXPLODIDA</button>
+      <button type="button" class="fig-spin" id="chairSpin" aria-label="Voltar a rodar" title="Voltar a rodar" hidden>↻</button>
       <span class="fig-hint mono" id="chairHint" data-i="figHint" hidden>ARRASTE PARA RODAR</span>
     </div>
   </figure>
@@ -919,6 +930,7 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   var btn2d      = document.getElementById("chairBtn2d");
   var btn3d      = document.getElementById("chairBtn3d");
   var btnExplode = document.getElementById("chairExplode");
+  var btnSpin    = document.getElementById("chairSpin");
   var figHint    = document.getElementById("chairHint");
   if (!stage || !chair) return;
 
@@ -980,7 +992,11 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   }
 
   var built = false, mode3d = false, exploded = false;
-  var rx = 16, ry = -28, autoSpin = true, dragging = false, rafId = null;
+  var rx = 16, ry = -28, autoSpin = true, dragging = false, rafId = null, spinStart = 0;
+  // Auto-spin tours slowly then settles so the chair isn't stuck at the back.
+  // User drag stops it immediately; the ↻ button restarts it.
+  var SPIN_DURATION_MS = 9000;   // ~one full slow rotation
+  var SPIN_SPEED       = 0.05;   // deg per frame (~3 deg/sec at 60fps)
 
   function render(){
     chair.style.setProperty("--rx", rx.toFixed(2) + "deg");
@@ -988,7 +1004,15 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   }
   function loop(){
     if (!mode3d) { rafId = null; return; }
-    if (autoSpin && !dragging && !reduceMotion) { ry += 0.12; render(); }
+    if (autoSpin && !dragging && !reduceMotion) {
+      ry += SPIN_SPEED;
+      render();
+      // Auto-stop after one slow tour so the chair settles at a usable angle.
+      if (performance.now() - spinStart > SPIN_DURATION_MS) {
+        autoSpin = false;
+        btnSpin.classList.remove("spinning");
+      }
+    }
     rafId = requestAnimationFrame(loop);
   }
   function build(){
@@ -1012,12 +1036,20 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
         void chair.offsetWidth;
         requestAnimationFrame(function(){ chair.style.setProperty("--ex", 0); });
       }
+      /* start (or restart) the gentle auto-spin tour */
+      autoSpin = true;
+      spinStart = performance.now();
+      btnSpin.classList.add("spinning");
+    } else {
+      autoSpin = false;
+      btnSpin.classList.remove("spinning");
     }
     stage.classList.toggle("mode3d", m3);
     scene.classList.toggle("on", m3);
     btn2d.setAttribute("aria-pressed", String(!m3));
     btn3d.setAttribute("aria-pressed", String(m3));
     btnExplode.hidden = !m3;
+    btnSpin.hidden    = !m3;
     figHint.hidden   = !m3;
     render();
     if (m3 && rafId === null) rafId = requestAnimationFrame(loop);
@@ -1026,6 +1058,13 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   btn2d.addEventListener("click", function(){ setMode(false); });
   btn3d.addEventListener("click", function(){ setMode(true); });
   btnExplode.addEventListener("click", function(){ setExploded(!exploded); });
+  btnSpin.addEventListener("click", function(){
+    if (!mode3d) return;
+    autoSpin = true;
+    spinStart = performance.now();
+    btnSpin.classList.add("spinning");
+    if (rafId === null) rafId = requestAnimationFrame(loop);
+  });
 
   /* drag-to-rotate */
   var px = 0, py = 0;
