@@ -992,24 +992,31 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   }
 
   var built = false, mode3d = false, exploded = false;
-  var rx = 16, ry = -28, autoSpin = true, dragging = false, rafId = null, spinStart = 0;
-  // Auto-spin tours slowly then settles so the chair isn't stuck at the back.
-  // User drag stops it immediately; the ↻ button restarts it.
-  var SPIN_DURATION_MS = 9000;   // ~one full slow rotation
-  var SPIN_SPEED       = 0.05;   // deg per frame (~3 deg/sec at 60fps)
+  var rx = 16, ry = -28, autoSpin = false, dragging = false, rafId = null;
+  // The chair is static by default in its 3/4 view. The ↻ button starts a
+  // timed tour that does exactly one full 360° rotation and returns to
+  // the start angle — so the chair always lands back on the flattering
+  // 3/4 view, never stuck at the back.
+  var SPIN_TOUR_MS   = 12000;  // 12 seconds for one full rotation (gentle)
+  var SPIN_TOUR_DEG  = 360;    // always a full revolution
+  var spinStartTime  = 0;
+  var spinStartAngle = 0;
 
   function render(){
     chair.style.setProperty("--rx", rx.toFixed(2) + "deg");
     chair.style.setProperty("--ry", ry.toFixed(2) + "deg");
   }
-  function loop(){
+  function loop(now){
     if (!mode3d) { rafId = null; return; }
     if (autoSpin && !dragging && !reduceMotion) {
-      ry += SPIN_SPEED;
+      var elapsed = now - spinStartTime;
+      var t = Math.min(1, elapsed / SPIN_TOUR_MS);
+      ry = spinStartAngle + SPIN_TOUR_DEG * t;
       render();
-      // Auto-stop after one slow tour so the chair settles at a usable angle.
-      if (performance.now() - spinStart > SPIN_DURATION_MS) {
+      if (t >= 1) {
         autoSpin = false;
+        ry = spinStartAngle;  // ensure clean 360° snap to start
+        render();
         btnSpin.classList.remove("spinning");
       }
     }
@@ -1036,10 +1043,10 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
         void chair.offsetWidth;
         requestAnimationFrame(function(){ chair.style.setProperty("--ex", 0); });
       }
-      /* start (or restart) the gentle auto-spin tour */
-      autoSpin = true;
-      spinStart = performance.now();
-      btnSpin.classList.add("spinning");
+      /* Chair stays in the 3/4 view by default — no auto-spin on entry.
+         The user starts a tour manually with the ↻ button. */
+      autoSpin = false;
+      btnSpin.classList.remove("spinning");
     } else {
       autoSpin = false;
       btnSpin.classList.remove("spinning");
@@ -1060,8 +1067,12 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   btnExplode.addEventListener("click", function(){ setExploded(!exploded); });
   btnSpin.addEventListener("click", function(){
     if (!mode3d) return;
+    /* Start a 12-second full rotation from the current angle. After
+       360° the chair snaps back to exactly where it started — so the
+       3/4 view is always preserved as the resting state. */
     autoSpin = true;
-    spinStart = performance.now();
+    spinStartTime  = performance.now();
+    spinStartAngle = ry;
     btnSpin.classList.add("spinning");
     if (rafId === null) rafId = requestAnimationFrame(loop);
   });
@@ -1070,6 +1081,7 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
   var px = 0, py = 0;
   scene.addEventListener("pointerdown", function(e){
     dragging = true; autoSpin = false;
+    btnSpin.classList.remove("spinning");
     px = e.clientX; py = e.clientY;
     try { scene.setPointerCapture(e.pointerId); } catch(_){}
   });
