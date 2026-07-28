@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Crawl-delay is a polite hint for bots that respect it.
+# Most modern crawlers ignore this; we set 1s as a sensible floor.
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://diernus.com/sitemap.xml
