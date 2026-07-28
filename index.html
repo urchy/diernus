@@ -189,18 +189,64 @@
   .rev-item .rd{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--ink-60);margin:.3rem 0 .7rem}
   .rev-item p{font-size:.95rem;color:var(--ink-60)}
   .rev-item.last .rn{color:#fff;background:var(--stamp);display:inline-block;padding:0 .4em;border-radius:.2em}
-  .cta{background:var(--blueprint-2);color:var(--ink);text-align:left}
-  .cta h2{max-width:11em}
-  .cta .lede{color:var(--ink-60)}
-  .cta .chips{margin:1.8rem 0 0}
-  .cta .chips span{background:transparent;border-color:var(--ink-35);color:var(--ink)}
-  .cta .row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:2.4rem}
-  .btn{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
-    padding:1rem 1.6rem;border-radius:.35rem;border:1px solid transparent;display:inline-block}
-  .btn.primary{background:var(--cobalt);color:#fff;box-shadow:0 8px 24px -6px rgba(44,73,199,.55)}
-  .btn.primary:hover{background:#3a58e0}
-  .btn.ghost{border-color:var(--ink-35);color:var(--ink)}
-  .btn.ghost:hover{border-color:var(--ink)}
+  .cta{position:relative;background:var(--blueprint-2);color:var(--ink);text-align:left;overflow:hidden}
+  .cta::before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:80%;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(230,150,88,.22),transparent 70%)}
+  .cta::after{content:"";position:absolute;left:-10%;bottom:-30%;width:50%;height:70%;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(44,73,199,.18),transparent 72%)}
+  .cta-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2.5rem,6vw,5rem);align-items:start;margin-top:2.6rem;position:relative;z-index:1}
+  @media (max-width:860px){.cta-grid{grid-template-columns:1fr;gap:2.4rem}}
+  .cta h2{max-width:14em;color:var(--ink)}
+  .cta h2 em{font-style:normal;font-family:var(--body);font-weight:500;text-transform:none;letter-spacing:0;color:#E69658;display:inline-block;position:relative}
+  .cta h2 em::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:linear-gradient(90deg,#E69658,transparent);opacity:.55}
+  .cta .lede{color:var(--ink-60);max-width:30em}
+  .trust{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:2rem 0 0;padding:0}
+  .trust li{position:relative;padding-left:1.4rem;font-size:1.02rem;color:var(--ink-60);font-family:var(--body);line-height:1.5}
+  .trust li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:#E69658;box-shadow:0 0 0 3px rgba(230,150,88,.18)}
+  .status{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--ink-60)}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:#7AD17A;box-shadow:0 0 0 0 rgba(122,209,122,.7);animation:pulse 2.2s ease-in-out infinite;flex:none}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(122,209,122,.55)}50%{box-shadow:0 0 0 9px rgba(122,209,122,0)}}
+  @media (prefers-reduced-motion:reduce){.status .dot{animation:none;box-shadow:0 0 0 2px rgba(122,209,122,.35)}}
+  .cta-form-wrap{padding:0}
+  .cta-form{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--ink-line);border-radius:.6rem;
+    padding:clamp(1.6rem,3vw,2.4rem);backdrop-filter:blur(6px);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(234,240,255,.06)}
+  .cta-form-title{font-family:var(--display);font-variation-settings:"wdth" 72,"wght" 800;font-size:1.6rem;text-transform:uppercase;letter-spacing:.005em;margin:0 0 .35rem;color:var(--ink)}
+  .cta-form-sub{font-size:.95rem;font-style:italic;color:var(--ink-60);margin:0 0 1.6rem}
+  .field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.1rem}
+  .field label{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60);display:flex;align-items:center;gap:.4rem}
+  .field .req{color:#E69658;font-size:1rem;line-height:1}
+  .field input,.field textarea{font-family:var(--body);font-size:1.05rem;padding:.75rem .9rem;
+    background:rgba(0,0,0,.22);border:1px solid var(--ink-line);border-bottom:2px solid transparent;border-radius:.3rem;
+    color:var(--ink);transition:border-color .2s,background .2s;width:100%;resize:vertical;line-height:1.5}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(234,240,255,.32);font-style:italic}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--cobalt);border-bottom-color:var(--cobalt);background:rgba(0,0,0,.32)}
+  .field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:#E69658;border-bottom-color:#E69658}
+  .field .ferr{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:#E69658;margin:.15rem 0 0;min-height:0}
+  .field .ferr[hidden]{display:none}
+  .cta-submit{font-family:var(--display);font-variation-settings:"wdth" 72,"wght" 650;font-size:1.02rem;letter-spacing:.01em;color:var(--ink);
+    background:var(--cobalt);border:0;border-radius:.35rem;padding:.95rem 1.4rem;width:100%;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;transition:background .2s,transform .08s;
+    margin-top:.4rem;position:relative;min-height:3.2rem}
+  .cta-submit:hover:not(:disabled){background:#3a58e0}
+  .cta-submit:active:not(:disabled){transform:translateY(1px)}
+  .cta-submit:disabled{opacity:.7;cursor:wait}
+  .cta-submit-spinner{width:14px;height:14px;border:2px solid rgba(234,240,255,.3);border-top-color:var(--ink);border-radius:50%;display:none;animation:spin .7s linear infinite;position:absolute}
+  .cta-submit.is-loading .cta-submit-label{opacity:0}
+  .cta-submit.is-loading .cta-submit-spinner{display:block;position:absolute}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.cta-submit-spinner{animation-duration:1.5s}}
+  .cta-micro{margin-top:1.1rem;font-size:.78rem;color:var(--ink-60);font-style:italic;line-height:1.5}
+  .cta-feedback{margin-top:1.4rem;padding:1rem 1.1rem;border-radius:.3rem;font-size:.95rem;line-height:1.5}
+  .cta-feedback[hidden]{display:none}
+  .cta-feedback.success{background:rgba(122,209,122,.12);border:1px solid rgba(122,209,122,.35);color:#B7E5B7}
+  .cta-feedback.error{background:rgba(230,150,88,.12);border:1px solid rgba(230,150,88,.4);color:#E69658}
+  .cta-feedback b{color:inherit;font-weight:600}
+  .cta-feedback a{color:inherit;text-decoration:underline}
+  .cta-feedback button{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;
+    border:1px solid currentColor;color:inherit;padding:.4rem .85rem;border-radius:999px;cursor:pointer;margin-top:.6rem}
+  .cta-feedback button:hover{background:currentColor;color:var(--blueprint-2)}
+  .cta-form.is-sent .field,.cta-form.is-sent .cta-submit,.cta-form.is-sent .cta-micro,.cta-form.is-sent .cta-form-title,.cta-form.is-sent .cta-form-sub{display:none}
   footer{background:var(--blueprint-2);color:var(--ink-35);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
     padding:1.6rem var(--pad) 2.2rem;border-top:1px solid var(--ink-line);display:flex;flex-wrap:wrap;gap:.6rem 2rem}
   footer b{color:var(--ink-60);font-weight:500}
@@ -724,17 +770,48 @@
   </div>
 </div>
 
-<!-- ============ CTA ============ -->
-<section class="sheet cta">
-  <p class="kicker rv" data-i="ctaKicker">DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO</p>
-  <h2 class="rv" data-i="ctaTitle">O próximo desenho pode ser o teu</h2>
-  <p class="lede rv" data-i="ctaLede">Por trás de cada folha está uma equipa com anos de bancada e de obra — design, modelação 3D e desenho técnico debaixo do mesmo traço. Já desenhámos hotelaria, residencial e retalho; sabemos o que a oficina precisa de ler à primeira.</p>
-  <div class="chips cta-chips rv">
-    <span data-i="ctaC1">HOTELARIA</span><span data-i="ctaC2">RESIDENCIAL</span><span data-i="ctaC3">RETALHO</span><span data-i="ctaC4">3D + CNC</span>
-  </div>
-  <div class="row rv">
-    <a class="btn primary" href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="ctaBtn">Falar com o estúdio</a>
-    <a class="btn ghost" href="#top" data-i="ctaBack">← Topo</a>
+<!-- ============ CTA / Contact form ============ -->
+<section class="sheet cta" id="contacto">
+  <div class="cta-grid">
+    <div class="cta-info">
+      <p class="kicker rv" data-i="ctaKicker">CONTACTO · RESPOSTA EM 24H ÚTEIS</p>
+      <h2 class="rv" data-i="ctaTitle">Vamos falar do teu <em>próximo</em> projeto.</h2>
+      <p class="lede rv" data-i="ctaLede">Escreve-nos o que tens em mente — uma peça, um espaço, um caderno de encargos. Respondemos directamente para o teu email, normalmente dentro de algumas horas.</p>
+      <ul class="trust rv">
+        <li data-i="ctaT1">Resposta em 24h úteis</li>
+        <li data-i="ctaT2">Orçamento gratuito, sem compromisso</li>
+        <li data-i="ctaT3">NDA disponível, se precisares</li>
+        <li data-i="ctaT4">Conversas em PT · EN</li>
+      </ul>
+      <p class="status rv"><span class="dot" aria-hidden="true"></span><span data-i="ctaStatus">Lemos tudo · respondemos por email</span></p>
+    </div>
+    <div class="cta-form-wrap rv">
+      <form class="cta-form" id="ctaForm" novalidate>
+        <h3 class="cta-form-title" data-i="ctaFormT">Enviar mensagem</h3>
+        <p class="cta-form-sub" data-i="ctaFormSub">Três campos. Sem linha de assunto, sem número de cliente.</p>
+        <div class="field">
+          <label for="cf-name" data-i="ctaLblName">Nome</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Como te chamamos?" data-i-ph="ctaPhName" aria-describedby="cf-name-err">
+          <p class="ferr" id="cf-name-err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="cf-email" data-i="ctaLblEmail">Email <span class="req" aria-hidden="true">*</span></label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="nome@empresa.pt" data-i-ph="ctaPhEmail" aria-describedby="cf-email-err">
+          <p class="ferr" id="cf-email-err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="cf-msg" data-i="ctaLblMsg">Mensagem <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="cf-msg" name="message" rows="5" required maxlength="2000" placeholder="Conta-nos o que precisas…" data-i-ph="ctaPhMsg" aria-describedby="cf-msg-err"></textarea>
+          <p class="ferr" id="cf-msg-err" hidden></p>
+        </div>
+        <button type="submit" class="cta-submit">
+          <span class="cta-submit-label" data-i="ctaSubmit">Enviar mensagem →</span>
+          <span class="cta-submit-spinner" aria-hidden="true"></span>
+        </button>
+        <p class="cta-micro" data-i="ctaMicro">Ao enviar, concordas com a nossa política de privacidade. Não partilhamos os teus dados.</p>
+        <div class="cta-feedback" id="ctaFeedback" role="status" aria-live="polite" hidden></div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -775,7 +852,6 @@ var dict = {
     hook1:"Tens uma peça na cabeça? Nós pomo-la no papel.",
     hook2:"O teu espaço podia estar neste carrossel.",
     hookBtn:"Falar com o estúdio →", barCta:"FALAR CONNOSCO",
-    ctaC1:"HOTELARIA", ctaC2:"RESIDENCIAL", ctaC3:"RETALHO", ctaC4:"3D + CNC",
     g_m1:"SALA DE ESTAR · I", g_m2:"SALA DE ESTAR · II", g_m3:"QUARTO PRINCIPAL · I", g_m4:"QUARTO PRINCIPAL · II",
     g_m5:"QUARTO DE CRIANÇA", g_m6:"ESCRITÓRIO · I", g_m7:"ESCRITÓRIO · II", g_m8:"ESCRITÓRIO · III",
     metaProj:"PROJETO: HOTELARIA · CONFIDENCIAL · 2 UNI · 90 KG", pctLabel:"CONSTRUÇÃO",
@@ -806,9 +882,18 @@ var dict = {
     r1p:"Primeira emissão da folha: geometria, módulos e intenção de materiais.",
     r2p:"Afinação de estofos e notas de conforto — espumas, pressintas, suporte do assento.",
     r3p:"Folha validada para produção: 7 páginas, bilingue PT/EN, pronta para a oficina.",
-    ctaKicker:"DIERNUS · A EQUIPA POR TRÁS DO TRAÇO", ctaTitle:"O próximo desenho pode ser o teu",
-    ctaLede:"Por trás de cada folha está uma equipa com anos de bancada e de obra — design, modelação 3D e desenho técnico debaixo do mesmo traço. Já desenhámos hotelaria, residencial e retalho; sabemos o que a oficina precisa de ler à primeira.",
-    ctaBtn:"Falar com o estúdio", ctaBack:"← Topo",
+    ctaKicker:"CONTACTO · RESPOSTA EM 24H ÚTEIS", ctaTitle:"Vamos falar do teu <em>próximo</em> projeto.",
+    ctaLede:"Escreve-nos o que tens em mente — uma peça, um espaço, um caderno de encargos. Respondemos directamente para o teu email, normalmente dentro de algumas horas.",
+    ctaT1:"Resposta em 24h úteis", ctaT2:"Orçamento gratuito, sem compromisso", ctaT3:"NDA disponível, se precisares", ctaT4:"Conversas em PT · EN",
+    ctaStatus:"Lemos tudo · respondemos por email",
+    ctaFormT:"Enviar mensagem", ctaFormSub:"Três campos. Sem linha de assunto, sem número de cliente.",
+    ctaLblName:"Nome", ctaLblEmail:"Email", ctaLblMsg:"Mensagem",
+    ctaPhName:"Como te chamamos?", ctaPhEmail:"nome@empresa.pt", ctaPhMsg:"Conta-nos o que precisas…",
+    ctaSubmit:"Enviar mensagem →", ctaSending:"A enviar…",
+    ctaMicro:"Ao enviar, concordas com a nossa política de privacidade. Não partilhamos os teus dados.",
+    ctaOk:"<b>Obrigado.</b> Recebemos a tua mensagem e respondemos dentro de 24h úteis. Podes fechar esta janela.",
+    ctaFail:"<b>Não conseguimos enviar agora.</b> Tenta de novo, ou escreve directamente para <a href='mailto:estudio@diernus.com'>estudio@diernus.com</a>.",
+    ctaRetry:"TENTAR OUTRA VEZ",
     ftTag:"DESENHADO AO MILÍMETRO",
     phases:[
       ["FASE 01 · FOLHA","Vista montada","Cada linha vem da folha de produção L-SE-01."],
@@ -846,7 +931,6 @@ var dict = {
     hook1:"Got a piece in your head? We'll put it on paper.",
     hook2:"Your space could be on this reel.",
     hookBtn:"Talk to the studio →", barCta:"TALK TO US",
-    ctaC1:"HOSPITALITY", ctaC2:"RESIDENTIAL", ctaC3:"RETAIL", ctaC4:"3D + CNC",
     g_m1:"LIVING ROOM · I", g_m2:"LIVING ROOM · II", g_m3:"MAIN BEDROOM · I", g_m4:"MAIN BEDROOM · II",
     g_m5:"KIDS' ROOM", g_m6:"HOME OFFICE · I", g_m7:"HOME OFFICE · II", g_m8:"HOME OFFICE · III",
     metaProj:"PROJECT: HOSPITALITY · CONFIDENTIAL · 2 UNITS · 90 KG", pctLabel:"BUILD",
@@ -877,9 +961,18 @@ var dict = {
     r1p:"First issue of the sheet: geometry, modules and material intent.",
     r2p:"Upholstery and comfort tuning — foams, webbing, seat support.",
     r3p:"Sheet validated for production: 7 pages, bilingual PT/EN, workshop-ready.",
-    ctaKicker:"DIERNUS · THE TEAM BEHIND THE LINE", ctaTitle:"The next drawing could be yours",
-    ctaLede:"Behind every sheet is a team with years of workshop and site experience — design, 3D modelling and technical drawing under the same line. We've drawn hospitality, residential and retail; we know what the workshop needs to read first time.",
-    ctaBtn:"Talk to the studio", ctaBack:"← Top",
+    ctaKicker:"GET IN TOUCH · 24H REPLY", ctaTitle:"Let's talk about your <em>next</em> project.",
+    ctaLede:"Tell us what's on your mind — a piece, a space, a brief. We reply straight to your email, usually within a few hours.",
+    ctaT1:"Reply within 24h business hours", ctaT2:"Free quote, no commitment", ctaT3:"NDA available if you need one", ctaT4:"Calls in PT · EN",
+    ctaStatus:"We read everything · reply by email",
+    ctaFormT:"Send a message", ctaFormSub:"Three fields. No subject line, no customer number.",
+    ctaLblName:"Name", ctaLblEmail:"Email", ctaLblMsg:"Message",
+    ctaPhName:"What should we call you?", ctaPhEmail:"name@company.com", ctaPhMsg:"Tell us what you need…",
+    ctaSubmit:"Send message →", ctaSending:"Sending…",
+    ctaMicro:"By sending, you agree to our privacy policy. We never share your data.",
+    ctaOk:"<b>Thanks.</b> We got your message and reply within 24h business hours. You can close this tab.",
+    ctaFail:"<b>Something went wrong.</b> Try again, or email us directly at <a href='mailto:estudio@diernus.com'>estudio@diernus.com</a>.",
+    ctaRetry:"TRY AGAIN",
     ftTag:"DRAWN TO THE MILLIMETRE",
     phases:[
       ["PHASE 01 · SHEET","Assembled view","Every line comes from production sheet L-SE-01."],
@@ -904,6 +997,10 @@ function applyLang(){
   document.querySelectorAll("[data-i]").forEach(function(el){
     var k = el.getAttribute("data-i");
     if (d[k] != null) el.innerHTML = d[k];
+  });
+  document.querySelectorAll("[data-i-ph]").forEach(function(el){
+    var k = el.getAttribute("data-i-ph");
+    if (d[k] != null) el.setAttribute("placeholder", d[k]);
   });
   document.querySelectorAll(".bar .lang button").forEach(function(b){
     b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
@@ -1655,6 +1752,105 @@ window.__lse = {
     target = p; current = p; render(p);
   }
 };
+
+/* ==================================================================
+   5 · Contact form — POSTs to the portal worker, swaps to a
+   success state in place. Validation runs on blur + submit; the
+   server is the source of truth so we always trust its 200.
+================================================================== */
+(function(){
+  var form   = document.getElementById("ctaForm");
+  if (!form) return;
+  var fb     = document.getElementById("ctaFeedback");
+  var submit = form.querySelector(".cta-submit");
+  var label  = form.querySelector(".cta-submit-label");
+  var fName    = form.querySelector("#cf-name");
+  var fEmail   = form.querySelector("#cf-email");
+  var fMsg     = form.querySelector("#cf-msg");
+  var eName    = form.querySelector("#cf-name-err");
+  var eEmail   = form.querySelector("#cf-email-err");
+  var eMsg     = form.querySelector("#cf-msg-err");
+  var EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var ERR_EMPTY = {pt:"Preenche este campo.", en:"Please fill this in."};
+  var ERR_EMAIL = {pt:"Email inválido.", en:"Invalid email."};
+  var ERR_SHORT = {pt:"Conta-nos um pouco mais — pelo menos 10 caracteres.", en:"Tell us a bit more — at least 10 characters."};
+  function showErr(el, msg){
+    el.textContent = msg;
+    el.hidden = !msg;
+  }
+  function validateField(f, errEl, opts){
+    var v = f.value.trim();
+    var msg = "";
+    if (opts.required && !v) msg = ERR_EMPTY[lang] || ERR_EMPTY.pt;
+    else if (opts.type === "email" && v && !EMAIL_RX.test(v)) msg = ERR_EMAIL[lang] || ERR_EMAIL.pt;
+    else if (opts.min && v && v.length < opts.min) msg = ERR_SHORT[lang] || ERR_SHORT.pt;
+    f.setAttribute("aria-invalid", msg ? "true" : "false");
+    showErr(errEl, msg);
+    return !msg;
+  }
+  function validateAll(){
+    var ok = true;
+    if (!validateField(fName,  eName,  {required:false, type:"text"}))  ok = false;
+    if (!validateField(fEmail, eEmail, {required:true,  type:"email"})) ok = false;
+    if (!validateField(fMsg,   eMsg,   {required:true,  type:"text", min:10})) ok = false;
+    return ok;
+  }
+  [fName, fEmail, fMsg].forEach(function(f){
+    f.addEventListener("blur",  function(){ if (f.value.trim()) validateField(f, form.querySelector("#" + f.id + "-err"), {required: f.required, type: f.type, min: f === fMsg ? 10 : 0}); });
+    f.addEventListener("input", function(){
+      if (f.getAttribute("aria-invalid") === "true") validateField(f, form.querySelector("#" + f.id + "-err"), {required: f.required, type: f.type, min: f === fMsg ? 10 : 0});
+    });
+  });
+  function setSending(on){
+    submit.disabled = on;
+    submit.classList.toggle("is-loading", on);
+    label.textContent = on ? (dict[lang].ctaSending || "A enviar…") : (dict[lang].ctaSubmit || "Enviar mensagem →");
+  }
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if (!validateAll()){
+      var first = form.querySelector('[aria-invalid="true"]');
+      if (first) first.focus();
+      return;
+    }
+    fb.hidden = true;
+    setSending(true);
+    var endpoint = "https://diernus-portal-api.diernus.com";
+    var payload  = {
+      name:    fName.value.trim(),
+      email:   fEmail.value.trim(),
+      message: fMsg.value.trim(),
+      source:  "diernus.com"
+    };
+    fetch(endpoint + "/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json().catch(function(){ return {ok:true}; });
+    })
+    .then(function(){
+      form.classList.add("is-sent");
+      fb.className = "cta-feedback success";
+      fb.innerHTML = dict[lang].ctaOk || "Obrigado. Recebemos a sua mensagem.";
+      fb.hidden = false;
+    })
+    .catch(function(){
+      setSending(false);
+      fb.className = "cta-feedback error";
+      fb.innerHTML = (dict[lang].ctaFail || "Não conseguimos enviar agora.") +
+        "<br><button type=\"button\" id=\"ctaRetryBtn\">" + (dict[lang].ctaRetry || "TENTAR OUTRA VEZ") + "</button>";
+      fb.hidden = false;
+      var btn = document.getElementById("ctaRetryBtn");
+      if (btn) btn.addEventListener("click", function(){
+        fb.hidden = true;
+        fMsg.focus();
+      });
+    });
+  });
+})();
 })();
 </script>
 </body>
