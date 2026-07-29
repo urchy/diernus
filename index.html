@@ -163,26 +163,6 @@
   .sheet .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:.8rem}
   .sheet h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:.95;text-transform:uppercase;max-width:14em}
   .sheet .lede{max-width:36em;margin-top:1.2rem;font-size:1.15rem;color:var(--graphite);font-style:italic}
-  .materials{background:var(--bone-2)}
-  .matgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:1.2rem;margin-top:2.6rem}
-  .mat{border:1px solid var(--graphite-35);background:var(--bone);border-radius:.35rem;overflow:hidden;display:flex;flex-direction:column}
-  .mat .tex{height:150px;position:relative}
-  .mat .tex::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
-  .tex.t-burl{background:
-    radial-gradient(90px 60px at 20% 30%,rgba(255,205,140,.28),transparent 60%),
-    radial-gradient(140px 90px at 75% 70%,rgba(30,12,2,.5),transparent 65%),
-    radial-gradient(60px 44px at 60% 25%,rgba(255,190,120,.22),transparent 60%),
-    radial-gradient(100px 70px at 35% 80%,rgba(20,8,0,.42),transparent 60%),
-    linear-gradient(120deg,#6b4220,#4a2c12 55%,#5c3a1c)}
-  .tex.t-velvet{background:
-    radial-gradient(220px 120px at 30% 0%,rgba(255,255,255,.14),transparent 60%),
-    linear-gradient(160deg,#3d5578,#22304a 70%)}
-  .tex.t-stripe{background:repeating-linear-gradient(90deg,#5c7699 0 7px,#33445e 7px 14px,#8fa6c4 14px 16px,#33445e 16px 23px)}
-  .mat .body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
-  .mat .code{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--stamp)}
-  .mat h3{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
-  .mat p{font-size:.95rem;color:var(--graphite-60)}
-  .mat .ref{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:var(--graphite-60);margin-top:auto;padding-top:.6rem;border-top:1px dashed var(--graphite-35)}
   .cta{position:relative;background:var(--blueprint-2);color:var(--ink);text-align:left;overflow:hidden}
   .cta::before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:80%;pointer-events:none;
     background:radial-gradient(closest-side,rgba(230,150,88,.22),transparent 70%)}
@@ -462,8 +442,8 @@
 <section class="chap" id="cap-01" style="--chap-accent:#E69658">
   <span class="num" aria-hidden="true">01</span>
   <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 01</p>
-  <h2 class="rv" data-i="c1t">A ideia começa num traço</h2>
-  <p class="cp rv" data-i="c1p">Esboços à mão, versões A e B, um detalhe de latão que muda tudo. Antes de qualquer máquina, o desenho pensa.</p>
+  <h2 class="rv" data-i="c1t">EXPLORAÇÃO CONCEPTUAL</h2>
+  <p class="cp rv" data-i="c1p">Os esboços permitem explorar ideias, proporções e detalhes a partir do briefing do cliente, servindo de base ao desenvolvimento do projeto quando a fase conceptual assim o exige.</p>
 </section>
 <section class="ideas">
   <div class="sk-grid">
@@ -632,42 +612,6 @@
   </figure>
 </section>
 
-<!-- ============ MATERIALS ============ -->
-<section class="sheet materials">
-  <p class="kicker rv" data-i="matKicker">LISTA DE MATERIAIS</p>
-  <h2 class="rv" data-i="matTitle">Três materiais, zero ambiguidade</h2>
-  <p class="lede rv" data-i="matLede">Referências reais de fornecedor, direção de risca, brilho do verniz — especificado uma vez, cumprido sempre.</p>
-  <div class="matgrid">
-    <article class="mat rv">
-      <div class="tex t-burl"></div>
-      <div class="body">
-        <span class="code">A1 · WDF-05</span>
-        <h3>Mapa Burl</h3>
-        <p data-i="matA1">Folheado de raiz tingido escuro, verniz mate 15%. Aplicado só depois da montagem — juntas invisíveis na peça final.</p>
-        <span class="ref" data-i="matA1ref">AMOSTRA DE CONTROLO DO DESIGNER</span>
-      </div>
-    </article>
-    <article class="mat rv">
-      <div class="tex t-velvet"></div>
-      <div class="body">
-        <span class="code">A2 · FBF-24</span>
-        <h3>Zak+Fox · Bayan</h3>
-        <p data-i="matA2">Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.</p>
-        <span class="ref">REF. ZFBY-10 (BLUE-10)</span>
-      </div>
-    </article>
-    <article class="mat rv">
-      <div class="tex t-stripe"></div>
-      <div class="body">
-        <span class="code">A3 · FBF-20</span>
-        <h3>Clarence House · New Kenya</h3>
-        <p data-i="matA3">Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê. Direção da risca conforme render.</p>
-        <span class="ref">REF. 56792-09 (BLUES)</span>
-      </div>
-    </article>
-  </div>
-</section>
-
 <!-- ============ CTA / Contact form ============ -->
 <section class="sheet cta" id="contacto">
   <div class="cta-grid">
@@ -760,8 +704,8 @@ var dict = {
     chip01:"01 · IDEIA", chip02:"02 · CONCEÇÃO", chip03:"03 · DESENHO TÉCNICO",
     cue:"SCROLL PARA COMEÇAR",
     capLbl:"CAPÍTULO", skLbl:"ESBOÇO",
-    c1t:"A ideia começa num traço",
-    c1p:"Esboços à mão, versões A e B, um detalhe de latão que muda tudo. Antes de qualquer máquina, o desenho pensa.",
+    c1t:"EXPLORAÇÃO CONCEPTUAL",
+    c1p:"Os esboços permitem explorar ideias, proporções e detalhes a partir do briefing do cliente, servindo de base ao desenvolvimento do projeto quando a fase conceptual assim o exige.",
     c2t:"O ambiente ganha corpo",
     c2p:"Moodboards com materiais reais — nogueira, carvalho, estofos, luz. O cliente vê o espaço antes de ele existir.",
     c3t:"A folha decide",
@@ -777,12 +721,6 @@ var dict = {
     hookBtn:"Falar com o estúdio →", barCta:"FALAR CONNOSCO",
     g_m1:"SALA DE ESTAR · I", g_m2:"SALA DE ESTAR · II", g_m3:"QUARTO PRINCIPAL · I", g_m4:"QUARTO PRINCIPAL · II",
     g_m5:"QUARTO DE CRIANÇA", g_m6:"ESCRITÓRIO · I", g_m7:"ESCRITÓRIO · II", g_m8:"ESCRITÓRIO · III",
-    matKicker:"LISTA DE MATERIAIS", matTitle:"Três materiais, zero ambiguidade",
-    matLede:"Referências reais de fornecedor, direção de risca, brilho do verniz — especificado uma vez, cumprido sempre.",
-    matA1:"Folheado de raiz tingido escuro, verniz mate 15%. Aplicado só depois da montagem — juntas invisíveis na peça final.",
-    matA1ref:"AMOSTRA DE CONTROLO DO DESIGNER",
-    matA2:"Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.",
-    matA3:"Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê. Direção da risca conforme render.",
     ctaKicker:"CONTACTO · RESPOSTA EM 24H ÚTEIS", ctaTitle:"Vamos falar do teu <em>próximo</em> projeto.",
     ctaLede:"Escreve-nos o que tens em mente — uma peça, um espaço, um caderno de encargos. Respondemos directamente para o teu email, normalmente dentro de algumas horas.",
     ctaT1:"Resposta em 24h úteis", ctaT2:"Orçamento gratuito, sem compromisso", ctaT3:"NDA disponível, se precisares", ctaT4:"Conversas em PT · EN",
@@ -812,8 +750,8 @@ var dict = {
     chip01:"01 · IDEA", chip02:"02 · CONCEPT", chip03:"03 · TECHNICAL DRAWING",
     cue:"SCROLL TO START",
     capLbl:"CHAPTER", skLbl:"SKETCH",
-    c1t:"It starts with a line",
-    c1p:"Hand sketches, options A and B, a brass detail that changes everything. Before any machine runs, the drawing thinks.",
+    c1t:"CONCEPTUAL EXPLORATION",
+    c1p:"Sketches let us explore ideas, proportions and details from the client's brief, providing the foundation for project development whenever the conceptual phase calls for it.",
     c2t:"The room takes shape",
     c2p:"Moodboards with real materials — walnut, oak, fabrics, light. The client sees the space before it exists.",
     c3t:"The sheet decides",
@@ -829,12 +767,6 @@ var dict = {
     hookBtn:"Talk to the studio →", barCta:"TALK TO US",
     g_m1:"LIVING ROOM · I", g_m2:"LIVING ROOM · II", g_m3:"MAIN BEDROOM · I", g_m4:"MAIN BEDROOM · II",
     g_m5:"KIDS' ROOM", g_m6:"HOME OFFICE · I", g_m7:"HOME OFFICE · II", g_m8:"HOME OFFICE · III",
-    matKicker:"LIST OF MATERIALS", matTitle:"Three materials, zero ambiguity",
-    matLede:"Real supplier references, stripe direction, sheen level — specified once, honoured always.",
-    matA1:"Dark-stained burl veneer, matte 15% clear coat. Applied only after assembly — no visible joints in the final piece.",
-    matA1ref:"TO MATCH DESIGNER'S CONTROL SAMPLE",
-    matA2:"Blue velvet for the fixed bench seat cushion. Exposed seams blind-stitched, threads to match.",
-    matA3:"Bolster stripe with self welt and self-fabric buttons with a slight tufting effect. Stripe direction follows the rendering.",
     ctaKicker:"GET IN TOUCH · 24H REPLY", ctaTitle:"Let's talk about your <em>next</em> project.",
     ctaLede:"Tell us what's on your mind — a piece, a space, a brief. We reply straight to your email, usually within a few hours.",
     ctaT1:"Reply within 24h business hours", ctaT2:"Free quote, no commitment", ctaT3:"NDA available if you need one", ctaT4:"Calls in PT · EN",
