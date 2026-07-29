@@ -248,8 +248,8 @@
     font-family:var(--display);font-weight:900;
     font-size:clamp(8rem,24vw,19rem);line-height:1;color:transparent;
     -webkit-text-stroke:2px var(--chap-accent,var(--cobalt));opacity:.15;pointer-events:none;user-select:none}
-  /* chapter 03 hides the watermark — chair viewer sits on the right */
-  .chap#cap-03 .num{display:none}
+  /* chair viewer chapter hides the watermark — figure sits on the right */
+  .chap#cap-01 .num{display:none}
   .chap .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--chap-accent,var(--cobalt));margin-bottom:.7rem}
   .chap h2{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6vw,4.6rem);text-transform:uppercase;line-height:.95;max-width:12em}
   .chap .cp{max-width:34em;margin-top:1rem;font-size:1.12rem;font-style:italic;color:var(--graphite-60)}
@@ -439,64 +439,11 @@
   </div>
 </header>
 
-<!-- ============ CAPÍTULO 01 · A IDEIA ============ -->
-<section class="chap" id="cap-01" style="--chap-accent:#E69658">
+<!-- ============ CAPÍTULO 01 · O DESENHO TÉCNICO ============ -->
+<section class="chap two-col" id="cap-01" style="--chap-accent:var(--cobalt)">
   <span class="num" aria-hidden="true">01</span>
-  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 01</p>
-  <h2 class="rv" data-i="c1t">EXPLORAÇÃO CONCEPTUAL</h2>
-  <p class="cp rv" data-i="c1p">Os esboços permitem explorar ideias, proporções e detalhes a partir do briefing do cliente, servindo de base ao desenvolvimento do projeto quando a fase conceptual assim o exige.</p>
-</section>
-<section class="ideas">
-  <div class="sk-grid">
-    <figure class="sk-card sk-a rv" data-speed="0.05" style="--rot:-1.2deg;--tape:rgba(217,142,74,.55)">
-      <span class="tape" aria-hidden="true"></span>
-      <img src="assets/sketch-vitrine.jpg" width="1600" height="1132" loading="lazy" alt="Esboço à mão de uma vitrine de loja em cedro vermelho com portas de vidro e lista de materiais">
-      <figcaption><b data-i="g_sk1">VITRINE · RETALHO</b><span><span data-i="skLbl">ESBOÇO</span> 01</span></figcaption>
-    </figure>
-    <figure class="sk-card sk-b rv" data-speed="0.09" style="--rot:1.4deg;--tape:rgba(127,164,118,.5)">
-      <span class="tape" aria-hidden="true"></span>
-      <img src="assets/sketch-cama-ab.jpg" width="724" height="1024" loading="lazy" alt="Esboço à mão de cama com cabeceira estofada, versões A e B, estrutura em madeira">
-      <figcaption><b data-i="g_sk2">CAMA · VERSÕES A + B</b><span><span data-i="skLbl">ESBOÇO</span> 02</span></figcaption>
-    </figure>
-  </div>
-  <div class="hookrow rv">
-    <p data-i="hook1">Tens uma peça na cabeça? Nós pomo-la no papel.</p>
-    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
-  </div>
-</section>
-
-<!-- ============ CAPÍTULO 02 · A CONCEÇÃO ============ -->
-<section class="chap chap-b2" id="cap-02" style="--chap-accent:#2C49C7">
-  <span class="num" aria-hidden="true">02</span>
-  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 02</p>
-  <h2 class="rv" data-i="c2t">MOODBOARDS DE APRESENTAÇÃO</h2>
-  <p class="cp rv" data-i="c2p">Mediante necessidade do projeto, disponibilizamos apresentações visuais que reúnem mobiliário, materiais e referências, permitindo avaliar o ambiente antes da execução.</p>
-  <p class="cp-tag rv" data-i="c2Tag">SERVIÇO COMPLEMENTAR</p>
-</section>
-<section class="moods" id="moods">
-  <div class="mq-row">
-    <div class="mq" data-dir="1">
-      <figure style="--rot:-.5deg"><img src="assets/mood-sala-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala de estar: sofás, cortinados, carpete e aparador em carvalho"><figcaption><i style="--dot:#E69658"></i><span data-i="g_m1">SALA DE ESTAR · I</span></figcaption></figure>
-      <figure style="--rot:.6deg"><img src="assets/mood-quarto-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto principal: cabeceira estofada, nogueira e carvalho claro"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m3">QUARTO PRINCIPAL · I</span></figcaption></figure>
-      <figure style="--rot:-.4deg"><img src="assets/mood-escritorio-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório: secretária em raiz de nogueira e candeeiros de pé"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m6">ESCRITÓRIO · I</span></figcaption></figure>
-      <figure style="--rot:.5deg"><img src="assets/mood-quarto-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto: cortinados, poltrona de pele verde e mesa de cabeceira preta"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m4">QUARTO PRINCIPAL · II</span></figcaption></figure>
-      <figure style="--rot:-.6deg"><img src="assets/mood-crianca.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto de criança: cama verde, nogueira e secretária com cadeira vermelha"><figcaption><i style="--dot:#B3232E"></i><span data-i="g_m5">QUARTO DE CRIANÇA</span></figcaption></figure>
-      <figure style="--rot:.4deg"><img src="assets/mood-sala-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala com lareira, candeeiro suspenso e poltrona"><figcaption><i style="--dot:#E69658"></i><span data-i="g_m2">SALA DE ESTAR · II</span></figcaption></figure>
-      <figure style="--rot:-.5deg"><img src="assets/mood-escritorio-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório com cadeiras e poltronas de pele"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m7">ESCRITÓRIO · II</span></figcaption></figure>
-      <figure style="--rot:.5deg"><img src="assets/mood-escritorio-3.jpg" width="1131" height="1600" loading="lazy" alt="Painel de escritório: cadeiras, tecidos e estantes em carvalho"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m8">ESCRITÓRIO · III</span></figcaption></figure>
-    </div>
-  </div>
-  <div class="hookrow rv">
-    <p data-i="hook2">O teu espaço podia estar neste carrossel.</p>
-    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
-  </div>
-</section>
-
-<!-- ============ CAPÍTULO 03 · O DESENHO TÉCNICO ============ -->
-<section class="chap two-col" id="cap-03" style="--chap-accent:var(--cobalt)">
-  <span class="num" aria-hidden="true">03</span>
   <div class="text-col">
-    <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 03</p>
+    <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 01</p>
     <h2 class="rv" data-i="c3t">A folha decide</h2>
     <p class="cp rv" data-i="c3p">Cotas, materiais e notas de produção num desenho que a oficina lê à primeira. O exemplo abaixo é a folha L-CH-01, de um projeto de hotelaria confidencial.</p>
   </div>
@@ -614,6 +561,59 @@
   </figure>
 </section>
 
+<!-- ============ CAPÍTULO 02 · A IDEIA ============ -->
+<section class="chap" id="cap-02" style="--chap-accent:#E69658">
+  <span class="num" aria-hidden="true">02</span>
+  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 02</p>
+  <h2 class="rv" data-i="c1t">EXPLORAÇÃO CONCEPTUAL</h2>
+  <p class="cp rv" data-i="c1p">Os esboços permitem explorar ideias, proporções e detalhes a partir do briefing do cliente, servindo de base ao desenvolvimento do projeto quando a fase conceptual assim o exige.</p>
+</section>
+<section class="ideas">
+  <div class="sk-grid">
+    <figure class="sk-card sk-a rv" data-speed="0.05" style="--rot:-1.2deg;--tape:rgba(217,142,74,.55)">
+      <span class="tape" aria-hidden="true"></span>
+      <img src="assets/sketch-vitrine.jpg" width="1600" height="1132" loading="lazy" alt="Esboço à mão de uma vitrine de loja em cedro vermelho com portas de vidro e lista de materiais">
+      <figcaption><b data-i="g_sk1">VITRINE · RETALHO</b><span><span data-i="skLbl">ESBOÇO</span> 01</span></figcaption>
+    </figure>
+    <figure class="sk-card sk-b rv" data-speed="0.09" style="--rot:1.4deg;--tape:rgba(127,164,118,.5)">
+      <span class="tape" aria-hidden="true"></span>
+      <img src="assets/sketch-cama-ab.jpg" width="724" height="1024" loading="lazy" alt="Esboço à mão de cama com cabeceira estofada, versões A e B, estrutura em madeira">
+      <figcaption><b data-i="g_sk2">CAMA · VERSÕES A + B</b><span><span data-i="skLbl">ESBOÇO</span> 02</span></figcaption>
+    </figure>
+  </div>
+  <div class="hookrow rv">
+    <p data-i="hook1">Tens uma peça na cabeça? Nós pomo-la no papel.</p>
+    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULO 03 · A CONCEÇÃO ============ -->
+<section class="chap chap-b2" id="cap-03" style="--chap-accent:#2C49C7">
+  <span class="num" aria-hidden="true">03</span>
+  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 03</p>
+  <h2 class="rv" data-i="c2t">MOODBOARDS DE APRESENTAÇÃO</h2>
+  <p class="cp rv" data-i="c2p">Mediante necessidade do projeto, disponibilizamos apresentações visuais que reúnem mobiliário, materiais e referências, permitindo avaliar o ambiente antes da execução.</p>
+  <p class="cp-tag rv" data-i="c2Tag">SERVIÇO COMPLEMENTAR</p>
+</section>
+<section class="moods" id="moods">
+  <div class="mq-row">
+    <div class="mq" data-dir="1">
+      <figure style="--rot:-.5deg"><img src="assets/mood-sala-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala de estar: sofás, cortinados, carpete e aparador em carvalho"><figcaption><i style="--dot:#E69658"></i><span data-i="g_m1">SALA DE ESTAR · I</span></figcaption></figure>
+      <figure style="--rot:.6deg"><img src="assets/mood-quarto-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto principal: cabeceira estofada, nogueira e carvalho claro"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m3">QUARTO PRINCIPAL · I</span></figcaption></figure>
+      <figure style="--rot:-.4deg"><img src="assets/mood-escritorio-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório: secretária em raiz de nogueira e candeeiros de pé"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m6">ESCRITÓRIO · I</span></figcaption></figure>
+      <figure style="--rot:.5deg"><img src="assets/mood-quarto-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto: cortinados, poltrona de pele verde e mesa de cabeceira preta"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m4">QUARTO PRINCIPAL · II</span></figcaption></figure>
+      <figure style="--rot:-.6deg"><img src="assets/mood-crianca.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto de criança: cama verde, nogueira e secretária com cadeira vermelha"><figcaption><i style="--dot:#B3232E"></i><span data-i="g_m5">QUARTO DE CRIANÇA</span></figcaption></figure>
+      <figure style="--rot:.4deg"><img src="assets/mood-sala-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala com lareira, candeeiro suspenso e poltrona"><figcaption><i style="--dot:#E69658"></i><span data-i="g_m2">SALA DE ESTAR · II</span></figcaption></figure>
+      <figure style="--rot:-.5deg"><img src="assets/mood-escritorio-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório com cadeiras e poltronas de pele"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m7">ESCRITÓRIO · II</span></figcaption></figure>
+      <figure style="--rot:.5deg"><img src="assets/mood-escritorio-3.jpg" width="1131" height="1600" loading="lazy" alt="Painel de escritório: cadeiras, tecidos e estantes em carvalho"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m8">ESCRITÓRIO · III</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="hookrow rv">
+    <p data-i="hook2">O teu espaço podia estar neste carrossel.</p>
+    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
+  </div>
+</section>
+
 <!-- ============ CTA / Contact form ============ -->
 <section class="sheet cta" id="contacto">
   <div class="cta-grid">
@@ -703,7 +703,7 @@ var dict = {
     heroEyebrow:"DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO",
     heroH1:"DA IDEIA<br>À PEÇA",
     heroSub:'Esboço à mão, conceção do ambiente, folha de produção — e, no fim, a peça a montar-se sozinha. Faz scroll e percorre o processo completo.',
-    chip01:"01 · IDEIA", chip02:"02 · CONCEÇÃO", chip03:"03 · DESENHO TÉCNICO",
+    chip01:"01 · DESENHO TÉCNICO", chip02:"02 · IDEIA", chip03:"03 · CONCEÇÃO",
     cue:"SCROLL PARA COMEÇAR",
     capLbl:"CAPÍTULO", skLbl:"ESBOÇO",
     c1t:"EXPLORAÇÃO CONCEPTUAL",
@@ -750,7 +750,7 @@ var dict = {
     heroEyebrow:"DIERNUS · FURNITURE DRAWING STUDIO",
     heroH1:"FROM IDEA<br>TO PIECE",
     heroSub:'A hand sketch, a concept for the room, a production sheet — and, at the end, the piece assembling itself. Scroll through the whole process.',
-    chip01:"01 · IDEA", chip02:"02 · CONCEPT", chip03:"03 · TECHNICAL DRAWING",
+    chip01:"01 · TECHNICAL DRAWING", chip02:"02 · IDEA", chip03:"03 · CONCEPT",
     cue:"SCROLL TO START",
     capLbl:"CHAPTER", skLbl:"SKETCH",
     c1t:"CONCEPTUAL EXPLORATION",
