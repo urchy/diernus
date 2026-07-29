@@ -183,16 +183,6 @@
   .mat h3{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
   .mat p{font-size:.95rem;color:var(--graphite-60)}
   .mat .ref{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:var(--graphite-60);margin-top:auto;padding-top:.6rem;border-top:1px dashed var(--graphite-35)}
-  .process{background:var(--blueprint);color:var(--ink)}
-  .process .kicker{color:var(--hud-line)}
-  .process .lede{color:var(--ink-60)}
-  .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-line);border:1px solid var(--ink-line);margin-top:2.6rem}
-  @media (max-width:860px){.revs{grid-template-columns:1fr}}
-  .rev-item{background:var(--blueprint);padding:1.3rem 1.2rem 1.5rem}
-  .rev-item .rn{font-family:var(--mono);font-size:1.6rem;color:var(--hud-line)}
-  .rev-item .rd{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--ink-60);margin:.3rem 0 .7rem}
-  .rev-item p{font-size:.95rem;color:var(--ink-60)}
-  .rev-item.last .rn{color:#fff;background:var(--stamp);display:inline-block;padding:0 .4em;border-radius:.2em}
   .cta{position:relative;background:var(--blueprint-2);color:var(--ink);text-align:left;overflow:hidden}
   .cta::before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:80%;pointer-events:none;
     background:radial-gradient(closest-side,rgba(230,150,88,.22),transparent 70%)}
@@ -678,30 +668,6 @@
   </div>
 </section>
 
-<!-- ============ PROCESS / REVISIONS ============ -->
-<section class="sheet process">
-  <p class="kicker rv" data-i="prKicker">CONTROLO DE REVISÕES</p>
-  <h2 class="rv" data-i="prTitle">Três revisões, zero adivinhas</h2>
-  <p class="lede rv" data-i="prLede">Cada pedido do cliente fica registado na folha. A oficina constrói a última palavra — não a memória de uma reunião.</p>
-  <div class="revs rv">
-    <div class="rev-item">
-      <span class="rn">R1</span>
-      <span class="rd">29/04/2026 · <span data-i="rvReq">PEDIDO CLIENTE</span></span>
-      <p data-i="r1p">Primeira emissão da folha: geometria, módulos e intenção de materiais.</p>
-    </div>
-    <div class="rev-item">
-      <span class="rn">R2</span>
-      <span class="rd">07/05/2026 · <span data-i="rvReq2">PEDIDO CLIENTE</span></span>
-      <p data-i="r2p">Afinação de estofos e notas de conforto — espumas, pressintas, suporte do assento.</p>
-    </div>
-    <div class="rev-item last">
-      <span class="rn">R3</span>
-      <span class="rd">28/05/2026 · <span data-i="rvVal">VALIDADA</span></span>
-      <p data-i="r3p">Folha validada para produção: 7 páginas, bilingue PT/EN, pronta para a oficina.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CTA / Contact form ============ -->
 <section class="sheet cta" id="contacto">
   <div class="cta-grid">
@@ -817,12 +783,6 @@ var dict = {
     matA1ref:"AMOSTRA DE CONTROLO DO DESIGNER",
     matA2:"Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.",
     matA3:"Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê. Direção da risca conforme render.",
-    prKicker:"CONTROLO DE REVISÕES", prTitle:"Três revisões, zero adivinhas",
-    prLede:"Cada pedido do cliente fica registado na folha. A oficina constrói a última palavra — não a memória de uma reunião.",
-    rvReq:"PEDIDO CLIENTE", rvReq2:"PEDIDO CLIENTE", rvVal:"VALIDADA",
-    r1p:"Primeira emissão da folha: geometria, módulos e intenção de materiais.",
-    r2p:"Afinação de estofos e notas de conforto — espumas, pressintas, suporte do assento.",
-    r3p:"Folha validada para produção: 7 páginas, bilingue PT/EN, pronta para a oficina.",
     ctaKicker:"CONTACTO · RESPOSTA EM 24H ÚTEIS", ctaTitle:"Vamos falar do teu <em>próximo</em> projeto.",
     ctaLede:"Escreve-nos o que tens em mente — uma peça, um espaço, um caderno de encargos. Respondemos directamente para o teu email, normalmente dentro de algumas horas.",
     ctaT1:"Resposta em 24h úteis", ctaT2:"Orçamento gratuito, sem compromisso", ctaT3:"NDA disponível, se precisares", ctaT4:"Conversas em PT · EN",
@@ -875,12 +835,6 @@ var dict = {
     matA1ref:"TO MATCH DESIGNER'S CONTROL SAMPLE",
     matA2:"Blue velvet for the fixed bench seat cushion. Exposed seams blind-stitched, threads to match.",
     matA3:"Bolster stripe with self welt and self-fabric buttons with a slight tufting effect. Stripe direction follows the rendering.",
-    prKicker:"REVISION CONTROL", prTitle:"Three revisions, zero guesswork",
-    prLede:"Every client request is recorded on the sheet. The workshop builds the last word — not the memory of a meeting.",
-    rvReq:"CLIENT REQUEST", rvReq2:"CLIENT REQUEST", rvVal:"VALIDATED",
-    r1p:"First issue of the sheet: geometry, modules and material intent.",
-    r2p:"Upholstery and comfort tuning — foams, webbing, seat support.",
-    r3p:"Sheet validated for production: 7 pages, bilingual PT/EN, workshop-ready.",
     ctaKicker:"GET IN TOUCH · 24H REPLY", ctaTitle:"Let's talk about your <em>next</em> project.",
     ctaLede:"Tell us what's on your mind — a piece, a space, a brief. We reply straight to your email, usually within a few hours.",
     ctaT1:"Reply within 24h business hours", ctaT2:"Free quote, no commitment", ctaT3:"NDA available if you need one", ctaT4:"Calls in PT · EN",
