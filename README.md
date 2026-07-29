@@ -2,6 +2,10 @@
 
 Página estática (SPA de página única) para promover o estúdio de design de mobiliário **Diernus**: desenho técnico, modelação 3D e ficheiros CNC.
 
+## Design system
+
+A portable, version-controlled distillation of the live site's brand, components and guidelines lives in [`Diernus Design System/`](./Diernus%20Design%20System/). Start at its [`INDEX.md`](./Diernus%20Design%20System/INDEX.md) — the full brand bible is in [`readme.md`](./Diernus%20Design%20System/readme.md). Use [`SKILL.md`](./Diernus%20Design%20System/SKILL.md) to wire it into an agent.
+
 ## Ficheiros
 
 - `index.html` — o site completo (HTML + CSS + JS num só ficheiro; sem build, sem dependências além do Google Fonts).

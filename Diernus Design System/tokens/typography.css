@@ -1,0 +1,58 @@
+:root{
+  /* ---- families ---- */
+  --font-display:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-body:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;
+  --font-hand:"Caveat",cursive;
+
+  /* short aliases matching the source */
+  --display:var(--font-display);
+  --body:var(--font-body);
+  --mono:var(--font-mono);
+  --hand:var(--font-hand);
+
+  /* ---- weights ---- */
+  --w-light:300;     /* @kind font */
+  --w-regular:400;   /* @kind font */
+  --w-medium:500;    /* @kind font */
+  --w-semibold:600;  /* @kind font */
+  --w-bold:700;      /* @kind font */
+  --w-heavy:800;     /* @kind font */
+  --w-black:900;     /* @kind font */
+
+  /* ---- fluid display scale (uppercase Figtree, tight leading) ---- */
+  --t-hero:clamp(3.6rem,12.5vw,10.5rem);  /* @kind font */
+  --t-h1:clamp(2.4rem,6vw,4.6rem);        /* @kind font */
+  --t-h2:clamp(2.2rem,5.5vw,4.2rem);      /* @kind font */
+  --t-h3:clamp(1.8rem,4vw,3.2rem);        /* @kind font */
+  --t-stat:clamp(2.2rem,4.5vw,3.4rem);    /* @kind font */
+  --t-card-title:1.3rem;                  /* @kind font */
+
+  /* ---- body ---- */
+  --t-lede:1.15rem;    /* @kind font */
+  --t-base:1.0625rem;  /* @kind font */
+  --t-sm:.95rem;       /* @kind font */
+  --t-xs:.85rem;       /* @kind font */
+
+  /* ---- mono / annotation ---- */
+  --t-mono-lg:.8rem;   /* @kind font */
+  --t-mono:.72rem;     /* @kind font */
+  --t-mono-sm:.68rem;  /* @kind font */
+  --t-mono-xs:.62rem;  /* @kind font */
+
+  /* ---- leading ---- */
+  --lh-hero:.88;     /* @kind other */
+  --lh-display:.95;  /* @kind other */
+  --lh-tight:1.1;    /* @kind other */
+  --lh-body:1.6;     /* @kind other */
+  --lh-prose:1.65;   /* @kind other */
+
+  /* ---- tracking (the mono voice lives here) ---- */
+  --ls-tight:-.01em;    /* @kind other */
+  --ls-normal:0;        /* @kind other */
+  --ls-mono:.14em;      /* @kind other */
+  --ls-eyebrow:.22em;   /* @kind other */
+  --ls-label:.18em;     /* @kind other */
+  --ls-chip:.1em;       /* @kind other */
+  --ls-wordmark:.14em;  /* @kind other */
+}

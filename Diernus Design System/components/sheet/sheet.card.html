@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="700x760" name="Sheet" subtitle="SectionHead, SpecGrid, TitleBlock, NoteCard, MaterialCard, RevisionItem, Checklist" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--bone);color:var(--graphite);font-family:var(--font-body);-webkit-font-smoothing:antialiased}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head>
+<body style="padding:20px"><div id="root"></div>
+<script type="text/babel">
+const { SectionHead, SpecGrid, SpecCell, TitleBlock, NoteCard, MaterialCard, RevisionItem, Checklist } = window.DiernusDesignSystem_ebdb11;
+function App(){
+  return <div style={{display:'flex',flexDirection:'column',gap:'1.6rem'}}>
+    <SectionHead kicker="FICHA TÉCNICA" title="Desenhado ao milímetro" lede="Tudo o que a oficina precisa está na folha." style={{maxWidth:560}} />
+    <TitleBlock items={[{label:'Folha',value:'L-SE-01'},{label:'Escala',value:'1:20'},{label:'Revisão',value:'R3'},{label:'Data',value:'28/05/2026'}]} />
+    <SpecGrid columns={3}>
+      <SpecCell value={2032} unit="MM" label="Comprimento" />
+      <SpecCell value={762} unit="MM" label="Altura" />
+      <SpecCell value={90} unit="KG" label="Peso" />
+    </SpecGrid>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1.2rem'}}>
+      <NoteCard kicker="NOTA · MONTAGEM" title="Folheado após montagem">
+        Aplicado só depois dos 4 módulos montados, garantindo a ausência de juntas visíveis.
+      </NoteCard>
+      <MaterialCard code="A2 · FBF-24" name="Zak+Fox · Bayan" texture="velvet" supplierRef="REF. ZFBY-10 (BLUE-10)">
+        Veludo azul da almofada de assento fixa.
+      </MaterialCard>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:1,background:'var(--border-inverse)',border:'1px solid var(--border-inverse)'}}>
+      <RevisionItem rev="R2" date="07/05/2026" status="PEDIDO CLIENTE">Afinação de estofos e notas de conforto.</RevisionItem>
+      <RevisionItem rev="R3" date="28/05/2026" status="VALIDADA" latest>Folha validada para produção.</RevisionItem>
+    </div>
+    <div style={{background:'var(--blueprint)',padding:'1.2rem'}}>
+      <Checklist items={[{label:'MOD-01',done:true},{label:'MOD-02',done:true},{label:'ESTOFO'},{label:'ACABAMENTO'}]} />
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

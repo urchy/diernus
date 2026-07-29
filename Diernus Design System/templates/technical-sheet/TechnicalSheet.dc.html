@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Technical sheet" description="A Diernus drawing sheet — title block, spec grid, materials and production notes." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#EDEAE3;color:#23211C;font-family:"Figtree",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:#2C49C7}a:hover{color:#3A58E0}</style>
+</helmet>
+<main style="max-width:1280px;margin:0 auto;padding:clamp(1.25rem,4vw,4rem)">
+<p style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#2C49C7;margin-bottom:.8rem">Ficha técnica</p>
+<h1 style="font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;max-width:14em">Desenhado ao milímetro, pesado ao quilo</h1>
+<p style="max-width:36em;margin-top:1.2rem;font-size:1.15rem;font-style:italic">Tudo o que a oficina precisa está na folha — dimensões, pesos, quantidades, tolerâncias. Nada fica por dizer.</p>
+
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.TitleBlock" items="{{ titleBlock }}" style="display:block;margin-top:2.6rem" hint-size="100%,72px"></x-import>
+
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(35,33,28,.15);border:1px solid rgba(35,33,28,.15);margin-top:2.6rem">
+<div style="background:#EDEAE3;padding:1.4rem 1.2rem"><output style="display:block;font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1">2032<sub style="font-family:'IBM Plex Mono',monospace;font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:rgba(35,33,28,.6)">MM</sub></output><label style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:rgba(35,33,28,.6);display:block;margin-top:.5rem;text-transform:uppercase">Comprimento</label></div>
+<div style="background:#EDEAE3;padding:1.4rem 1.2rem"><output style="display:block;font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1">762<sub style="font-family:'IBM Plex Mono',monospace;font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:rgba(35,33,28,.6)">MM</sub></output><label style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:rgba(35,33,28,.6);display:block;margin-top:.5rem;text-transform:uppercase">Profundidade</label></div>
+<div style="background:#EDEAE3;padding:1.4rem 1.2rem"><output style="display:block;font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1">762<sub style="font-family:'IBM Plex Mono',monospace;font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:rgba(35,33,28,.6)">MM</sub></output><label style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:rgba(35,33,28,.6);display:block;margin-top:.5rem;text-transform:uppercase">Altura</label></div>
+<div style="background:#EDEAE3;padding:1.4rem 1.2rem"><output style="display:block;font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1">254<sub style="font-family:'IBM Plex Mono',monospace;font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:rgba(35,33,28,.6);white-space:nowrap">MM Ø</sub></output><label style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:rgba(35,33,28,.6);display:block;margin-top:.5rem;text-transform:uppercase">Rolos</label></div>
+<div style="background:#EDEAE3;padding:1.4rem 1.2rem"><output style="display:block;font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1">204<sub style="font-family:'IBM Plex Mono',monospace;font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:rgba(35,33,28,.6)">MM</sub></output><label style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:rgba(35,33,28,.6);display:block;margin-top:.5rem;text-transform:uppercase">Almofada</label></div>
+<div style="background:#EDEAE3;padding:1.4rem 1.2rem"><output style="display:block;font-family:'Figtree',sans-serif;font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1">90<sub style="font-family:'IBM Plex Mono',monospace;font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:rgba(35,33,28,.6)">KG</sub></output><label style="font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:rgba(35,33,28,.6);display:block;margin-top:.5rem;text-transform:uppercase">Peso</label></div>
+</div>
+
+<p style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#2C49C7;margin:4rem 0 .8rem">Lista de materiais</p>
+<h2 style="font-family:'Figtree',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.2rem);line-height:.95;text-transform:uppercase;max-width:14em">Três materiais, zero ambiguidade</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:1.2rem;margin-top:2.6rem">
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.MaterialCard" code="A1 · WDF-05" name="Mapa Burl" texture="burl" supplier-ref="AMOSTRA DE CONTROLO DO DESIGNER" hint-size="100%,340px">Folheado de raiz tingido escuro, verniz mate 15%. Aplicado só depois da montagem — juntas invisíveis na peça final.</x-import>
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.MaterialCard" code="A2 · FBF-24" name="Zak+Fox · Bayan" texture="velvet" supplier-ref="REF. ZFBY-10 (BLUE-10)" hint-size="100%,340px">Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.</x-import>
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.MaterialCard" code="A3 · FBF-20" name="Clarence House · New Kenya" texture="stripe" supplier-ref="REF. 56792-09 (BLUES)" hint-size="100%,340px">Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê.</x-import>
+</div>
+
+<p style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#2C49C7;margin:4rem 0 .8rem">Notas de produção</p>
+<h2 style="font-family:'Figtree',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.2rem);line-height:.95;text-transform:uppercase;max-width:14em">O que a oficina lê antes de cortar</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.2rem;margin-top:2.6rem">
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.NoteCard" kicker="NOTA · MONTAGEM" title="Folheado após montagem" hint-size="100%,180px">O folheado burl é aplicado apenas depois dos 4 módulos montados, garantindo a ausência de juntas visíveis.</x-import>
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.NoteCard" kicker="NOTA · CONFORTO" title="Assento sem molas" hint-size="100%,180px">Almofada fixa com aro de madeira e pressintas elásticas. Espuma de alta densidade coberta por espuma macia, dacron e penas.</x-import>
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.NoteCard" kicker="NOTA · FIXAÇÃO" title="Rolos que não fogem" hint-size="100%,180px">Os rolos Ø254 fixam-se aos braços com velcro para evitar deslocamento.</x-import>
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.NoteCard" kicker="NOTA · OBRA" title="Detalhes que não se veem" hint-size="100%,180px">Forro preto no fundo, pés niveladores transparentes reguláveis, estrutura reforçada em madeira.</x-import>
+</div>
+
+<div style="display:flex;justify-content:flex-end;margin-top:3.5rem">
+<x-import component-from-global-scope="DiernusDesignSystem_ebdb11.Stamp" label="{{ stampLabel }}" sub="28/05/2026 · DIERNUS" hint-size="220px,80px"></x-import>
+</div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sheetNo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;L-SE-01&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Title block&quot;},&quot;scale&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1:20&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Title block&quot;},&quot;revision&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;R1&quot;,&quot;R2&quot;,&quot;R3&quot;,&quot;R4&quot;],&quot;default&quot;:&quot;R3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Title block&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;28/05/2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Title block&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      stampLabel: (this.props.revision ?? 'R3') + ' · VALIDADO',
+      titleBlock: [
+        { label: 'Folha', value: this.props.sheetNo ?? 'L-SE-01' },
+        { label: 'Escala', value: this.props.scale ?? '1:20' },
+        { label: 'Revisão', value: this.props.revision ?? 'R3' },
+        { label: 'Data', value: this.props.date ?? '28/05/2026' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

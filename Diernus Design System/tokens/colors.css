@@ -1,0 +1,74 @@
+:root{
+  /* ---- base palette (verbatim from Diernus/index.html) ---- */
+  --bone:#EDEAE3;
+  --bone-2:#E4E0D6;
+  --graphite:#23211C;
+  --graphite-60:rgba(35,33,28,.6);
+  --graphite-35:rgba(35,33,28,.35);
+  --graphite-15:rgba(35,33,28,.15);
+  --cobalt:#2C49C7;
+  --cobalt-hover:#3A58E0;
+  --cobalt-press:#1F38A6;
+  --blueprint:#12235B;
+  --blueprint-2:#0B163E;
+  --stamp:#B3232E;
+  --amber:#E69658;
+
+  /* ink = type on blueprint */
+  --ink:#EAF0FF;
+  --ink-60:rgba(234,240,255,.6);
+  --ink-35:rgba(234,240,255,.35);
+  --ink-line:rgba(234,240,255,.16);
+  --hud-line:rgba(159,180,255,.85);
+
+  /* ---- wood (isometric shading ramp) ---- */
+  --wood-top:#DCBC82;
+  --wood-front:#C9A16B;
+  --wood-side:#A98250;
+  --wood-bottom:#8F6C41;
+
+  /* ---- material swatch colours (list of materials) ---- */
+  --mat-burl:#4A2C12;
+  --mat-burl-hi:#8A5A2E;
+  --mat-velvet:#3D5578;
+  --mat-velvet-lo:#22304A;
+  --mat-stripe:#5C7699;
+  --mat-stripe-lo:#2E405C;
+
+  /* ---- foam legend (production notes) ---- */
+  --foam-down:#E8722C;
+  --foam-mid:#177E70;
+  --foam-core:#7A72C4;
+
+  /* ---- semantic aliases ---- */
+  --surface-page:var(--bone);
+  --surface-page-alt:var(--bone-2);
+  --surface-card:#FFFFFF;
+  --surface-inverse:var(--blueprint);
+  --surface-inverse-deep:var(--blueprint-2);
+
+  --text-body:var(--graphite);
+  --text-muted:var(--graphite-60);
+  --text-accent:var(--cobalt);
+  --text-inverse:var(--ink);
+  --text-inverse-muted:var(--ink-60);
+  --text-hand:var(--amber);
+
+  --border-hairline:var(--graphite-15);
+  --border-rule:var(--graphite-35);
+  --border-strong:var(--graphite);
+  --border-inverse:var(--ink-line);
+
+  --action-primary:var(--cobalt);
+  --action-primary-hover:var(--cobalt-hover);
+  --action-primary-press:var(--cobalt-press);
+  --action-primary-text:#FFFFFF;
+
+  --accent-warn:var(--amber);
+  --accent-stamp:var(--stamp);
+  --focus-ring:var(--cobalt);
+
+  /* grid paper */
+  --grid-line:var(--graphite-15);
+  --grid-size:72px; /* @kind spacing */
+}

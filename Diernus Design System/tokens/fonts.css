@@ -1,0 +1,7 @@
+/* Diernus loads all three families from Google Fonts, exactly as the site does.
+   Figtree  — display + body (the live site's index.html)
+   Caveat   — the handwritten margin note
+   IBM Plex Mono — the drafting/annotation face. The site declares
+   --mono:"IBM Plex Mono",... on its legal pages but never loads the file;
+   we load it here so the intended face actually renders. */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Caveat:wght@400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");

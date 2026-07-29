@@ -1,0 +1,20 @@
+:root{
+  /* Diernus animation is drafting, not bouncing: lines draw on, things
+     fade up 18px, nothing overshoots. No spring, no bounce, ever. */
+  --ease-draw:cubic-bezier(.6,0,.2,1);        /* @kind other */
+  --ease-reveal:cubic-bezier(.2,.6,.2,1);     /* @kind other */
+  --ease-assemble:cubic-bezier(.55,0,.15,1);  /* @kind other */
+  --ease-standard:ease;                       /* @kind other */
+
+  --dur-press:.08s;      /* @kind other */
+  --dur-hover:.18s;      /* @kind other */
+  --dur-control:.25s;    /* @kind other */
+  --dur-swap:.45s;       /* @kind other */
+  --dur-reveal:.7s;      /* @kind other */
+  --dur-draw:1.3s;       /* @kind other */
+  --dur-draw-hero:2.4s;  /* @kind other */
+  --dur-assemble:.9s;    /* @kind other */
+
+  --reveal-shift:18px;   /* @kind spacing */
+  --lift-hover:-2px;     /* @kind spacing */
+}

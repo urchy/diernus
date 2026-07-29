@@ -1,0 +1,10 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Motion" subtitle="Lines draw on, blocks fade up 18px — no bounce, ever" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>*{box-sizing:border-box}body{margin:0;background:var(--bone);color:var(--graphite);font-family:var(--font-body);-webkit-font-smoothing:antialiased;padding:18px 22px}
+.mono{font-family:var(--font-mono);font-size:var(--t-mono-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.row{display:flex;gap:14px;flex-wrap:wrap}@keyframes dr{to{stroke-dashoffset:0}}@keyframes fu{to{opacity:1;transform:none}}
+svg path,svg line{stroke:var(--cobalt);fill:none;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;animation:dr 1.3s var(--ease-draw) infinite alternate}
+.fu{opacity:0;transform:translateY(18px);animation:fu .7s var(--ease-reveal) infinite alternate}</style></head><body><div class="row" style="gap:34px;align-items:center">
+<svg viewBox="0 0 160 80" width="200" height="90"><rect pathLength="1" x="10" y="18" width="140" height="14" rx="4" style="stroke:var(--cobalt);fill:none;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;animation:dr 1.3s var(--ease-draw) infinite alternate"/><path pathLength="1" d="M22 32 L28 74"/><path pathLength="1" d="M138 32 L132 74"/><line pathLength="1" x1="10" y1="76" x2="150" y2="76"/></svg>
+<div class="fu" style="background:#fff;border:1px solid var(--border-hairline);box-shadow:var(--shadow-paper-sm);padding:16px 20px"><div class="mono">reveal · translateY(18px) → 0</div></div>
+</div>
+<div class="mono" style="margin-top:12px">--ease-draw cubic-bezier(.6,0,.2,1) · --ease-reveal cubic-bezier(.2,.6,.2,1)</div></body></html>

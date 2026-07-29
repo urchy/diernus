@@ -1,0 +1,11 @@
+:root{
+  /* Diernus rounds almost nothing. Sheets and rules are square; only
+     pills (chips, language toggle, buttons) and small controls curve. */
+  --radius-0:0;
+  --radius-xs:2px;      /* checkbox squares, focus ring */
+  --radius-sm:.3rem;    /* form inputs */
+  --radius-md:.35rem;   /* cards, note cards, submit button */
+  --radius-lg:.6rem;    /* the contact form panel */
+  --radius-stamp:.4rem;
+  --radius-pill:999px;  /* chips, buttons, lang toggle */
+}

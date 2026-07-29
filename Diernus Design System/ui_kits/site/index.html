@@ -1,0 +1,51 @@
+<!-- @dsCard group="Site" viewport="1280x820" name="diernus.com" subtitle="The one-page studio site — hero, chapters, technical sheet, contact" -->
+<!DOCTYPE html><html lang="pt"><head><meta charset="utf-8"><title>Diernus · UI kit</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bone);color:var(--graphite);font-family:var(--font-body);font-size:var(--t-base);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}::selection{background:var(--cobalt);color:var(--bone)}a{color:var(--cobalt)}a:hover{color:var(--cobalt-hover)}button,input,textarea{font:inherit}:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel" src="TopBar.jsx"></script>
+<script type="text/babel" src="Hero.jsx"></script>
+<script type="text/babel" src="ChapterBand.jsx"></script>
+<script type="text/babel" src="SketchGallery.jsx"></script>
+<script type="text/babel" src="MoodMarquee.jsx"></script>
+<script type="text/babel" src="TechnicalSheet.jsx"></script>
+<script type="text/babel" src="ContactSection.jsx"></script>
+<script type="text/babel" src="SiteFooter.jsx"></script>
+<script type="text/babel" src="LegalPage.jsx"></script>
+<script type="text/babel">
+function App(){
+  const [view,setView]=React.useState('home');
+  const [lang,setLang]=React.useState('pt');
+  const [progress,setProgress]=React.useState(0);
+  React.useEffect(()=>{
+    const on=()=>setProgress(Math.min(100,window.scrollY/Math.max(1,document.body.scrollHeight-innerHeight)*100));
+    addEventListener('scroll',on,{passive:true});return()=>removeEventListener('scroll',on);
+  },[]);
+  React.useEffect(()=>{window.scrollTo(0,0)},[view]);
+  return <React.Fragment>
+    <TopBar view={view} setView={setView} lang={lang} setLang={setLang} progress={progress} />
+    {view==='home' && <React.Fragment>
+      <Hero setView={setView} />
+      <ChapterBand num="01" accent="#E69658" title="A ideia começa num traço">
+        Esboços à mão, versões A e B, um detalhe de latão que muda tudo. Antes de qualquer máquina, o desenho pensa.
+      </ChapterBand>
+      <SketchGallery setView={setView} />
+    </React.Fragment>}
+    {view==='moods' && <React.Fragment>
+      <ChapterBand num="02" accent="#2C49C7" tone="bone-2" title="O ambiente ganha corpo">
+        Moodboards com materiais reais — nogueira, carvalho, estofos, luz. O cliente vê o espaço antes de ele existir.
+      </ChapterBand>
+      <MoodMarquee />
+    </React.Fragment>}
+    {view==='sheet' && <TechnicalSheet />}
+    {view==='contact' && <ContactSection />}
+    {view==='legal' && <LegalPage />}
+    <SiteFooter />
+  </React.Fragment>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>
