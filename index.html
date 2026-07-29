@@ -158,62 +158,11 @@
   .cue svg path{stroke:var(--cobalt);stroke-width:2;fill:none;animation:cue 1.6s ease-in-out infinite}
   @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(6px);opacity:.4}}
 
-  /* ---------- build stage ---------- */
-  .buildwrap{position:relative;height:560vh;background:linear-gradient(180deg,var(--blueprint) 0%,var(--blueprint-2) 100%)}
-  .stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;color:var(--ink)}
-  .stage svg.iso{position:absolute;inset:0;width:100%;height:100%}
-  .stage .grid line{stroke:var(--ink-line);stroke-width:1;vector-effect:non-scaling-stroke}
-  .stage .meta{position:absolute;top:calc(1rem + 3rem);left:var(--pad);font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink-60);display:flex;flex-direction:column;gap:.2rem}
-  .stage .meta b{color:var(--ink);font-weight:500}
-  .stage .pct{position:absolute;top:calc(1rem + 3rem);right:var(--pad);text-align:right;font-family:var(--mono);color:var(--ink-60);font-size:.68rem;letter-spacing:.14em}
-  .stage .pct output{display:block;font-size:2rem;color:var(--ink);letter-spacing:0;line-height:1.1}
-  .hud{position:absolute;left:var(--pad);bottom:calc(var(--pad) * .8);max-width:30rem;z-index:3}
-  .hud .ph-eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;color:var(--hud-line);margin-bottom:.5rem;min-height:1em}
-  .hud .ph-title{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,3.2rem);line-height:1;text-transform:uppercase;letter-spacing:.01em}
-  .hud .ph-desc{font-size:1rem;color:var(--ink-60);margin-top:.6rem;max-width:26em;font-style:italic}
-  .hud .ph-title,.hud .ph-eyebrow,.hud .ph-desc{transition:opacity .35s,transform .35s}
-  .hud.swap .ph-title,.hud.swap .ph-eyebrow,.hud.swap .ph-desc{opacity:0;transform:translateY(8px)}
-  .swatches{display:flex;gap:.5rem;margin-top:1rem}
-  .swatches .sw{display:flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;
-    color:var(--ink-60);border:1px solid var(--ink-line);border-radius:999px;padding:.28rem .6rem .28rem .3rem;
-    opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s,border-color .4s}
-  .swatches .sw i{width:1.05rem;height:1.05rem;border-radius:50%;flex:none}
-  .swatches .sw.on{opacity:1;transform:none;border-color:var(--hud-line);color:var(--ink)}
-  .sw .burl{background:radial-gradient(circle at 30% 30%,#8a5a2e,#4a2c12 70%)}
-  .sw .velvet{background:linear-gradient(135deg,#3d5578,#22304a)}
-  .sw .stripe{background:repeating-linear-gradient(90deg,#5c7699 0 3px,#2e405c 3px 6px)}
-  .checklist{position:absolute;right:var(--pad);bottom:calc(var(--pad) * .8);z-index:3;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;display:flex;flex-direction:column;gap:.55rem;text-align:left}
-  .checklist li{list-style:none;display:flex;align-items:center;gap:.55rem;color:var(--ink-35);transition:color .3s}
-  .checklist li i{width:.9rem;height:.9rem;border:1px solid var(--ink-35);border-radius:2px;display:grid;place-items:center;transition:all .3s;font-style:normal;font-size:.6rem;line-height:1}
-  .checklist li.on{color:var(--ink)}
-  .checklist li.on i{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
-  .checklist li.on i::before{content:"✓"}
-  .stamp{position:absolute;z-index:4;right:clamp(1rem,12vw,14rem);top:22%;transform:rotate(-8deg) scale(2.6);opacity:0;
-    font-family:var(--mono);letter-spacing:.18em;color:var(--stamp);border:3px solid var(--stamp);border-radius:.4rem;
-    padding:.5rem 1rem;font-size:clamp(.8rem,1.6vw,1.1rem);text-align:center;background:rgba(179,35,46,.06);pointer-events:none}
-  .stamp small{display:block;font-size:.6em;letter-spacing:.3em;margin-top:.15rem}
-  /* iso svg text */
-  svg.iso text{font-family:var(--mono);fill:var(--ink);letter-spacing:.06em}
-  svg.iso .lblline{stroke:var(--hud-line);stroke-width:1.4;fill:none;vector-effect:non-scaling-stroke}
-  svg.iso .lblbox{fill:rgba(11,22,62,.72);stroke:rgba(159,180,255,.5);vector-effect:non-scaling-stroke}
-  svg.iso .dimline{stroke:var(--ink-60);stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
-  svg.iso .dimtxt{fill:var(--ink-60)}
-  svg.iso .ink-part path,svg.iso .ink-part polygon{fill:rgba(18,35,91,.0);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-  svg.iso .mat-part path,svg.iso .mat-part polygon{stroke:rgba(12,16,30,.55);stroke-width:1;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-
   /* ---------- sheet sections ---------- */
   section.sheet{padding:clamp(4rem,9vw,8rem) var(--pad)}
   .sheet .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:.8rem}
   .sheet h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:.95;text-transform:uppercase;max-width:14em}
   .sheet .lede{max-width:36em;margin-top:1.2rem;font-size:1.15rem;color:var(--graphite);font-style:italic}
-  .specs{background:var(--bone)}
-  .specgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--graphite-15);border:1px solid var(--graphite-15);margin-top:2.6rem}
-  @media (max-width:1100px){.specgrid{grid-template-columns:repeat(3,1fr)}}
-  @media (max-width:520px){.specgrid{grid-template-columns:repeat(2,1fr)}}
-  .spec{background:var(--bone);padding:1.4rem 1.2rem}
-  .spec output{display:block;font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1}
-  .spec output sub{font-family:var(--mono);font-size:.32em;font-weight:400;vertical-align:baseline;letter-spacing:.05em;color:var(--graphite-60)}
-  .spec label{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--graphite-60);display:block;margin-top:.5rem;text-transform:uppercase}
   .materials{background:var(--bone-2)}
   .matgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:1.2rem;margin-top:2.6rem}
   .mat{border:1px solid var(--graphite-35);background:var(--bone);border-radius:.35rem;overflow:hidden;display:flex;flex-direction:column}
@@ -234,18 +183,6 @@
   .mat h3{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
   .mat p{font-size:.95rem;color:var(--graphite-60)}
   .mat .ref{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:var(--graphite-60);margin-top:auto;padding-top:.6rem;border-top:1px dashed var(--graphite-35)}
-  .notes{background:var(--bone)}
-  .notegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.2rem;margin-top:2.6rem}
-  .note{border:1.5px solid var(--graphite);border-radius:.35rem;padding:1.2rem 1.3rem 1.4rem;background:var(--bone);position:relative}
-  .note .nh{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--stamp);margin-bottom:.6rem}
-  .note h3{font-family:var(--display);font-weight:700;font-size:1.3rem;line-height:1.1;text-transform:uppercase;margin-bottom:.5rem}
-  .note p{font-size:.98rem;color:var(--graphite-60)}
-  .foam{margin-top:1rem;display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em}
-  .foam div{display:flex;align-items:center;gap:.6rem}
-  .foam i{flex:none;height:16px;border-radius:2px}
-  .foam .f1{width:110px;background:#E8722C}
-  .foam .f2{width:150px;background:#177E70}
-  .foam .f3{width:190px;background:#7A72C4}
   .process{background:var(--blueprint);color:var(--ink)}
   .process .kicker{color:var(--hud-line)}
   .process .lede{color:var(--ink-60)}
@@ -523,7 +460,7 @@
   <h1 data-i="heroH1">DA IDEIA<br>À PEÇA</h1>
   <p class="sub" data-i="heroSub">Esboço à mão, conceção do ambiente, folha de produção — e, no fim, a peça a montar-se sozinha. Faz scroll e percorre o processo completo.</p>
   <div class="chips">
-    <a href="#cap-01" data-i="chip01">01 · IDEIA</a><a href="#cap-02" data-i="chip02">02 · CONCEÇÃO</a><a href="#cap-03" data-i="chip03">03 · DESENHO TÉCNICO</a><a href="#cap-04" class="hot" data-i="chip04">04 · A PEÇA</a>
+    <a href="#cap-01" data-i="chip01">01 · IDEIA</a><a href="#cap-02" data-i="chip02">02 · CONCEÇÃO</a><a href="#cap-03" data-i="chip03">03 · DESENHO TÉCNICO</a>
   </div>
   <div class="cue">
     <svg viewBox="0 0 14 22"><path d="M2 3 L7 9 L12 3 M2 12 L7 18 L12 12"/></svg>
@@ -705,21 +642,6 @@
   </figure>
 </section>
 
-<!-- ============ SPECS ============ -->
-<section class="sheet specs">
-  <p class="kicker rv" data-i="specsKicker">FICHA TÉCNICA</p>
-  <h2 class="rv" data-i="specsTitle">Desenhado ao milímetro, pesado ao quilo</h2>
-  <p class="lede rv" data-i="specsLede">Tudo o que a oficina precisa está na folha — dimensões, pesos, quantidades, tolerâncias. Nada fica por dizer.</p>
-  <div class="specgrid rv">
-    <div class="spec"><output data-n="2032">0<sub>MM</sub></output><label data-i="sp1">COMPRIMENTO</label></div>
-    <div class="spec"><output data-n="762">0<sub>MM</sub></output><label data-i="sp2">PROFUNDIDADE</label></div>
-    <div class="spec"><output data-n="762">0<sub>MM</sub></output><label data-i="sp3">ALTURA</label></div>
-    <div class="spec"><output data-n="254">0<sub>MM Ø</sub></output><label data-i="sp4">ROLOS</label></div>
-    <div class="spec"><output data-n="204">0<sub>MM</sub></output><label data-i="sp5">ALMOFADA</label></div>
-    <div class="spec"><output data-n="90">0<sub>KG</sub></output><label data-i="sp6">PESO</label></div>
-  </div>
-</section>
-
 <!-- ============ MATERIALS ============ -->
 <section class="sheet materials">
   <p class="kicker rv" data-i="matKicker">LISTA DE MATERIAIS</p>
@@ -756,40 +678,6 @@
   </div>
 </section>
 
-<!-- ============ NOTES ============ -->
-<section class="sheet notes">
-  <p class="kicker rv" data-i="ntKicker">NOTAS DE PRODUÇÃO</p>
-  <h2 class="rv" data-i="ntTitle">O que a oficina lê antes de cortar</h2>
-  <p class="lede rv" data-i="ntLede">Uma boa folha responde às perguntas antes de elas chegarem ao telefone. Estas são quatro notas reais da L-SE-01.</p>
-  <div class="notegrid">
-    <article class="note rv">
-      <p class="nh" data-i="nh1">NOTA · MONTAGEM</p>
-      <h3 data-i="nt1t">Folheado após montagem</h3>
-      <p data-i="nt1p">O folheado burl é aplicado apenas depois dos 4 módulos montados, garantindo a ausência de juntas visíveis. O sofá é entregue em obra já montado.</p>
-    </article>
-    <article class="note rv">
-      <p class="nh" data-i="nh2">NOTA · CONFORTO</p>
-      <h3 data-i="nt2t">Assento sem molas</h3>
-      <p data-i="nt2p">Almofada fixa com aro de madeira e pressintas elásticas. Espuma de alta densidade coberta por espuma macia, dacron e penas — compressão suave, forma recuperada.</p>
-      <div class="foam" aria-hidden="true">
-        <div><i class="f1"></i><span data-i="fm1">PENAS / PLUMAS</span></div>
-        <div><i class="f2"></i><span data-i="fm2">CMHR 25–30 KG/M³ + DACRON</span></div>
-        <div><i class="f3"></i><span data-i="fm3">CMHR 40–45 KG/M³</span></div>
-      </div>
-    </article>
-    <article class="note rv">
-      <p class="nh" data-i="nh3">NOTA · FIXAÇÃO</p>
-      <h3 data-i="nt3t">Rolos que não fogem</h3>
-      <p data-i="nt3p">Os rolos Ø254 fixam-se aos braços com velcro para evitar deslocamento — e o braço direito tem perfil superior curvo para os receber.</p>
-    </article>
-    <article class="note rv">
-      <p class="nh" data-i="nh4">NOTA · OBRA</p>
-      <h3 data-i="nt4t">Detalhes que não se veem</h3>
-      <p data-i="nt4p">Forro preto no fundo, pés niveladores transparentes reguláveis, peso confirmado com estrutura reforçada em madeira. Tudo na folha, nada ao acaso.</p>
-    </article>
-  </div>
-</section>
-
 <!-- ============ PROCESS / REVISIONS ============ -->
 <section class="sheet process">
   <p class="kicker rv" data-i="prKicker">CONTROLO DE REVISÕES</p>
@@ -813,46 +701,6 @@
     </div>
   </div>
 </section>
-
-<!-- ============ CAPÍTULO 04 · A PEÇA ============ -->
-<section class="chap on-navy" id="cap-04" style="--chap-accent:#EAF0FF">
-  <span class="num" aria-hidden="true">04</span>
-  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 04</p>
-  <h2 class="rv" data-i="c4t">A peça constrói-se</h2>
-  <p class="cp rv" data-i="c4p">Um sofá real, módulo a módulo, do risco ao acabamento. Continua a fazer scroll.</p>
-</section>
-
-<!-- ============ BUILD STAGE ============ -->
-<div class="buildwrap" id="buildwrap">
-  <div class="stage" id="stage">
-    <svg class="iso" id="iso" viewBox="-1500 -1250 4200 3100" preserveAspectRatio="xMidYMid meet" aria-label="Sofá L-SE-01 em vista isométrica, explodido e montado"></svg>
-    <div class="meta">
-      <span><b>L-SE-01</b> · SOFA AT LOWER SEATING AREAS</span>
-      <span data-i="metaProj">PROJETO: HOTELARIA · CONFIDENCIAL · 2 UNI · 90 KG</span>
-      <span>762 × 2032 × 762 MM · ESC 1:20</span>
-    </div>
-    <div class="pct"><span data-i="pctLabel">CONSTRUÇÃO</span><output id="pct">0%</output></div>
-    <div class="hud" id="hud">
-      <p class="ph-eyebrow" id="phEyebrow">FASE 01 · FOLHA</p>
-      <h2 class="ph-title" id="phTitle">Vista montada</h2>
-      <p class="ph-desc" id="phDesc">Cada linha vem da folha de produção.</p>
-      <div class="swatches" id="swatches">
-        <span class="sw"><i class="burl"></i>A1 · WDF-05 MAPA BURL</span>
-        <span class="sw"><i class="velvet"></i>A2 · FBF-24 BAYAN</span>
-        <span class="sw"><i class="stripe"></i>A3 · FBF-20 NEW KENYA</span>
-      </div>
-    </div>
-    <ul class="checklist" id="checklist">
-      <li data-part="mod01"><i></i>MOD-01</li>
-      <li data-part="mod02"><i></i>MOD-02</li>
-      <li data-part="mod03"><i></i>MOD-03</li>
-      <li data-part="mod04"><i></i>MOD-04</li>
-      <li data-part="uph"><i></i><span data-i="ckUph">ESTOFO</span></li>
-      <li data-part="fin"><i></i><span data-i="ckFin">ACABAMENTO</span></li>
-    </ul>
-    <div class="stamp" id="stamp">R3 · <span data-i="stampTxt">VALIDADO</span><small>28/05/2026 · DIERNUS</small></div>
-  </div>
-</div>
 
 <!-- ============ CTA / Contact form ============ -->
 <section class="sheet cta" id="contacto">
@@ -943,7 +791,7 @@ var dict = {
     heroEyebrow:"DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO",
     heroH1:"DA IDEIA<br>À PEÇA",
     heroSub:'Esboço à mão, conceção do ambiente, folha de produção — e, no fim, a peça a montar-se sozinha. Faz scroll e percorre o processo completo.',
-    chip01:"01 · IDEIA", chip02:"02 · CONCEÇÃO", chip03:"03 · DESENHO TÉCNICO", chip04:"04 · A PEÇA",
+    chip01:"01 · IDEIA", chip02:"02 · CONCEÇÃO", chip03:"03 · DESENHO TÉCNICO",
     cue:"SCROLL PARA COMEÇAR",
     capLbl:"CAPÍTULO", skLbl:"ESBOÇO",
     c1t:"A ideia começa num traço",
@@ -952,8 +800,6 @@ var dict = {
     c2p:"Moodboards com materiais reais — nogueira, carvalho, estofos, luz. O cliente vê o espaço antes de ele existir.",
     c3t:"A folha decide",
     c3p:"Cotas, materiais e notas de produção num desenho que a oficina lê à primeira. O exemplo abaixo é a folha L-CH-01, de um projeto de hotelaria confidencial.",
-    c4t:"A peça constrói-se",
-    c4p:"Um sofá real, módulo a módulo, do risco ao acabamento. Continua a fazer scroll.",
     chPiece:"CADEIRA", chSheet:"FOLHA DE DETALHE · ESC 1:5",
     chBackrest:"ENCOSTO", chSeat:"ASSENTO", chSkirt:"SAIA", chLeg:"PERNA",
     chMode2d:"DESENHO 2D", chMode3d:"MODELO 3D",
@@ -965,28 +811,12 @@ var dict = {
     hookBtn:"Falar com o estúdio →", barCta:"FALAR CONNOSCO",
     g_m1:"SALA DE ESTAR · I", g_m2:"SALA DE ESTAR · II", g_m3:"QUARTO PRINCIPAL · I", g_m4:"QUARTO PRINCIPAL · II",
     g_m5:"QUARTO DE CRIANÇA", g_m6:"ESCRITÓRIO · I", g_m7:"ESCRITÓRIO · II", g_m8:"ESCRITÓRIO · III",
-    metaProj:"PROJETO: HOTELARIA · CONFIDENCIAL · 2 UNI · 90 KG", pctLabel:"CONSTRUÇÃO",
-    ckUph:"ESTOFO", ckFin:"ACABAMENTO", stampTxt:"VALIDADO",
-    specsKicker:"FICHA TÉCNICA", specsTitle:"Desenhado ao milímetro, pesado ao quilo",
-    specsLede:"Tudo o que a oficina precisa está na folha — dimensões, pesos, quantidades, tolerâncias. Nada fica por dizer.",
-    sp1:"COMPRIMENTO", sp2:"PROFUNDIDADE", sp3:"ALTURA", sp4:"ROLOS", sp5:"ALMOFADA", sp6:"PESO",
     matKicker:"LISTA DE MATERIAIS", matTitle:"Três materiais, zero ambiguidade",
     matLede:"Referências reais de fornecedor, direção de risca, brilho do verniz — especificado uma vez, cumprido sempre.",
     matA1:"Folheado de raiz tingido escuro, verniz mate 15%. Aplicado só depois da montagem — juntas invisíveis na peça final.",
     matA1ref:"AMOSTRA DE CONTROLO DO DESIGNER",
     matA2:"Veludo azul da almofada de assento fixa. Costuras expostas com ponto invisível, linhas a condizer.",
     matA3:"Risca dos rolos com vivo no mesmo tecido e botão forrado com efeito capitonê. Direção da risca conforme render.",
-    ntKicker:"NOTAS DE PRODUÇÃO", ntTitle:"O que a oficina lê antes de cortar",
-    ntLede:"Uma boa folha responde às perguntas antes de elas chegarem ao telefone. Estas são quatro notas reais da L-SE-01.",
-    nh1:"NOTA · MONTAGEM", nt1t:"Folheado após montagem",
-    nt1p:"O folheado burl é aplicado apenas depois dos 4 módulos montados, garantindo a ausência de juntas visíveis. O sofá é entregue em obra já montado.",
-    nh2:"NOTA · CONFORTO", nt2t:"Assento sem molas",
-    nt2p:"Almofada fixa com aro de madeira e pressintas elásticas. Espuma de alta densidade coberta por espuma macia, dacron e penas — compressão suave, forma recuperada.",
-    fm1:"PENAS / PLUMAS", fm2:"CMHR 25–30 KG/M³ + DACRON", fm3:"CMHR 40–45 KG/M³",
-    nh3:"NOTA · FIXAÇÃO", nt3t:"Rolos que não fogem",
-    nt3p:"Os rolos Ø254 fixam-se aos braços com velcro para evitar deslocamento — e o braço direito tem perfil superior curvo para os receber.",
-    nh4:"NOTA · OBRA", nt4t:"Detalhes que não se veem",
-    nt4p:"Forro preto no fundo, pés niveladores transparentes reguláveis, peso confirmado com estrutura reforçada em madeira. Tudo na folha, nada ao acaso.",
     prKicker:"CONTROLO DE REVISÕES", prTitle:"Três revisões, zero adivinhas",
     prLede:"Cada pedido do cliente fica registado na folha. A oficina constrói a última palavra — não a memória de uma reunião.",
     rvReq:"PEDIDO CLIENTE", rvReq2:"PEDIDO CLIENTE", rvVal:"VALIDADA",
@@ -1030,7 +860,7 @@ var dict = {
     heroEyebrow:"DIERNUS · FURNITURE DRAWING STUDIO",
     heroH1:"FROM IDEA<br>TO PIECE",
     heroSub:'A hand sketch, a concept for the room, a production sheet — and, at the end, the piece assembling itself. Scroll through the whole process.',
-    chip01:"01 · IDEA", chip02:"02 · CONCEPT", chip03:"03 · TECHNICAL DRAWING", chip04:"04 · THE PIECE",
+    chip01:"01 · IDEA", chip02:"02 · CONCEPT", chip03:"03 · TECHNICAL DRAWING",
     cue:"SCROLL TO START",
     capLbl:"CHAPTER", skLbl:"SKETCH",
     c1t:"It starts with a line",
@@ -1039,8 +869,6 @@ var dict = {
     c2p:"Moodboards with real materials — walnut, oak, fabrics, light. The client sees the space before it exists.",
     c3t:"The sheet decides",
     c3p:"Dimensions, materials and production notes in a drawing the workshop reads first time. The example below is sheet L-CH-01, from a confidential hospitality project.",
-    c4t:"The piece builds itself",
-    c4p:"A real sofa, module by module, from line work to finish. Keep scrolling.",
     chPiece:"CHAIR", chSheet:"DETAIL SHEET · SCALE 1:5",
     chBackrest:"BACKREST", chSeat:"SEAT", chSkirt:"SKIRT", chLeg:"LEG",
     chMode2d:"2D DRAWING", chMode3d:"3D MODEL",
@@ -1052,28 +880,12 @@ var dict = {
     hookBtn:"Talk to the studio →", barCta:"TALK TO US",
     g_m1:"LIVING ROOM · I", g_m2:"LIVING ROOM · II", g_m3:"MAIN BEDROOM · I", g_m4:"MAIN BEDROOM · II",
     g_m5:"KIDS' ROOM", g_m6:"HOME OFFICE · I", g_m7:"HOME OFFICE · II", g_m8:"HOME OFFICE · III",
-    metaProj:"PROJECT: HOSPITALITY · CONFIDENTIAL · 2 UNITS · 90 KG", pctLabel:"BUILD",
-    ckUph:"UPHOLSTERY", ckFin:"FINISH", stampTxt:"VALIDATED",
-    specsKicker:"TECHNICAL DATA", specsTitle:"Drawn to the millimetre, weighed to the kilo",
-    specsLede:"Everything the workshop needs is on the sheet — dimensions, weights, quantities, tolerances. Nothing left unsaid.",
-    sp1:"LENGTH", sp2:"DEPTH", sp3:"HEIGHT", sp4:"BOLSTERS", sp5:"CUSHION", sp6:"WEIGHT",
     matKicker:"LIST OF MATERIALS", matTitle:"Three materials, zero ambiguity",
     matLede:"Real supplier references, stripe direction, sheen level — specified once, honoured always.",
     matA1:"Dark-stained burl veneer, matte 15% clear coat. Applied only after assembly — no visible joints in the final piece.",
     matA1ref:"TO MATCH DESIGNER'S CONTROL SAMPLE",
     matA2:"Blue velvet for the fixed bench seat cushion. Exposed seams blind-stitched, threads to match.",
     matA3:"Bolster stripe with self welt and self-fabric buttons with a slight tufting effect. Stripe direction follows the rendering.",
-    ntKicker:"PRODUCTION NOTES", ntTitle:"What the workshop reads before cutting",
-    ntLede:"A good sheet answers the questions before they reach the phone. These are four real notes from L-SE-01.",
-    nh1:"NOTE · ASSEMBLY", nt1t:"Veneer after assembly",
-    nt1p:"The burl veneer is applied only after the 4 modules are assembled, ensuring no visible joints. The sofa is delivered to site fully assembled.",
-    nh2:"NOTE · COMFORT", nt2t:"A seat with no springs",
-    nt2p:"Fixed cushion on a timber frame with elastic webbing. High-density foam topped with soft foam, dacron and down — gentle compression, shape recovered.",
-    fm1:"DOWN WRAP", fm2:"CMHR FOAM 25–30 KG/M³ + DACRON", fm3:"CMHR FOAM 40–45 KG/M³",
-    nh3:"NOTE · FIXING", nt3t:"Bolsters that stay put",
-    nt3p:"The Ø254 bolsters are secured to the arms with velcro straps to prevent displacement — and the right arm has a curved top profile to receive them.",
-    nh4:"NOTE · ON SITE", nt4t:"Details you never see",
-    nt4p:"Black lining underneath, adjustable clear glides, weight confirmed with a fully reinforced timber structure. All on the sheet, nothing left to chance.",
     prKicker:"REVISION CONTROL", prTitle:"Three revisions, zero guesswork",
     prLede:"Every client request is recorded on the sheet. The workshop builds the last word — not the memory of a meeting.",
     rvReq:"CLIENT REQUEST", rvReq2:"CLIENT REQUEST", rvVal:"VALIDATED",
@@ -1328,505 +1140,6 @@ document.querySelectorAll(".bar .lang button").forEach(function(b){
 })();
 
 /* ==================================================================
-   1 · Isometric engine — real mm from sheet L-SE-01
-================================================================== */
-var SVG = "http://www.w3.org/2000/svg";
-var COS = Math.cos(Math.PI/6), SIN = 0.5;
-function P(x,y,z){ return [(x - y) * COS, (x + y) * SIN - z]; }
-function pts(list){ return list.map(function(p){ return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "); }
-function el(tag, attrs, parent){
-  var n = document.createElementNS(SVG, tag);
-  for (var k in attrs) n.setAttribute(k, attrs[k]);
-  if (parent) parent.appendChild(n);
-  return n;
-}
-
-var iso = document.getElementById("iso");
-var defs = el("defs", {}, iso);
-
-/* --- material defs --- */
-defs.innerHTML =
-  '<pattern id="burl" width="620" height="620" patternUnits="userSpaceOnUse">' +
-    '<rect width="620" height="620" fill="#5e3a1c"/>' +
-    '<image id="burlImg" width="620" height="620"/>' +
-  '</pattern>' +
-  '<linearGradient id="velv" x1="0" y1="0" x2="1" y2="1">' +
-    '<stop offset="0" stop-color="#42597c"/><stop offset=".55" stop-color="#2e4160"/><stop offset="1" stop-color="#22304a"/>' +
-  '</linearGradient>' +
-  '<pattern id="stripeA" width="46" height="46" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">' +
-    '<rect width="46" height="46" fill="#33445e"/>' +
-    '<rect width="20" height="46" fill="#5c7699"/><rect x="20" width="4" height="46" fill="#8fa6c4"/>' +
-  '</pattern>' +
-  '<pattern id="stripeB" width="46" height="46" patternUnits="userSpaceOnUse" patternTransform="rotate(150)">' +
-    '<rect width="46" height="46" fill="#33445e"/>' +
-    '<rect width="20" height="46" fill="#5c7699"/><rect x="20" width="4" height="46" fill="#8fa6c4"/>' +
-  '</pattern>' +
-  '<radialGradient id="shadowG" cx=".5" cy=".5" r=".5">' +
-    '<stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>' +
-  '</radialGradient>' +
-  '<linearGradient id="sheenG" x1="0" y1="0" x2="1" y2="0">' +
-    '<stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/>' +
-    '<stop offset="1" stop-color="#fff" stop-opacity="0"/>' +
-  '</linearGradient>';
-
-/* burl texture: rasterised ONCE to a bitmap — live SVG filters re-render on
-   every camera move and hang the compositor, a canvas tile does not */
-(function makeBurl(){
-  var S = 512, c = document.createElement("canvas");
-  c.width = c.height = S;
-  var g = c.getContext("2d");
-  var seed = 42;
-  function rnd(){ seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-  var grad = g.createLinearGradient(0, 0, S, S);
-  grad.addColorStop(0, "#6b4423"); grad.addColorStop(.5, "#54331a"); grad.addColorStop(1, "#5e3a1e");
-  g.fillStyle = grad; g.fillRect(0, 0, S, S);
-  /* wrap every mark across tile edges so the pattern tiles seamlessly */
-  var offs = [[0,0],[S,0],[-S,0],[0,S],[0,-S]];
-  var i, j, x, y, r;
-  for (i = 0; i < 170; i++){
-    x = rnd() * S; y = rnd() * S; r = 4 + rnd() * 38;
-    var sq = 0.45 + rnd() * 0.5, a0 = rnd() * Math.PI, arc = Math.PI * (1.2 + rnd() * 0.8);
-    var col = "rgba(" + (i % 3 ? "32,17,6" : "18,9,3") + "," + (0.14 + rnd() * 0.22).toFixed(2) + ")";
-    var lw = 1 + rnd() * 2.4;
-    for (j = 0; j < offs.length; j++){
-      g.beginPath();
-      g.ellipse(x + offs[j][0], y + offs[j][1], r, r * sq, a0, 0, arc);
-      g.strokeStyle = col; g.lineWidth = lw; g.stroke();
-    }
-  }
-  for (i = 0; i < 90; i++){
-    x = rnd() * S; y = rnd() * S; r = 1 + rnd() * 6;
-    var a1 = rnd() * Math.PI, fc = "rgba(205,150,90," + (0.05 + rnd() * 0.1).toFixed(2) + ")";
-    for (j = 0; j < offs.length; j++){
-      g.beginPath();
-      g.ellipse(x + offs[j][0], y + offs[j][1], r * 2, r, a1, 0, Math.PI * 2);
-      g.fillStyle = fc; g.fill();
-    }
-  }
-  for (i = 0; i < 26; i++){
-    x = rnd() * S; y = rnd() * S; r = 2 + rnd() * 5;
-    for (j = 0; j < offs.length; j++){
-      g.beginPath(); g.arc(x + offs[j][0], y + offs[j][1], r, 0, 7);
-      g.fillStyle = "rgba(24,12,4,.55)"; g.fill();
-      g.beginPath(); g.arc(x + offs[j][0], y + offs[j][1], r + 2 + rnd() * 3, 0, 7);
-      g.strokeStyle = "rgba(30,15,5,.35)"; g.lineWidth = 1.2; g.stroke();
-    }
-  }
-  document.getElementById("burlImg").setAttribute("href", c.toDataURL("image/png"));
-})();
-
-/* --- layers --- */
-var gGrid   = el("g", {class:"grid"}, iso);
-var gShadow = el("g", {}, iso);
-var gParts  = el("g", {}, iso);
-var gDims   = el("g", {}, iso);
-var gLabels = el("g", {}, iso);
-var gSheen  = el("g", {}, iso);
-
-/* floor grid (iso) */
-(function(){
-  var i, a, b, STEP = 254, N = 8;
-  for (i = -N; i <= N + 8; i++){
-    a = P(i * STEP, -900, 0); b = P(i * STEP, 1800, 0);
-    el("line", {x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, gGrid);
-  }
-  for (i = -4; i <= 8; i++){
-    a = P(-1200, i * STEP, 0); b = P(3300, i * STEP, 0);
-    el("line", {x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, gGrid);
-  }
-})();
-
-/* ground shadow */
-var shadowEl = el("ellipse", {fill:"url(#shadowG)"}, gShadow);
-var shC = P(1016, 381, 0);
-
-/* --- geometry builders ------------------------------------------- */
-/* box faces: top (z=z1), left (x=x0 plane), front (y=y0 plane) */
-function boxFaces(x0,y0,z0,x1,y1,z1){
-  return {
-    top:  [P(x0,y0,z1), P(x1,y0,z1), P(x1,y1,z1), P(x0,y1,z1)],
-    left: [P(x0,y0,z0), P(x0,y0,z1), P(x0,y1,z1), P(x0,y1,z0)],
-    front:[P(x0,y0,z0), P(x1,y0,z0), P(x1,y0,z1), P(x0,y0,z1)]
-  };
-}
-function addBox(gInk, gMat, x0,y0,z0,x1,y1,z1, fill, shades){
-  var f = boxFaces(x0,y0,z0,x1,y1,z1);
-  ["left","front","top"].forEach(function(name){
-    el("polygon", {points:pts(f[name])}, gInk);
-    el("polygon", {points:pts(f[name]), fill:fill}, gMat);
-    el("polygon", {points:pts(f[name]), fill:shades[name], "class":"shade"}, gMat);
-  });
-}
-/* cylinder along axis 'x' or 'y' — cx etc are centre of cap A (the visible cap) */
-function addCyl(gInk, gMat, axis, c0, len, cy, cz, r, fill, capFill){
-  var STEPS = 28, capA = [], i, t, y, z, p;
-  for (i = 0; i < STEPS; i++){
-    t = i / STEPS * Math.PI * 2;
-    if (axis === "x"){ p = P(c0, cy + r * Math.cos(t), cz + r * Math.sin(t)); }
-    else             { p = P(cy + r * Math.cos(t), c0, cz + r * Math.sin(t)); }
-    capA.push(p);
-  }
-  var d = (axis === "x") ? P(len,0,0).map(function(v,k){ return v - P(0,0,0)[k]; })
-                         : P(0,len,0).map(function(v,k){ return v - P(0,0,0)[k]; });
-  /* silhouette split via signed distance to axis dir */
-  var imax = 0, imin = 0, smax = -1e9, smin = 1e9;
-  capA.forEach(function(pp, idx){
-    var s = d[0] * (pp[1]) - d[1] * (pp[0]); /* cross(d, p) */
-    if (s > smax){ smax = s; imax = idx; }
-    if (s < smin){ smin = s; imin = idx; }
-  });
-  function slice(a, from, to){
-    var out = [], i2 = from;
-    while (true){ out.push(a[i2]); if (i2 === to) break; i2 = (i2 + 1) % a.length; }
-    return out;
-  }
-  var sideA = slice(capA, imax, imin);
-  var capB = capA.map(function(pp){ return [pp[0] + d[0], pp[1] + d[1]]; });
-  var sideB = slice(capB, imin, imax);
-  var body = sideA.concat(sideB);
-  /* far cap then body then near cap */
-  el("polygon", {points:pts(capB)}, gInk);
-  el("polygon", {points:pts(body)}, gInk);
-  el("polygon", {points:pts(capA)}, gInk);
-  el("polygon", {points:pts(capB), fill:fill}, gMat);
-  el("polygon", {points:pts(body), fill:fill}, gMat);
-  el("polygon", {points:pts(body), fill:"rgba(8,12,24,.24)"}, gMat);
-  el("polygon", {points:pts(capA), fill:capFill || fill}, gMat);
-  el("polygon", {points:pts(capA), fill:"rgba(255,255,255,.07)"}, gMat);
-  /* button + tuft on visible cap */
-  var bc = (axis === "x") ? P(c0, cy, cz) : P(cy, c0, cz);
-  el("circle", {cx:bc[0], cy:bc[1], r:r*0.14, fill:"rgba(10,16,30,.55)", stroke:"rgba(255,255,255,.25)","stroke-width":2}, gMat);
-}
-
-/* --- parts (mm, from the sheet: 2032 × 762 × 762) ----------------- */
-var SH = { /* shade overlays for wood / fabric */
-  wood:  {top:"rgba(255,214,150,.16)", left:"rgba(0,0,0,.33)",  front:"rgba(0,0,0,.12)"},
-  velvet:{top:"rgba(255,255,255,.10)", left:"rgba(0,0,0,.30)",  front:"rgba(0,0,0,.10)"}
-};
-var partDefs = [
-  { id:"glides", explode:[0, 0, -230], anchor:[1016, 60, -40], side:-1, small:true,
-    build:function(ink, mat){
-      /* front row only — rear feet are fully occluded from this camera */
-      var GSH = {top:"rgba(255,255,255,.25)", left:"rgba(0,0,0,.28)", front:"rgba(0,0,0,.12)"};
-      [[100,80],[1000,80],[1930,80]].forEach(function(c){
-        addBox(ink, mat, c[0]-25, c[1]-25, -22, c[0]+25, c[1]+25, 0, "#cfd6df", GSH);
-      });
-    }},
-  { id:"mod04", explode:[0, 320, 470], anchor:[1050, 762, 700], side:1,
-    build:function(ink, mat){
-      addBox(ink, mat,  90, 672, 300, 2032, 762, 762, "url(#burl)", SH.wood); /* back panel */
-      addBox(ink, mat,   0,   0, 300,   90, 762, 762, "url(#burl)", SH.wood); /* left wing  */
-    }},
-  { id:"mod01", explode:[-560, 0, 40], anchor:[0, 240, 150], side:-1,
-    build:function(ink, mat){ addBox(ink, mat, 0, 0, 0, 410, 762, 300, "url(#burl)", SH.wood); }},
-  { id:"mod02", explode:[0, -200, -60], anchor:[1016, 0, 60], side:-1,
-    build:function(ink, mat){ addBox(ink, mat, 410, 0, 0, 1622, 762, 300, "url(#burl)", SH.wood); }},
-  { id:"mod03", explode:[600, 0, 40], anchor:[2032, 240, 260], side:1, lab:[-80, 330],
-    build:function(ink, mat){ addBox(ink, mat, 1622, 0, 0, 2032, 762, 530, "url(#burl)", SH.wood); }},
-  { id:"cushion", explode:[-60, -170, 560], anchor:[400, 30, 420], side:-1,
-    build:function(ink, mat){ addBox(ink, mat, 100, 30, 300, 1612, 672, 504, "url(#velv)", SH.velvet); }},
-  { id:"bolA", explode:[60, -40, 950], anchor:[140, 545, 640], side:-1,
-    build:function(ink, mat){ addCyl(ink, mat, "x", 140, 1420, 545, 631, 127, "url(#stripeA)", "url(#stripeA)"); }},
-  { id:"bolB", explode:[260, 0, 860], anchor:[1827, 60, 700], side:1,
-    build:function(ink, mat){ addCyl(ink, mat, "y", 60, 640, 1827, 657, 127, "url(#stripeB)", "url(#stripeB)"); }}
-];
-
-var parts = {};
-partDefs.forEach(function(def){
-  var g    = el("g", {class:"part", id:"p-" + def.id}, gParts);
-  var gInk = el("g", {class:"ink-part"}, g);
-  var gMat = el("g", {class:"mat-part", opacity:0}, g);
-  def.build(gInk, gMat);
-  var dv = P(def.explode[0], def.explode[1], def.explode[2]);
-  parts[def.id] = { def:def, g:g, ink:gInk, mat:gMat, dx:dv[0], dy:dv[1] };
-});
-
-/* --- labels + leader lines --------------------------------------- */
-var labelEls = {};
-function makeLabel(id, side){
-  var def = partDefs.filter(function(d){ return d.id === id; })[0];
-  var a = P(def.anchor[0], def.anchor[1], def.anchor[2]);
-  var ex = P(def.anchor[0] + def.explode[0], def.anchor[1] + def.explode[1], def.anchor[2] + def.explode[2]);
-  var off = def.lab || [side * 330, -130];
-  var lx = ex[0] + off[0], ly = ex[1] + off[1];
-  var g = el("g", {class:"lbl"}, gLabels);
-  el("polyline", {class:"lblline", points: ex[0] + "," + ex[1] + " " + (lx - side * 40) + "," + ly + " " + (lx + side * 300) + "," + ly}, g);
-  el("circle", {cx:ex[0], cy:ex[1], r:10, fill:"var(--hud-line)"}, g);
-  var box = el("rect", {class:"lblbox", x: side > 0 ? lx - 40 : lx - 300, y: ly - 92, width:380, height:82, rx:8}, g);
-  var t1 = el("text", {x:0, y:ly - 58, "font-size":34, "font-weight":"bold"}, g);
-  var t2 = el("text", {x:0, y:ly - 24, "font-size":24, style:"fill:var(--ink-60)"}, g);
-  labelEls[id] = {g:g, t1:t1, t2:t2, box:box, side:side, lx:lx, ly:ly};
-  return g;
-}
-partDefs.forEach(function(d){ if (!d.small || d.id === "glides") makeLabel(d.id, d.side); });
-function refreshLabels(){
-  var L = dict[lang].lbl;
-  Object.keys(labelEls).forEach(function(id){
-    var le = labelEls[id], txt = L[id] || ["",""];
-    le.t1.textContent = txt[0]; le.t2.textContent = txt[1];
-    var w = 380;
-    try {
-      var bb1 = le.t1.getBBox(), bb2 = le.t2.getBBox();
-      w = Math.max(230, Math.max(bb1.width, bb2.width) + 48);
-    } catch(e){}
-    var x0 = le.side > 0 ? le.lx - 40 : le.lx - 300;
-    le.box.setAttribute("x", x0); le.box.setAttribute("width", w);
-    le.t1.setAttribute("x", x0 + 24); le.t2.setAttribute("x", x0 + 24);
-  });
-}
-
-/* --- dimension lines (exploded phase) ----------------------------- */
-function dim(p1, p2, txt, tOff){
-  var g = el("g", {class:"dim"}, gDims);
-  var a = P.apply(null, p1), b = P.apply(null, p2);
-  el("line", {class:"dimline", x1:a[0], y1:a[1], x2:b[0], y2:b[1]}, g);
-  [[a,b],[b,a]].forEach(function(pair){
-    var p = pair[0], q = pair[1];
-    var ang = Math.atan2(q[1] - p[1], q[0] - p[0]);
-    var s = 26;
-    el("polygon", {points:pts([[p[0],p[1]],[p[0]+Math.cos(ang-.4)*s, p[1]+Math.sin(ang-.4)*s],[p[0]+Math.cos(ang+.4)*s, p[1]+Math.sin(ang+.4)*s]]), fill:"var(--ink-60)"}, g);
-  });
-  var m = [(a[0]+b[0])/2 + (tOff ? tOff[0] : 0), (a[1]+b[1])/2 + (tOff ? tOff[1] : 20)];
-  el("text", {class:"dimtxt", x:m[0], y:m[1], "font-size":34, "text-anchor":"middle"}, g).textContent = txt;
-  return g;
-}
-var dims = [
-  dim([0,-160,0],[2032,-160,0], "2032", [0,64]),
-  dim([-170,0,0],[-170,762,0], "762", [-90,10]),
-  dim([2032+170,762,0],[2032+170,762,762], "762", [110,0]),
-  dim([100,-60,300],[100,-60,504], "204", [-100,10])
-];
-
-/* sheen sweep polygon (over whole assembled sofa) */
-var sheenEl = el("polygon", {points:pts([P(-100,-80,820),P(600,-80,820),P(300,900,-40),P(-400,900,-40)]), fill:"url(#sheenG)", opacity:0}, gSheen);
-
-/* ==================================================================
-   2 · Choreography
-================================================================== */
-function clamp01(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
-function seg(p, a, b){ return clamp01((p - a) / (b - a)); }
-function ioCubic(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; }
-function outCubic(t){ return 1 - Math.pow(1 - t, 3); }
-function outBack(t){ var c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(t-1, 3) + c * Math.pow(t-1, 2); }
-
-/* per-part timing: [explodeStart, explodeEnd, buildStart, buildEnd] */
-var timing = {
-  mod04:  [.07, .26, .655, .755],
-  mod01:  [.09, .28, .545, .625],
-  mod02:  [.10, .27, .545, .60 ],
-  mod03:  [.11, .30, .60 , .675],
-  glides: [.12, .30, .72 , .775],
-  cushion:[.10, .29, .745, .825],
-  bolA:   [.12, .31, .79 , .87 ],
-  bolB:   [.13, .32, .825, .90 ]
-};
-var matWin = { mod01:[.34,.42], mod02:[.36,.44], mod03:[.38,.46], mod04:[.40,.48],
-               glides:[.42,.5], cushion:[.44,.52], bolA:[.46,.54], bolB:[.48,.56] };
-var lblWin = [.24, .32, .50, .575];  /* in-start, in-end, out-start, out-end */
-
-/* camera keyframes: viewBox [x,y,w,h] */
-var VB_A = [-1150, -1160, 3650, 2700];   /* assembled */
-var VB_E = [-1620, -1500, 4400, 3260];   /* exploded  */
-var VB_F = [-1050, -1230, 3450, 2560];   /* finish    */
-function lerpVB(a, b, t){
-  return a.map(function(v, i){ return v + (b[i] - v) * t; });
-}
-
-var phaseAt = [0, .07, .33, .55, .90];  /* start p of each phase */
-var lastPhase = -1;
-var hud = document.getElementById("hud");
-var phEyebrow = document.getElementById("phEyebrow"), phTitle = document.getElementById("phTitle"), phDesc = document.getElementById("phDesc");
-var swatches = document.getElementById("swatches");
-var checklist = document.getElementById("checklist");
-var stampEl = document.getElementById("stamp");
-var pctEl = document.getElementById("pct");
-var buildFill = document.getElementById("buildfill");
-var buildBarWrap = document.querySelector(".buildbar");
-
-function setPhase(i){
-  if (i === lastPhase) return;
-  lastPhase = i;
-  hud.classList.add("swap");
-  setTimeout(function(){
-    var ph = dict[lang].phases[i];
-    phEyebrow.textContent = ph[0]; phTitle.textContent = ph[1]; phDesc.textContent = ph[2];
-    hud.classList.remove("swap");
-  }, 180);
-  swatches.querySelectorAll(".sw").forEach(function(s, idx){
-    s.classList.toggle("on", i === 2);
-    if (i === 2) s.style.transitionDelay = (idx * .12) + "s"; else s.style.transitionDelay = "0s";
-  });
-}
-var ckParts = { mod01:"mod01", mod02:"mod02", mod03:"mod03", mod04:"mod04" };
-
-function render(p){
-  /* phase */
-  var ph = 0;
-  for (var i = phaseAt.length - 1; i >= 0; i--){ if (p >= phaseAt[i]){ ph = i; break; } }
-  setPhase(ph);
-
-  /* explode factor per part: 0 = home, 1 = exploded */
-  Object.keys(parts).forEach(function(id){
-    var pr = parts[id], t = timing[id];
-    var k;
-    if (p < t[2]) k = ioCubic(seg(p, t[0], t[1]));
-    else {
-      var bt = seg(p, t[2], t[3]);
-      k = 1 - (bt >= 1 ? 1 : outBack(bt));
-      if (bt >= 1) k = 0;
-    }
-    var rot = "";
-    if ((id === "bolA" || id === "bolB") && p >= t[2] && p < t[3]){
-      var bt2 = seg(p, t[2], t[3]);
-      rot = " rotate(" + ((1 - outCubic(bt2)) * (id === "bolA" ? -10 : 10)) + " " +
-            P(parts[id].def.anchor[0], parts[id].def.anchor[1], parts[id].def.anchor[2]).join(" ") + ")";
-    }
-    pr.g.setAttribute("transform", "translate(" + (pr.dx * k).toFixed(1) + " " + (pr.dy * k).toFixed(1) + ")" + rot);
-
-    /* ink ↔ material crossfade */
-    var mw = matWin[id];
-    var mk = ioCubic(seg(p, mw[0], mw[1]));
-    pr.mat.setAttribute("opacity", mk.toFixed(3));
-    pr.ink.setAttribute("opacity", (1 - mk * 0.92).toFixed(3));
-
-    /* checklist ticks on landing */
-    if (ckParts[id]){
-      var li = checklist.querySelector('[data-part="' + id + '"]');
-      if (li) li.classList.toggle("on", p >= timing[id][3] - .005);
-    }
-  });
-  var liU = checklist.querySelector('[data-part="uph"]');
-  if (liU) liU.classList.toggle("on", p >= timing.bolB[3] - .005);
-  var liF = checklist.querySelector('[data-part="fin"]');
-  if (liF) liF.classList.toggle("on", p >= .965);
-
-  /* labels + dims */
-  var lk = ioCubic(seg(p, lblWin[0], lblWin[1])) * (1 - ioCubic(seg(p, lblWin[2], lblWin[3])));
-  gLabels.setAttribute("opacity", lk.toFixed(3));
-  gDims.setAttribute("opacity", lk.toFixed(3));
-
-  /* camera */
-  var vb;
-  if (p < .33) vb = lerpVB(VB_A, VB_E, ioCubic(seg(p, .06, .30)));
-  else if (p < .56) vb = VB_E;
-  else if (p < .90) vb = lerpVB(VB_E, VB_A, ioCubic(seg(p, .58, .88)));
-  else vb = lerpVB(VB_A, VB_F, ioCubic(seg(p, .90, 1)));
-  iso.setAttribute("viewBox", vb.map(function(v){ return v.toFixed(0); }).join(" "));
-
-  /* shadow: widen + soften while exploded */
-  var ek = ioCubic(seg(p, .07, .30)) * (1 - ioCubic(seg(p, .56, .88)));
-  shadowEl.setAttribute("cx", shC[0]); shadowEl.setAttribute("cy", shC[1] + 40);
-  shadowEl.setAttribute("rx", 1500 + ek * 500);
-  shadowEl.setAttribute("ry", 330 + ek * 110);
-  shadowEl.setAttribute("opacity", (0.75 - ek * 0.35).toFixed(3));
-
-  /* sheen sweep at finish */
-  var sk = seg(p, .90, .985);
-  if (sk > 0 && sk < 1){
-    sheenEl.setAttribute("opacity", Math.sin(sk * Math.PI).toFixed(3));
-    var off = -600 + sk * 3400;
-    sheenEl.setAttribute("transform", "translate(" + off + " 0)");
-  } else sheenEl.setAttribute("opacity", 0);
-
-  /* stamp */
-  var stk = outBack(seg(p, .945, .985));
-  stampEl.style.opacity = seg(p, .945, .965);
-  stampEl.style.transform = "rotate(-8deg) scale(" + (2.6 - 1.6 * stk) + ")";
-
-  /* progress readouts */
-  var pc = Math.round(p * 100);
-  pctEl.textContent = pc + "%";
-  buildFill.style.width = pc + "%";
-  buildBarWrap.classList.toggle("done", pc >= 100);
-}
-
-/* ==================================================================
-   3 · Scroll driver (sticky + lerp scrub)
-================================================================== */
-var wrap = document.getElementById("buildwrap");
-var target = 0, current = -1, raf = null, stageVisible = true;
-var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-if ("IntersectionObserver" in window){
-  new IntersectionObserver(function(en){ stageVisible = en[0].isIntersecting; }).observe(wrap);
-}
-function measure(){
-  var r = wrap.getBoundingClientRect();
-  var total = wrap.offsetHeight - window.innerHeight;
-  target = clamp01(-r.top / (total || 1));
-}
-function tick(){
-  if (stageVisible && !(window.__lse && window.__lse.frozen)){
-    var eased = current + (target - current) * 0.16;
-    if (current < 0) eased = target;
-    if (Math.abs(eased - target) < 0.0004) eased = target;
-    if (eased !== current){ current = eased; render(current); }
-  }
-  galleryTick();
-  raf = requestAnimationFrame(tick);
-}
-window.addEventListener("scroll", measure, {passive:true});
-window.addEventListener("resize", measure);
-measure();
-
-if (reduceMotion){
-  /* static money-shot: exploded view with labels, no pin scrub */
-  render(0.44);
-  window.removeEventListener("scroll", measure);
-} else {
-  raf = requestAnimationFrame(tick);
-}
-
-/* ==================================================================
-   3b · Galleries — sketch parallax + moodboard marquee
-================================================================== */
-var skCards = Array.prototype.slice.call(document.querySelectorAll(".sk-card"));
-var ideasSec = document.querySelector(".ideas");
-var moodsSec = document.getElementById("moods");
-var ideasVis = false, moodsVis = false;
-if ("IntersectionObserver" in window){
-  if (ideasSec) new IntersectionObserver(function(en){ ideasVis = en[0].isIntersecting; }).observe(ideasSec);
-  if (moodsSec) new IntersectionObserver(function(en){ moodsVis = en[0].isIntersecting; }).observe(moodsSec);
-} else { ideasVis = moodsVis = true; }
-
-var tracks = Array.prototype.slice.call(document.querySelectorAll(".mq")).map(function(t){
-  return { el:t, dir:parseFloat(t.getAttribute("data-dir") || 1), off:0, half:0 };
-});
-function measureTracks(){
-  tracks.forEach(function(tr){ tr.half = tr.el.scrollWidth / 2; });
-}
-if (!reduceMotion){
-  tracks.forEach(function(tr){ tr.el.innerHTML += tr.el.innerHTML; }); /* duplicate for a seamless loop */
-  window.addEventListener("load", measureTracks);
-  window.addEventListener("resize", measureTracks);
-  measureTracks();
-} else if (moodsSec){
-  moodsSec.classList.add("static");
-}
-
-var lastY = window.scrollY, vel = 0;
-function galleryTick(){
-  if (reduceMotion) return;
-  var y = window.scrollY;
-  vel = vel * 0.9 + (y - lastY) * 0.1;
-  lastY = y;
-  if (moodsVis) tracks.forEach(function(tr){
-    if (tr.el.parentNode.matches && tr.el.parentNode.matches(":hover")) return;
-    if (!tr.half) return;
-    var sp = (0.55 + Math.min(2.4, Math.abs(vel) * 0.12)) * tr.dir;
-    tr.off -= sp;
-    if (tr.off <= -tr.half) tr.off += tr.half;
-    if (tr.off > 0) tr.off -= tr.half;
-    tr.el.style.transform = "translate3d(" + tr.off.toFixed(1) + "px,0,0)";
-  });
-  if (ideasVis) skCards.forEach(function(c){
-    var r = c.getBoundingClientRect();
-    var mid = r.top + r.height / 2 - window.innerHeight / 2;
-    c.style.setProperty("--py", (mid * -parseFloat(c.getAttribute("data-speed") || 0)).toFixed(1) + "px");
-  });
-}
-
-/* ==================================================================
    4 · Hero draw-in, reveals, counters
 ================================================================== */
 requestAnimationFrame(function(){ document.getElementById("hero").classList.add("ready"); });
@@ -1840,30 +1153,6 @@ if ("IntersectionObserver" in window){
   }, {threshold:.12});
   rvs.forEach(function(el2){ io.observe(el2); });
 } else rvs.forEach(function(el2){ el2.classList.add("in"); });
-
-/* animated counters */
-var specs = document.querySelectorAll(".spec output[data-n]");
-function runCounter(o){
-  var end = parseInt(o.getAttribute("data-n"), 10);
-  var sub = o.querySelector("sub") ? o.querySelector("sub").outerHTML : "";
-  if (reduceMotion){ o.innerHTML = end + sub; return; }
-  var t0 = null;
-  function step(ts){
-    if (!t0) t0 = ts;
-    var k = clamp01((ts - t0) / 1100);
-    o.innerHTML = Math.round(end * outCubic(k)) + sub;
-    if (k < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-if ("IntersectionObserver" in window){
-  var io2 = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if (en.isIntersecting){ runCounter(en.target); io2.unobserve(en.target); }
-    });
-  }, {threshold:.6});
-  specs.forEach(function(o){ io2.observe(o); });
-} else specs.forEach(runCounter);
 
 applyLang();
 refreshLabels();
