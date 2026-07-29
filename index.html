@@ -313,9 +313,25 @@
     border:1px solid currentColor;color:inherit;padding:.4rem .85rem;border-radius:999px;cursor:pointer;margin-top:.6rem}
   .cta-feedback button:hover{background:currentColor;color:var(--blueprint-2)}
   .cta-form.is-sent .field,.cta-form.is-sent .cta-submit,.cta-form.is-sent .cta-micro,.cta-form.is-sent .cta-form-title,.cta-form.is-sent .cta-form-sub{display:none}
-  footer{background:var(--blueprint-2);color:var(--ink-35);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;
-    padding:1.6rem var(--pad) 2.2rem;border-top:1px solid var(--ink-line);display:flex;flex-wrap:wrap;gap:.6rem 2rem}
-  footer b{color:var(--ink-60);font-weight:500}
+  footer{background:var(--blueprint-2);color:var(--ink);font-family:var(--body);font-size:.95rem;line-height:1.55;
+    padding:clamp(2.4rem,5vw,4rem) var(--pad) 2rem;border-top:1px solid var(--ink-line)}
+  footer .ft-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(2rem,4vw,3.5rem)}
+  @media (max-width:760px){footer .ft-grid{grid-template-columns:1fr;gap:1.8rem}}
+  footer h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60);margin-bottom:.7rem;font-weight:500}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+  footer a:hover{color:#E69658;border-bottom-color:#E69658}
+  footer .ft-brand b{color:#E69658;font-family:var(--mono);font-weight:500;letter-spacing:.14em}
+  footer .ft-brand p{color:var(--ink-60);font-size:.92rem;max-width:30em;margin-bottom:.6rem}
+  footer .ft-meta{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-35)}
+  footer .ft-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:0;padding:0}
+  footer .ft-list li{margin:0}
+  footer .ft-list a{font-size:.95rem}
+  footer .ft-bottom{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--ink-line);
+    display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--ink-35);text-transform:uppercase}
+  @media (max-width:560px){footer .ft-bottom{justify-content:flex-start}}
+  footer .ft-bottom a{color:var(--ink-60)}
+  footer .ft-bottom a:hover{color:#E69658;border-bottom-color:#E69658}
 
   /* ---------- chapter bands ---------- */
   .chap{position:relative;padding:clamp(3.5rem,8vw,6.5rem) var(--pad) clamp(1.2rem,3vw,2rem);overflow:hidden;background:var(--bone)}
@@ -882,8 +898,34 @@
 </section>
 
 <footer>
-  <span><b>DIERNUS</b> · <span data-i="ftTag">DESENHADO AO MILÍMETRO</span></span>
-  <span>© 2026</span>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <h4 data-i="ftH">Diernus</h4>
+      <p data-i="ftBrand">Estúdio de desenho de mobiliário por medida. Da ideia à peça montada, em Portugal.</p>
+      <p class="ft-meta">NIPC [NIPC] · [MORADA]</p>
+    </div>
+    <div>
+      <h4 data-i="ftLegal">Legal</h4>
+      <ul class="ft-list">
+        <li><a href="/privacidade/" data-i="ftL1">Privacidade</a></li>
+        <li><a href="/termos/" data-i="ftL2">Termos e condições</a></li>
+        <li><a href="/cookies/" data-i="ftL3">Cookies</a></li>
+        <li><a href="/aviso-legal/" data-i="ftL4">Aviso legal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i="ftContact">Contacto</h4>
+      <ul class="ft-list">
+        <li><a href="mailto:estudio@diernus.com">estudio@diernus.com</a></li>
+        <li><a href="/#contacto" data-i="ftCta">Formulário de contacto</a></li>
+        <li><a href="https://portal.diernus.com" data-i="ftPortal">Portal do cliente</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Diernus, Lda. · <span data-i="ftCopy">Todos os direitos reservados</span></span>
+    <span><b>DIERNUS</b> · <span data-i="ftTag">DESENHADO AO MILÍMETRO</span></span>
+  </div>
 </footer>
 
 <script>
@@ -960,6 +1002,12 @@ var dict = {
     ctaOk:"<b>Obrigado.</b> Recebemos a tua mensagem e respondemos dentro de 24h úteis. Podes fechar esta janela.",
     ctaFail:"<b>Não conseguimos enviar agora.</b> Tenta de novo, ou escreve directamente para <a href='mailto:estudio@diernus.com'>estudio@diernus.com</a>.",
     ctaRetry:"TENTAR OUTRA VEZ",
+    ftH:"Diernus",
+    ftBrand:"Estúdio de desenho de mobiliário por medida. Da ideia à peça montada, em Portugal.",
+    ftLegal:"Legal", ftContact:"Contacto",
+    ftL1:"Privacidade", ftL2:"Termos e condições", ftL3:"Cookies", ftL4:"Aviso legal",
+    ftCta:"Formulário de contacto", ftPortal:"Portal do cliente",
+    ftCopy:"Todos os direitos reservados",
     ftTag:"DESENHADO AO MILÍMETRO",
     phases:[
       ["FASE 01 · FOLHA","Vista montada","Cada linha vem da folha de produção L-SE-01."],
@@ -1039,6 +1087,12 @@ var dict = {
     ctaOk:"<b>Thanks.</b> We got your message and reply within 24h business hours. You can close this tab.",
     ctaFail:"<b>Something went wrong.</b> Try again, or email us directly at <a href='mailto:estudio@diernus.com'>estudio@diernus.com</a>.",
     ctaRetry:"TRY AGAIN",
+    ftH:"Diernus",
+    ftBrand:"Bespoke furniture design studio. From idea to finished piece, in Portugal.",
+    ftLegal:"Legal", ftContact:"Contact",
+    ftL1:"Privacy", ftL2:"Terms and conditions", ftL3:"Cookies", ftL4:"Legal notice",
+    ftCta:"Contact form", ftPortal:"Client portal",
+    ftCopy:"All rights reserved",
     ftTag:"DRAWN TO THE MILLIMETRE",
     phases:[
       ["PHASE 01 · SHEET","Assembled view","Every line comes from production sheet L-SE-01."],
