@@ -376,13 +376,18 @@
 
   /* ---------- capítulo 02 · moodboard marquee ---------- */
   .moods{background:var(--bone-2);padding:1.5rem 0 clamp(4.5rem,9vw,7rem);overflow:hidden}
-  .mq-row{overflow:hidden;padding:1.1rem 0}
-  .mq{display:flex;gap:clamp(1rem,2vw,1.6rem);width:max-content;will-change:transform}
+  .mq-row{overflow-x:auto;overflow-y:hidden;padding:1.1rem 0;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none}
+  .mq-row::-webkit-scrollbar{display:none}
+  .mq{display:flex;gap:clamp(1rem,2vw,1.6rem);width:max-content;will-change:transform;
+    padding:0 var(--pad)}
   .mq figure{position:relative;margin:0;height:clamp(220px,30vw,330px);flex:none;
     border:1px solid var(--graphite-15);background:#fff;padding:.45rem .45rem 2.2rem;
     box-shadow:0 2px 6px rgba(35,33,28,.08),0 18px 40px -22px rgba(35,33,28,.35);
-    transform:rotate(var(--rot,0deg));transition:transform .4s}
-  .mq figure:hover{transform:rotate(0deg) scale(1.04);z-index:2}
+    transform:rotate(var(--rot,0deg));transition:transform .4s;
+    scroll-snap-align:start}
+  .mq figure:hover,.mq figure:focus-within{transform:rotate(0deg) scale(1.04);z-index:2}
   .mq img{height:100%;width:auto;display:block}
   .mq figcaption{position:absolute;left:.75rem;bottom:.65rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--graphite-60);white-space:nowrap}
   .mq figcaption i{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--dot,var(--cobalt));margin-right:.45rem;vertical-align:middle}
@@ -409,6 +414,70 @@
     .rv{opacity:1;transform:none;transition:none}
     .cue svg path{animation:none}
     .hero.ready .drawn{animation:none;stroke-dashoffset:0}
+  }
+
+  /* =============================================================
+     MOBILE-FIRST REFINEMENTS
+     Applied at small viewports to fix:
+       - touch targets (44×44px minimum per Apple HIG / Material)
+       - scroll-margin-top so chip-nav lands below the fixed top bar
+       - hero typography at 320–375px
+       - chapter & contact-form padding for narrow screens
+       - chair-meta two-span row collapsing cleanly
+       - moodboard marquee pauses on touch
+     ============================================================= */
+
+  /* scroll-margin so in-page anchors land below the fixed top bar (~52px) */
+  #top, #hero, #cap-01, #cap-02, #cap-03, #contacto, section.sheet{scroll-margin-top:72px}
+
+  /* Touch-target minimums (44×44) for small interactive controls */
+  .chips a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem .85rem}
+  .bar .barcta{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1rem}
+  .bar .lang button{min-height:44px;min-width:44px;padding:.5rem .8rem;font-size:.72rem}
+  .fig-toggle button,.fig-explode{min-height:44px;padding:.55rem 1rem;font-size:.65rem}
+  .fig-spin{width:44px;height:44px}
+  .cta-feedback button{min-height:44px;padding:.55rem 1rem}
+
+  /* Field inputs — explicit 16px floor for iOS Safari (no auto-zoom on focus) */
+  .field input,.field textarea{font-size:max(1rem,16px)}
+
+  /* ---------- 720px and below (tablets portrait + large phones) ---------- */
+  @media (max-width:720px){
+    /* Less vertical breathing room on the chapter sections */
+    section.sheet{padding:clamp(3rem,8vw,5rem) var(--pad)}
+    /* Hero subtitle gets a tighter min so the hero doesn't push too far down */
+    .hero .sub{font-size:1.08rem;margin:1.1rem 0 1.8rem}
+    /* CTA caveat accent is rotated; on narrow screens, give it a touch of breathing room */
+    .caveat{font-size:1.5rem;margin-bottom:1rem}
+    /* Chair meta — let the two spans wrap on narrow viewports */
+    .chair-meta{flex-wrap:wrap;gap:.4rem 1rem}
+    .chair-meta .cm-r{text-align:left}
+    /* Slightly tighter CTA feedback padding */
+    .cta-feedback{padding:.9rem 1rem;font-size:.92rem}
+  }
+
+  /* ---------- 480px and below (phones) ---------- */
+  @media (max-width:480px){
+    /* Hero — bump H1 min so the 3-line stack stays legible on 320px */
+    .hero h1{font-size:clamp(1.45rem,8.2vw,6.5rem);line-height:.94}
+    .hero .eyebrow{font-size:.7rem;margin-bottom:.75rem}
+    /* Chip text slightly bigger for thumb-friendliness */
+    .chips a{font-size:.68rem;letter-spacing:.08em}
+    /* Sub — keep readable but a hair smaller */
+    .hero .sub{font-size:1.02rem;margin:1rem 0 1.6rem}
+    /* Footer bottom row stacks */
+    footer .ft-bottom{flex-direction:column;align-items:flex-start;gap:.5rem}
+    /* Bar — make the buildbar a hair thicker so it's visible on retina */
+    .buildbar{height:3px;bottom:-3px}
+  }
+
+  /* ---------- 380px and below (smallest phones — iPhone SE 1st gen, etc.) ---------- */
+  @media (max-width:380px){
+    /* Hero chips wrap to 2 lines if needed; trust list tighter */
+    .chips{gap:.4rem;margin-bottom:2rem}
+    .chips a{padding:.5rem .7rem;font-size:.64rem}
+    .trust{gap:.55rem;margin-top:1.5rem}
+    .trust li{font-size:.96rem;padding-left:1.3rem}
   }
 </style>
 </head>
