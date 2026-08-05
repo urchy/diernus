@@ -20,6 +20,7 @@
       --cobalt:#2C49C7; --blueprint:#12235B; --blueprint-2:#0B163E;
       --ink:#EAF0FF; --ink-60:#EAF0FF99; --ink-line:#EAF0FF26;
       --stamp:#B3232E; --clay:#B5651D; --amber:#E69658;
+      --wood-top:#DCBC82; --wood-front:#C9A16B; --wood-side:#A98250; --wood-bottom:#8F6C41;
       --display:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       --body:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       --hand:"Caveat",cursive;
@@ -178,6 +179,84 @@
     .ft-cell.cta{display:flex;align-items:center;justify-content:flex-end;gap:.6rem;color:var(--ink)}
     .ft-cell.cta svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
 
+    /* === Chair viewer (hero) — 2D SVG + CSS 3D scene + drag-rotate + explode === */
+    .chair{margin:0;display:flex;flex-direction:column;align-items:center;gap:.9rem;
+      align-self:stretch;width:100%;max-width:380px;margin:0 auto}
+    .chair-meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;align-self:stretch;
+      font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--graphite-60);text-transform:uppercase}
+    .chair-meta b{color:var(--cobalt);font-weight:600;letter-spacing:.18em}
+    .chair-meta .cm-r{text-align:right}
+    .fig-stage{position:relative;width:100%;aspect-ratio:56/66;background:linear-gradient(180deg,var(--bone) 0%,var(--bone-2) 100%);border:1px solid var(--graphite-15);border-radius:.5rem;overflow:hidden}
+    .fig-stage > svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:opacity .45s ease}
+    .fig-stage.mode3d > svg{opacity:0;pointer-events:none}
+    .scene{
+      position:absolute;inset:0;perspective:900px;
+      opacity:0;pointer-events:none;transition:opacity .45s ease;
+      touch-action:none;cursor:grab;
+    }
+    .scene.on{opacity:1;pointer-events:auto}
+    .scene:active{cursor:grabbing}
+    .obj{
+      position:absolute;left:50%;top:54%;width:0;height:0;
+      transform-style:preserve-3d;
+      transform:rotateX(var(--rx,16deg)) rotateY(var(--ry,-28deg));
+    }
+    .part{position:absolute;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.55,0,.15,1)}
+    .face{
+      position:absolute;left:50%;top:50%;
+      border:1px solid rgba(35,33,28,.5);
+      backface-visibility:hidden;
+    }
+    .gshadow{
+      position:absolute;width:280px;height:240px;left:-140px;top:-120px;
+      transform:rotateX(90deg) translateZ(-150px);
+      background:radial-gradient(closest-side,rgba(35,33,28,.32),rgba(35,33,28,0) 72%);
+    }
+    .fig-ui{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;width:100%}
+    .fig-toggle{display:flex;border:1px solid var(--graphite-35);border-radius:999px;overflow:hidden;background:var(--bone)}
+    .fig-toggle button,.fig-explode{
+      font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+      padding:.38rem .75rem;border:0;background:transparent;color:var(--graphite-60);cursor:pointer;
+    }
+    .fig-toggle button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
+    .fig-explode{border:1px solid var(--graphite-35);border-radius:999px;background:var(--bone)}
+    .fig-explode[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+    .fig-spin{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:28px;height:28px;border:1px solid var(--graphite-35);border-radius:999px;
+      background:var(--bone);color:var(--graphite);
+      font-size:.95rem;line-height:1;cursor:pointer;
+      transition:transform .6s ease, background-color .12s ease, border-color .12s ease;
+    }
+    .fig-spin:hover{background:rgba(44,73,199,.06);border-color:var(--cobalt);color:var(--cobalt)}
+    .fig-spin.spinning{animation:fig-spin-rot 1.4s linear infinite;color:var(--cobalt);border-color:var(--cobalt)}
+    @keyframes fig-spin-rot{to{transform:rotate(360deg)}}
+    .fig-hint{color:var(--graphite-60);font-size:.58rem;letter-spacing:.08em}
+    .tk{stroke:var(--graphite);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .tk-thin{stroke:var(--graphite);stroke-width:1;fill:none;stroke-linecap:round}
+    .tk-dash{stroke:var(--graphite);stroke-width:1;fill:none;stroke-dasharray:.012 .014;opacity:.5}
+    .tk-dim{stroke:var(--cobalt);stroke-width:1.2;fill:none;opacity:.9}
+    .svg-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;fill:var(--graphite)}
+    .svg-dim-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;fill:var(--cobalt)}
+    .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.3s cubic-bezier(.5,0,.2,1) forwards;animation-delay:calc(var(--i)*.11s + .25s)}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    .fade{opacity:0;animation:fadein .7s ease forwards;animation-delay:calc(var(--i)*.1s + 1.7s)}
+    @keyframes fadein{to{opacity:1}}
+    @media (prefers-reduced-motion:reduce){
+      .part{transition:none}
+      .draw{animation:none;stroke-dashoffset:0}
+      .fade{animation:none;opacity:1}
+    }
+    /* Chair on small screens — a bit more compact */
+    @media (max-width:720px){
+      .chair{max-width:320px}
+      .chair-meta{flex-wrap:wrap;gap:.4rem 1rem}
+      .chair-meta .cm-r{text-align:left}
+    }
+    @media (max-width:480px){
+      .chair{max-width:280px}
+    }
+
     /* === Mobile tweaks === */
     @media (max-width:480px){
       .row2 > *{padding:2rem 1.25rem}
@@ -213,28 +292,94 @@
       <h1 class="rv">TRANSFORMAMOS<br>PROJETOS EM<br>DOCUMENTAÇÃO TÉCNICA</h1>
     </div>
 
-    <div class="hero-draw rv">
-      <svg viewBox="0 0 560 380" width="100%" role="img" aria-label="Folha de detalhe — cadeira, alçado frontal com cotas 820×478mm" style="max-width:420px">
-        <line class="tk-dash" x1="280" y1="20" x2="280" y2="360" stroke="#2C49C7" stroke-width="1" stroke-dasharray="4 4" opacity=".6"/>
-        <rect x="170" y="170" width="220" height="18" rx="3" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <rect x="180" y="40" width="200" height="80" rx="6" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <line x1="220" y1="60" x2="220" y2="100" stroke="#23211C" stroke-width="0.7" opacity=".5"/>
-        <line x1="280" y1="60" x2="280" y2="100" stroke="#23211C" stroke-width="0.7" opacity=".5"/>
-        <line x1="340" y1="60" x2="340" y2="100" stroke="#23211C" stroke-width="0.7" opacity=".5"/>
-        <rect x="172" y="120" width="14" height="55" rx="2" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <rect x="374" y="120" width="14" height="55" rx="2" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <rect x="190" y="200" width="180" height="14" rx="2" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <path d="M195 214 L213 214 L208 360 L200 360 Z" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <path d="M347 214 L365 214 L360 360 L352 360 Z" fill="none" stroke="#23211C" stroke-width="1.5"/>
-        <line x1="226" y1="214" x2="222" y2="360" stroke="#2C49C7" stroke-width="0.7" stroke-dasharray="3 3" opacity=".5"/>
-        <line x1="334" y1="214" x2="338" y2="360" stroke="#2C49C7" stroke-width="0.7" stroke-dasharray="3 3" opacity=".5"/>
-        <line x1="140" y1="360" x2="420" y2="360" stroke="#23211C" stroke-width="1" opacity=".5"/>
-        <line x1="450" y1="40" x2="450" y2="360" stroke="#23211C" stroke-width=".7"/>
-        <text x="466" y="200" font-family="JetBrains Mono,monospace" font-size="12" fill="#23211C" transform="rotate(-90 466 200)" text-anchor="middle">820</text>
-        <line x1="170" y1="376" x2="390" y2="376" stroke="#23211C" stroke-width=".7"/>
-        <text x="280" y="392" font-family="JetBrains Mono,monospace" font-size="12" fill="#23211C" text-anchor="middle">478</text>
-      </svg>
-    </div>
+    <figure class="chair rv">
+      <header class="chair-meta">
+        <span class="cm-l"><b>L-CH-01</b> · CADEIRA</span>
+        <span class="cm-r">FOLHA DE DETALHE · ESC 1:5</span>
+      </header>
+      <div class="fig-stage" id="chairStage">
+        <svg viewBox="0 0 560 660" role="img" aria-label="Desenho técnico de uma cadeira — alçado frontal">
+          <line class="tk-dash draw" style="--i:0" pathLength="1" x1="280" y1="24" x2="280" y2="636"/>
+          <rect class="tk draw" style="--i:1" pathLength="1" x="180" y="36" width="200" height="64" rx="10"/>
+          <line class="tk-thin draw" style="--i:2" pathLength="1" x1="230" y1="52" x2="230" y2="84" opacity=".55"/>
+          <line class="tk-thin draw" style="--i:2" pathLength="1" x1="280" y1="52" x2="280" y2="84" opacity=".55"/>
+          <line class="tk-thin draw" style="--i:2" pathLength="1" x1="330" y1="52" x2="330" y2="84" opacity=".55"/>
+          <rect class="tk draw" style="--i:3" pathLength="1" x="170" y="130" width="18" height="120" rx="4"/>
+          <rect class="tk draw" style="--i:3" pathLength="1" x="372" y="130" width="18" height="120" rx="4"/>
+          <rect class="tk-thin draw" style="--i:4" pathLength="1" x="174" y="116" width="10" height="14"/>
+          <rect class="tk-thin draw" style="--i:4" pathLength="1" x="376" y="116" width="10" height="14"/>
+          <rect class="tk draw" style="--i:5" pathLength="1" x="150" y="286" width="260" height="20" rx="5"/>
+          <line class="tk-thin draw" style="--i:6" pathLength="1" x1="168" y1="296" x2="392" y2="296" opacity=".4"/>
+          <circle class="tk draw" style="--i:7" pathLength="1" cx="200" cy="336" r="6"/>
+          <circle class="tk draw" style="--i:7" pathLength="1" cx="360" cy="336" r="6"/>
+          <rect class="tk draw" style="--i:8" pathLength="1" x="168" y="362" width="224" height="28" rx="4"/>
+          <path class="tk draw" style="--i:9" pathLength="1" d="M176 418 L196 418 L190 598 L181 598 Z"/>
+          <path class="tk draw" style="--i:9" pathLength="1" d="M364 418 L384 418 L379 598 L370 598 Z"/>
+          <line class="tk-dash draw" style="--i:10" pathLength="1" x1="216" y1="418" x2="212" y2="598"/>
+          <line class="tk-dash draw" style="--i:10" pathLength="1" x1="344" y1="418" x2="340" y2="598"/>
+          <rect class="tk-thin draw" style="--i:10" pathLength="1" x="196" y="512" width="168" height="12" rx="3"/>
+          <line class="tk-thin draw" style="--i:11" pathLength="1" x1="120" y1="606" x2="460" y2="606"/>
+          <g class="tk-thin draw" style="--i:12" opacity=".5">
+            <line pathLength="1" x1="150" y1="618" x2="162" y2="606"/>
+            <line pathLength="1" x1="205" y1="618" x2="217" y2="606"/>
+            <line pathLength="1" x1="260" y1="618" x2="272" y2="606"/>
+            <line pathLength="1" x1="315" y1="618" x2="327" y2="606"/>
+            <line pathLength="1" x1="370" y1="618" x2="382" y2="606"/>
+            <line pathLength="1" x1="425" y1="618" x2="437" y2="606"/>
+          </g>
+          <line class="tk-dash draw" style="--i:13" pathLength="1" x1="188" y1="106" x2="188" y2="282"/>
+          <line class="tk-dash draw" style="--i:13" pathLength="1" x1="372" y1="106" x2="372" y2="282"/>
+          <line class="tk-dash draw" style="--i:13" pathLength="1" x1="188" y1="310" x2="188" y2="358"/>
+          <line class="tk-dash draw" style="--i:13" pathLength="1" x1="372" y1="310" x2="372" y2="358"/>
+          <g class="fade" style="--i:0">
+            <line class="tk-dim" x1="486" y1="36" x2="486" y2="598"/>
+            <line class="tk-dim" x1="384" y1="36" x2="492" y2="36" opacity=".45"/>
+            <line class="tk-dim" x1="392" y1="598" x2="492" y2="598" opacity=".45"/>
+            <line class="tk-dim" x1="481" y1="41" x2="491" y2="31"/>
+            <line class="tk-dim" x1="481" y1="603" x2="491" y2="593"/>
+            <text class="svg-dim-label" transform="translate(504 340) rotate(-90)" text-anchor="middle">820 MM</text>
+          </g>
+          <g class="fade" style="--i:1">
+            <line class="tk-dim" x1="150" y1="634" x2="410" y2="634"/>
+            <line class="tk-dim" x1="145" y1="639" x2="155" y2="629"/>
+            <line class="tk-dim" x1="405" y1="639" x2="415" y2="629"/>
+            <text class="svg-dim-label" x="280" y="654" text-anchor="middle">440 MM</text>
+          </g>
+          <g class="fade" style="--i:2">
+            <text class="svg-label" x="30" y="72">01 · ENCOSTO</text>
+            <line class="tk-thin" x1="136" y1="68" x2="176" y2="68" opacity=".5"/>
+          </g>
+          <g class="fade" style="--i:3">
+            <text class="svg-label" x="30" y="300">02 · ASSENTO</text>
+            <line class="tk-thin" x1="134" y1="296" x2="146" y2="296" opacity=".5"/>
+          </g>
+          <g class="fade" style="--i:4">
+            <text class="svg-label" x="30" y="340">CAVILHA Ø8</text>
+            <line class="tk-thin" x1="122" y1="336" x2="190" y2="336" opacity=".5"/>
+          </g>
+          <g class="fade" style="--i:5">
+            <text class="svg-label" x="30" y="380">03 · SAIA</text>
+            <line class="tk-thin" x1="98" y1="376" x2="164" y2="376" opacity=".5"/>
+          </g>
+          <g class="fade" style="--i:6">
+            <text class="svg-label" x="30" y="470">04 · PERNA</text>
+            <line class="tk-thin" x1="110" y1="466" x2="176" y2="466" opacity=".5"/>
+          </g>
+        </svg>
+        <div class="scene" id="chairScene" role="img" aria-label="Modelo 3D interativo de uma cadeira — arraste para rodar">
+          <div class="obj" id="chairObj"><div class="gshadow"></div></div>
+        </div>
+      </div>
+      <div class="fig-ui">
+        <div class="fig-toggle" role="group" aria-label="Vista">
+          <button type="button" id="chairBtn2d" aria-pressed="true">DESENHO 2D</button>
+          <button type="button" id="chairBtn3d" aria-pressed="false">MODELO 3D</button>
+        </div>
+        <button type="button" class="fig-explode" id="chairExplode" aria-pressed="false" hidden>VISTA EXPLODIDA</button>
+        <button type="button" class="fig-spin" id="chairSpin" aria-label="Voltar a rodar" title="Voltar a rodar" hidden>↻</button>
+        <span class="fig-hint mono" id="chairHint" hidden>ARRASTE PARA RODAR</span>
+      </div>
+    </figure>
 
     <div>
       <p class="lede rv">Cada desenho é desenvolvido para reduzir dúvidas, evitar erros e garantir que todas as peças chegam à fábrica com informação clara e consistente.</p>
@@ -433,6 +578,162 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  })();
+
+  // === Chair viewer (hero) — 2D SVG + CSS 3D scene + drag-rotate + explode ===
+  (function(){
+    var stage      = document.getElementById("chairStage");
+    var scene      = document.getElementById("chairScene");
+    var chair      = document.getElementById("chairObj");
+    var btn2d      = document.getElementById("chairBtn2d");
+    var btn3d      = document.getElementById("chairBtn3d");
+    var btnExplode = document.getElementById("chairExplode");
+    var btnSpin    = document.getElementById("chairSpin");
+    var figHint    = document.getElementById("chairHint");
+    if (!stage || !chair) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var PARTS = [
+      [170, 60, 14,    0,-118, -93,    0, -70, -40],
+      [ 16,150, 16,  -93, -75, -93,  -34, -26, -26],
+      [ 16,150, 16,   93, -75, -93,   34, -26, -26],
+      [220, 14,200,    0,   7,   0,    0,   0,   0],
+      [180, 24, 12,    0,  34,  80,    0,  34,  48],
+      [180, 24, 12,    0,  34, -80,    0,  34, -48],
+      [ 12, 24,160,  -84,  34,   0,  -46,  34,   0],
+      [ 12, 24,160,   84,  34,   0,   46,  34,   0],
+      [ 16,168, 16,  -93,  98,  93,  -30,  70,  30],
+      [ 16,168, 16,   93,  98,  93,   30,  70,  30],
+      [ 16,168, 16,  -93,  98, -93,  -30,  70, -30],
+      [ 16,168, 16,   93,  98, -93,   30,  70, -30],
+      [ 12, 12,150,  -93, 140,   0,  -60,  96,   0],
+      [ 12, 12,150,   93, 140,   0,   60,  96,   0],
+      [174, 12, 12,    0, 152,   0,    0, 116,   0]
+    ];
+    var FACE_BG = {
+      top:    "var(--wood-top)",
+      bottom: "var(--wood-bottom)",
+      front:  "var(--wood-front)",
+      back:   "var(--wood-front)",
+      left:   "var(--wood-side)",
+      right:  "var(--wood-side)"
+    };
+    function face(w, h, t, bg){
+      var f = document.createElement("div");
+      f.className = "face";
+      f.style.width  = w + "px";
+      f.style.height = h + "px";
+      f.style.transform = t;
+      f.style.background = bg;
+      return f;
+    }
+    function cuboid(p){
+      var w=p[0], h=p[1], d=p[2], x=p[3], y=p[4], z=p[5], ex=p[6], ey=p[7], ez=p[8];
+      var el = document.createElement("div");
+      el.className = "part";
+      el.style.transform =
+        "translate3d(" +
+          "calc(" + x + "px + var(--ex,0)*" + ex + "px)," +
+          "calc(" + y + "px + var(--ex,0)*" + ey + "px)," +
+          "calc(" + z + "px + var(--ex,0)*" + ez + "px))";
+      var C = "translate(-50%,-50%) ";
+      el.appendChild(face(w, h, C + "translateZ(" +  d/2 + "px)", FACE_BG.front));
+      el.appendChild(face(w, h, C + "rotateY(180deg) translateZ(" +  d/2 + "px)", FACE_BG.back));
+      el.appendChild(face(d, h, C + "rotateY(90deg)  translateZ(" +  w/2 + "px)", FACE_BG.right));
+      el.appendChild(face(d, h, C + "rotateY(-90deg) translateZ(" +  w/2 + "px)", FACE_BG.left));
+      el.appendChild(face(w, d, C + "rotateX(90deg)  translateZ(" +  h/2 + "px)", FACE_BG.top));
+      el.appendChild(face(w, d, C + "rotateX(-90deg) translateZ(" +  h/2 + "px)", FACE_BG.bottom));
+      return el;
+    }
+    var built = false, mode3d = false, exploded = false;
+    var rx = 16, ry = -28, autoSpin = false, dragging = false, rafId = null;
+    var SPIN_TOUR_MS   = 12000;
+    var SPIN_TOUR_DEG  = 360;
+    var spinStartTime  = 0;
+    var spinStartAngle = 0;
+    function render(){
+      chair.style.setProperty("--rx", rx.toFixed(2) + "deg");
+      chair.style.setProperty("--ry", ry.toFixed(2) + "deg");
+    }
+    function loop(now){
+      if (!mode3d) { rafId = null; return; }
+      if (autoSpin && !dragging && !reduceMotion) {
+        var elapsed = now - spinStartTime;
+        var t = Math.min(1, elapsed / SPIN_TOUR_MS);
+        ry = spinStartAngle + SPIN_TOUR_DEG * t;
+        render();
+        if (t >= 1) {
+          autoSpin = false;
+          ry = spinStartAngle;
+          render();
+          btnSpin.classList.remove("spinning");
+        }
+      }
+      rafId = requestAnimationFrame(loop);
+    }
+    function build(){
+      if (built) return;
+      PARTS.forEach(function(p){ chair.appendChild(cuboid(p)); });
+      built = true;
+    }
+    function setExploded(on){
+      exploded = on;
+      chair.style.setProperty("--ex", on ? 1 : 0);
+      btnExplode.setAttribute("aria-pressed", String(on));
+    }
+    function setMode(m3){
+      mode3d = m3;
+      if (m3) {
+        build();
+        if (!reduceMotion) {
+          chair.style.setProperty("--ex", 1);
+          void chair.offsetWidth;
+          requestAnimationFrame(function(){ chair.style.setProperty("--ex", 0); });
+        }
+        autoSpin = false;
+        btnSpin.classList.remove("spinning");
+      } else {
+        autoSpin = false;
+        btnSpin.classList.remove("spinning");
+      }
+      stage.classList.toggle("mode3d", m3);
+      scene.classList.toggle("on", m3);
+      btn2d.setAttribute("aria-pressed", String(!m3));
+      btn3d.setAttribute("aria-pressed", String(m3));
+      btnExplode.hidden = !m3;
+      btnSpin.hidden    = !m3;
+      figHint.hidden   = !m3;
+      render();
+      if (m3 && rafId === null) rafId = requestAnimationFrame(loop);
+    }
+    btn2d.addEventListener("click", function(){ setMode(false); });
+    btn3d.addEventListener("click", function(){ setMode(true); });
+    btnExplode.addEventListener("click", function(){ setExploded(!exploded); });
+    btnSpin.addEventListener("click", function(){
+      if (!mode3d) return;
+      autoSpin = true;
+      spinStartTime  = performance.now();
+      spinStartAngle = ry;
+      btnSpin.classList.add("spinning");
+      if (rafId === null) rafId = requestAnimationFrame(loop);
+    });
+    var px = 0, py = 0;
+    scene.addEventListener("pointerdown", function(e){
+      dragging = true; autoSpin = false;
+      btnSpin.classList.remove("spinning");
+      px = e.clientX; py = e.clientY;
+      try { scene.setPointerCapture(e.pointerId); } catch(_){}
+    });
+    scene.addEventListener("pointermove", function(e){
+      if (!dragging) return;
+      ry += (e.clientX - px) * 0.4;
+      rx = Math.min(55, Math.max(-8, rx - (e.clientY - py) * 0.3));
+      px = e.clientX; py = e.clientY;
+      render();
+    });
+    ["pointerup","pointercancel"].forEach(function(ev){
+      scene.addEventListener(ev, function(){ dragging = false; });
+    });
   })();
 
   // === Contact form — POSTs to the portal worker, swaps to success in place ===
