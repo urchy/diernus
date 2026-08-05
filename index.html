@@ -1,1200 +1,550 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Diernus · Estúdio de desenho técnico para mobiliário e interiores</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#0B163E">
+  <meta name="theme-color" content="#EDEAE3" media="(prefers-color-scheme: light)">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Caveat:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- API base — used by the contact form. Single line to change at cutover. -->
+  <meta name="api-base" content="https://diernus-portal-api.diernus.com">
+  <style>
+    /* === Brand tokens === */
+    :root{
+      --bone:#EDEAE3; --bone-2:#E4E0D6; --graphite:#23211C;
+      --graphite-60:#23211C99; --graphite-35:#23211C59; --graphite-15:#23211C26;
+      --cobalt:#2C49C7; --blueprint:#12235B; --blueprint-2:#0B163E;
+      --ink:#EAF0FF; --ink-60:#EAF0FF99; --ink-line:#EAF0FF26;
+      --stamp:#B3232E; --clay:#B5651D; --amber:#E69658;
+      --display:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --body:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --hand:"Caveat",cursive;
+      --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+      --pad:clamp(1.25rem,4vw,4rem);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--body);color:var(--graphite);background:var(--bone);line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
 
-<title>Desenho Técnico para Mobiliário por Medida | Diernus</title>
-<meta name="description" content="Cada projeto é desenvolvido para que possa ser validado com confiança e produzido com precisão. O desenho técnico é o centro de todo o processo.">
-<meta name="author" content="Diernus">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="theme-color" content="#0B163E">
-<meta name="theme-color" content="#EDEAE3" media="(prefers-color-scheme: light)">
-<meta name="format-detection" content="telephone=no">
+    /* === Top bar === */
+    .bar{
+      position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:1rem;
+      padding:.85rem var(--pad);background:var(--bone);
+      border-bottom:1px solid var(--graphite-15);
+    }
+    .bar .wordmark{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;color:var(--graphite);text-transform:uppercase}
+    .bar .wordmark b{color:var(--cobalt);font-weight:600}
+    .bar .barcta{margin-left:auto;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:#fff;background:var(--cobalt);padding:.55rem 1rem;border-radius:999px;display:inline-flex;align-items:center;min-height:44px}
+    .bar .barcta:hover{background:#3a58e0}
+    .bar .lang{display:flex;border:1px solid var(--graphite-35);border-radius:999px;overflow:hidden}
+    .bar .lang button{font-family:var(--mono);font-size:.68rem;padding:.4rem .75rem;border:0;background:transparent;color:var(--graphite-60);cursor:pointer;min-height:44px;min-width:44px}
+    .bar .lang button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
 
-<!-- Canonical + bilingual alternates (the site serves PT + EN at the same URL via a JS toggle) -->
-<link rel="canonical" href="https://diernus.com/">
-<link rel="alternate" hreflang="pt" href="https://diernus.com/">
-<link rel="alternate" hreflang="en" href="https://diernus.com/">
-<link rel="alternate" hreflang="x-default" href="https://diernus.com/">
+    /* === Grid rows === */
+    .row2{
+      display:grid;grid-template-columns:1fr 1fr;
+      border-bottom:1px solid var(--graphite-15);
+    }
+    .row2 > *{padding:clamp(2.5rem,5vw,4.5rem) var(--pad)}
+    .row2 > *:first-child{border-right:1px solid var(--graphite-15)}
+    @media (max-width:860px){
+      .row2{grid-template-columns:1fr}
+      .row2 > *:first-child{border-right:0;border-bottom:1px solid var(--graphite-15)}
+    }
 
-<!-- Icons (inline SVG data-URI = zero extra request, no caching needed) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%232C49C7'/%3E%3Ctext x='32' y='45' font-family='Courier New,monospace' font-weight='bold' font-size='38' fill='%23EDEAE3' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+    /* === Kicker / H / lede === */
+    .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:1rem;text-transform:uppercase}
+    h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);line-height:1;text-transform:uppercase;max-width:14em}
+    .lede{font-size:1.08rem;line-height:1.55;color:var(--graphite);margin-top:1.2rem;max-width:32em}
+    .lede p + p{margin-top:.8rem}
 
-<!-- Open Graph -->
-<meta property="og:site_name" content="Diernus">
-<meta property="og:locale" content="pt_PT">
-<meta property="og:locale:alternate" content="en_US">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Desenho Técnico para Mobiliário por Medida | Diernus">
-<meta property="og:description" content="Cada projeto é desenvolvido para que possa ser validado com confiança e produzido com precisão. O desenho técnico é o centro de todo o processo.">
-<meta property="og:url" content="https://diernus.com/">
-<meta property="og:image" content="https://diernus.com/assets/og-image.png">
-<meta property="og:image:secure_url" content="https://diernus.com/assets/og-image.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="669">
-<meta property="og:image:alt" content="Diernus — estúdio de desenho de mobiliário. Wordmark on a dark blueprint background with a technical chair drawing.">
+    /* === Hero (left of row 1) === */
+    .hero{display:grid;grid-template-rows:auto 1fr auto;gap:1.4rem}
+    .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,5vw,3.8rem);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;max-width:13em}
+    .hero .lede{font-style:italic;color:var(--graphite)}
+    .hero-draw{display:flex;align-items:center;justify-content:center;padding:1rem 0}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+    .hero-ctas a{font-family:var(--display);font-weight:600;font-size:.95rem;letter-spacing:.005em;padding:.75rem 1.3rem;border-radius:999px;display:inline-flex;align-items:center;min-height:44px;transition:background .2s,color .2s,border-color .2s}
+    .hero-ctas a.primary{background:var(--cobalt);color:#fff}
+    .hero-ctas a.primary:hover{background:#3a58e0}
+    .hero-ctas a.secondary{border:1px solid var(--graphite);color:var(--graphite);background:transparent}
+    .hero-ctas a.secondary:hover{background:var(--graphite);color:var(--bone)}
+    .cue{display:flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;color:var(--graphite-60);padding-top:1.4rem;border-top:1px solid var(--graphite-15);margin-top:1.4rem}
+    .cue svg{width:14px;height:22px;overflow:visible;flex:none}
+    .cue svg path{stroke:var(--cobalt);stroke-width:2;fill:none;animation:cue 1.6s ease-in-out infinite}
+    @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(6px);opacity:.4}}
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Desenho Técnico para Mobiliário por Medida | Diernus">
-<meta name="twitter:description" content="Cada projeto é desenvolvido para que possa ser validado com confiança e produzido com precisão. O desenho técnico é o centro de todo o processo.">
-<meta name="twitter:image" content="https://diernus.com/assets/og-image.png">
-<meta name="twitter:image:alt" content="Diernus — estúdio de desenho de mobiliário em Portugal.">
+    /* === How we work (right of row 1) === */
+    .timeline{position:relative;display:flex;flex-direction:column;gap:1.6rem;margin-top:1.2rem}
+    .step{display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:start}
+    .step .num{width:34px;height:34px;border-radius:50%;border:1px solid var(--cobalt);color:var(--cobalt);font-family:var(--mono);font-size:.72rem;display:inline-flex;align-items:center;justify-content:center;font-weight:500;background:var(--bone);position:relative;z-index:1}
+    .step .body{padding-top:.25rem}
+    .step h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;color:var(--graphite);text-transform:uppercase;font-weight:600;margin-bottom:.4rem}
+    .step p{font-size:.96rem;line-height:1.5;color:var(--graphite-60)}
+    .step + .step .num::before{content:"";position:absolute;left:50%;top:-1.6rem;height:1.6rem;width:1px;background:var(--graphite-15);transform:translateX(-50%)}
 
-<!-- JSON-LD structured data: tells search engines who you are -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Diernus",
-  "alternateName": "Diernus — Estúdio de Desenho de Mobiliário",
-  "url": "https://diernus.com",
-  "logo": "https://diernus.com/assets/og-image.png",
-  "image": "https://diernus.com/assets/og-image.png",
-  "description": "Cada projeto é desenvolvido para que possa ser validado com confiança e produzido com precisão. O desenho técnico é o centro de todo o processo.",
-  "email": "estudio@diernus.com",
-  "address": { "@type": "PostalAddress", "addressCountry": "PT" },
-  "areaServed": { "@type": "Country", "name": "Portugal" },
-  "knowsAbout": [
-    "Furniture design",
-    "Technical drawing",
-    "3D modelling",
-    "Hospitality design",
-    "Residential design",
-    "Retail design"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "email": "estudio@diernus.com",
-    "availableLanguage": ["Portuguese", "English"]
-  }
-}
-</script>
+    /* === What we deliver (left of row 2) === */
+    .deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--graphite-15);border:1px solid var(--graphite-15);margin-top:1.8rem}
+    .deliv-grid > div{background:var(--bone);padding:1.4rem 1rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.7rem;text-align:center;min-height:120px}
+    .deliv-grid svg{width:38px;height:38px;color:var(--graphite);stroke-width:1.4;fill:none;stroke:currentColor}
+    .deliv-grid span{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);line-height:1.35}
+    @media (max-width:720px){.deliv-grid{grid-template-columns:repeat(2,1fr)}}
 
-<!-- Web fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bone:#EDEAE3;
-    --bone-2:#E4E0D6;
-    --graphite:#23211C;
-    --graphite-60:rgba(35,33,28,.6);
-    --graphite-35:rgba(35,33,28,.35);
-    --graphite-15:rgba(35,33,28,.15);
-    --cobalt:#2C49C7;
-    --blueprint:#12235B;
-    --blueprint-2:#0B163E;
-    --wood-top:#DCBC82;
-    --wood-front:#C9A16B;
-    --wood-side:#A98250;
-    --wood-bottom:#8F6C41;
-    --ink:#EAF0FF;
-    --ink-60:rgba(234,240,255,.6);
-    --ink-35:rgba(234,240,255,.35);
-    --ink-line:rgba(234,240,255,.16);
-    --hud-line:rgba(159,180,255,.85);
-    --stamp:#B3232E;
-    --display:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    --body:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    --hand:"Caveat",cursive;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-    --pad:clamp(1.25rem,4vw,4rem);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:var(--bone);color:var(--graphite);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--cobalt);color:var(--bone)}
-  a{color:inherit}
+    /* === What client gains (right of row 2) === */
+    .gain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:1.8rem}
+    .gain-grid > div{display:flex;flex-direction:column;gap:.6rem}
+    .gain-grid svg{width:30px;height:30px;color:var(--cobalt);stroke-width:1.5;fill:none;stroke:currentColor}
+    .gain-grid h3{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);line-height:1.25}
+    .gain-grid p{font-size:.88rem;line-height:1.45;color:var(--graphite-60)}
+    @media (max-width:860px){.gain-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.gain-grid{grid-template-columns:1fr}}
 
-  /* ---------- top bar ---------- */
-  .bar{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;gap:1rem;
-    padding:.65rem var(--pad);background:color-mix(in srgb,var(--bone) 88%,transparent);
-    backdrop-filter:blur(8px);border-bottom:1px solid var(--graphite-15)}
-  .bar .wordmark{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-decoration:none;white-space:nowrap}
-  .bar .wordmark b{color:var(--cobalt)}
-  .bar .barcta{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-decoration:none;background:var(--cobalt);color:#fff;padding:.42rem .85rem;border-radius:999px;white-space:nowrap;transition:background .25s;margin-left:auto}
-  .bar .barcta:hover{background:#3a58e0}
-  @media (max-width:480px){.bar .barcta{display:none}}
-  .bar .lang{display:flex;border:1px solid var(--graphite-35);border-radius:999px;overflow:hidden}
-  .bar .lang button{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;padding:.3rem .65rem;border:0;background:transparent;color:var(--graphite-60);cursor:pointer}
-  .bar .lang button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
-  .buildbar{position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:transparent}
-  .buildbar i{display:block;height:100%;width:0;background:var(--cobalt);transition:background .3s}
-  .buildbar.done i{background:var(--stamp)}
+    /* === Our method (left of row 3) === */
+    .method-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.4rem;align-items:start}
+    @media (max-width:720px){.method-grid{grid-template-columns:1fr}}
+    .method-draw{display:flex;align-items:center;justify-content:center}
 
-  /* ---------- hero ---------- */
-  .hero{position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;
-    padding:calc(var(--pad) + 3rem) var(--pad) 0;overflow:hidden;
-    background-image:
-      linear-gradient(var(--graphite-15) 1px,transparent 1px),
-      linear-gradient(90deg,var(--graphite-15) 1px,transparent 1px);
-    background-size:72px 72px;background-position:center top}
-  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 10%,transparent 30%,var(--bone) 78%);pointer-events:none}
-  .hero>*{position:relative;z-index:1}
-  .hero .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:1rem}
-  .hero h1{font-family:var(--display);font-weight:900;
-    font-size:clamp(1.6rem,7vw,6.5rem);line-height:.92;letter-spacing:-.01em;text-transform:uppercase}
-  .hero .sub{max-width:34em;font-size:clamp(1.1rem,1.6vw,1.35rem);margin:1.4rem 0 2.2rem;color:var(--graphite);font-style:italic}
-  .hero .sub b{font-style:normal}
-  .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
-  .chips a,.chips span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;padding:.35rem .7rem;border:1px solid var(--graphite-35);border-radius:999px;background:var(--bone);text-decoration:none;transition:border-color .25s,color .25s}
-  .chips a:hover{border-color:var(--graphite);color:var(--graphite)}
-  .chips a.hot,.chips span.hot{border-color:var(--stamp);color:var(--stamp)}
-  .hero .elev{display:block;width:min(920px,100%);margin:0 0 1rem;overflow:visible}
-  .hero .elev path,.hero .elev line,.hero .elev rect,.hero .elev circle{fill:none;stroke:var(--cobalt);stroke-width:2.5;vector-effect:non-scaling-stroke}
-  .hero .elev .dim{stroke:var(--graphite-60);stroke-width:1}
-  .hero .elev text{font-family:var(--mono);font-size:26px;fill:var(--graphite-60);stroke:none}
-  .drawn{stroke-dasharray:1;stroke-dashoffset:1}
-  .hero.ready .drawn{animation:draw 2.4s cubic-bezier(.6,0,.2,1) forwards}
-  @keyframes draw{to{stroke-dashoffset:0}}
-  .cue{display:flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;color:var(--graphite-60);padding:1.2rem 0 1.6rem;border-top:1px solid var(--graphite-15)}
-  .cue svg{width:14px;height:22px;overflow:visible}
-  .cue svg path{stroke:var(--cobalt);stroke-width:2;fill:none;animation:cue 1.6s ease-in-out infinite}
-  @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(6px);opacity:.4}}
+    /* === Who we work for (right of row 3) === */
+    .audience{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--graphite-15);border:1px solid var(--graphite-15);margin-top:1.8rem}
+    .audience a{background:var(--bone);padding:1.4rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:96px;transition:background .2s,color .2s}
+    .audience a:hover{background:var(--cobalt);color:#fff}
+    .audience a:hover svg{color:#fff}
+    .audience h3{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+    .audience p{font-size:.85rem;line-height:1.4;margin-top:.4rem;opacity:.8}
+    .audience svg{width:18px;height:18px;color:var(--cobalt);flex:none;stroke-width:1.6;fill:none;stroke:currentColor;transition:color .2s}
+    @media (max-width:720px){.audience{grid-template-columns:1fr}}
 
-  /* ---------- sheet sections ---------- */
-  section.sheet{padding:clamp(4rem,9vw,8rem) var(--pad)}
-  .sheet .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--cobalt);margin-bottom:.8rem}
-  .sheet h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:.95;text-transform:uppercase;max-width:14em}
-  .sheet .lede{max-width:36em;margin-top:1.2rem;font-size:1.15rem;color:var(--graphite);font-style:italic}
-  .cta{position:relative;background:var(--blueprint-2);color:var(--ink);text-align:left;overflow:hidden}
-  .cta::before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:80%;pointer-events:none;
-    background:radial-gradient(closest-side,rgba(230,150,88,.22),transparent 70%)}
-  .cta::after{content:"";position:absolute;left:-10%;bottom:-30%;width:50%;height:70%;pointer-events:none;
-    background:radial-gradient(closest-side,rgba(44,73,199,.18),transparent 72%)}
-  .cta-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2.5rem,6vw,5rem);align-items:start;margin-top:2.6rem;position:relative;z-index:1}
-  @media (max-width:860px){.cta-grid{grid-template-columns:1fr;gap:2.4rem}}
-  .caveat{font-family:var(--hand);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.1rem);color:#E69658;line-height:1;display:inline-block;transform:rotate(-2.5deg);margin:0 0 .8rem;letter-spacing:0}
-  .cta h2{max-width:14em;color:var(--ink)}
-  .cta h2 em{font-style:normal;font-family:var(--body);font-weight:500;text-transform:none;letter-spacing:0;color:#E69658;display:inline-block;position:relative}
-  .cta h2 em::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:linear-gradient(90deg,#E69658,transparent);opacity:.55}
-  .cta .lede{color:var(--ink-60);max-width:30em}
-  .trust{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:2rem 0 0;padding:0}
-  .trust li{position:relative;padding-left:1.4rem;font-size:1.02rem;color:var(--ink-60);font-family:var(--body);line-height:1.5}
-  .trust li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:#E69658;box-shadow:0 0 0 3px rgba(230,150,88,.18)}
-  .status{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--ink-60)}
-  .status .dot{width:8px;height:8px;border-radius:50%;background:#E69658;box-shadow:0 0 0 0 rgba(230,150,88,.7);animation:pulse 2.2s ease-in-out infinite;flex:none}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(230,150,88,.55)}50%{box-shadow:0 0 0 9px rgba(230,150,88,0)}}
-  @media (prefers-reduced-motion:reduce){.status .dot{animation:none;box-shadow:0 0 0 2px rgba(230,150,88,.35)}}
-  .cta-form-wrap{padding:0}
-  .cta-form{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--ink-line);border-radius:.6rem;
-    padding:clamp(1.6rem,3vw,2.4rem);backdrop-filter:blur(6px);
-    box-shadow:0 30px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(234,240,255,.06)}
-  .cta-form-title{font-family:var(--display);font-weight:800;font-size:1.6rem;text-transform:uppercase;letter-spacing:.005em;margin:0 0 .35rem;color:var(--ink)}
-  .cta-form-sub{font-size:.95rem;font-style:italic;color:var(--ink-60);margin:0 0 1.6rem}
-  .field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.1rem}
-  .field label{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60);display:flex;align-items:center;gap:.4rem}
-  .field .req{color:#E69658;font-size:1rem;line-height:1}
-  .field input,.field textarea{font-family:var(--body);font-size:1.05rem;padding:.75rem .9rem;
-    background:rgba(0,0,0,.22);border:1px solid var(--ink-line);border-bottom:2px solid transparent;border-radius:.3rem;
-    color:var(--ink);transition:border-color .2s,background .2s;width:100%;resize:vertical;line-height:1.5}
-  .field input::placeholder,.field textarea::placeholder{color:rgba(234,240,255,.32);font-style:italic}
-  .field input:focus,.field textarea:focus{outline:none;border-color:var(--cobalt);border-bottom-color:var(--cobalt);background:rgba(0,0,0,.32)}
-  .field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:#E69658;border-bottom-color:#E69658}
-  .field .ferr{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:#E69658;margin:.15rem 0 0;min-height:0}
-  .field .ferr[hidden]{display:none}
-  .cta-submit{font-family:var(--display);font-weight:600;font-size:1.02rem;letter-spacing:.01em;color:var(--ink);
-    background:var(--cobalt);border:0;border-radius:.35rem;padding:.95rem 1.4rem;width:100%;cursor:pointer;
-    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;transition:background .2s,transform .08s;
-    margin-top:.4rem;position:relative;min-height:3.2rem}
-  .cta-submit:hover:not(:disabled){background:#3a58e0}
-  .cta-submit:active:not(:disabled){transform:translateY(1px)}
-  .cta-submit:disabled{opacity:.7;cursor:wait}
-  .cta-submit-spinner{width:14px;height:14px;border:2px solid rgba(234,240,255,.3);border-top-color:var(--ink);border-radius:50%;display:none;animation:spin .7s linear infinite;position:absolute}
-  .cta-submit.is-loading .cta-submit-label{opacity:0}
-  .cta-submit.is-loading .cta-submit-spinner{display:block;position:absolute}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  @media (prefers-reduced-motion:reduce){.cta-submit-spinner{animation-duration:1.5s}}
-  .cta-micro{margin-top:1.1rem;font-size:.78rem;color:var(--ink-60);font-style:italic;line-height:1.5}
-  .cta-feedback{margin-top:1.4rem;padding:1rem 1.1rem;border-radius:.3rem;font-size:.95rem;line-height:1.5}
-  .cta-feedback[hidden]{display:none}
-  .cta-feedback.success{background:rgba(44,73,199,.14);border:1px solid rgba(44,73,199,.4);color:#9DB1E5}
-  .cta-feedback.error{background:rgba(230,150,88,.12);border:1px solid rgba(230,150,88,.4);color:#E69658}
-  .cta-feedback b{color:inherit;font-weight:600}
-  .cta-feedback a{color:inherit;text-decoration:underline}
-  .cta-feedback button{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;
-    border:1px solid currentColor;color:inherit;padding:.4rem .85rem;border-radius:999px;cursor:pointer;margin-top:.6rem}
-  .cta-feedback button:hover{background:currentColor;color:var(--blueprint-2)}
-  .cta-form.is-sent .field,.cta-form.is-sent .cta-submit,.cta-form.is-sent .cta-micro,.cta-form.is-sent .cta-form-title,.cta-form.is-sent .cta-form-sub{display:none}
-  footer{background:var(--blueprint-2);color:var(--ink);font-family:var(--body);font-size:.95rem;line-height:1.55;
-    padding:clamp(2.4rem,5vw,4rem) var(--pad) 2rem;border-top:1px solid var(--ink-line)}
-  footer .ft-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(2rem,4vw,3.5rem)}
-  @media (max-width:760px){footer .ft-grid{grid-template-columns:1fr;gap:1.8rem}}
-  footer h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60);margin-bottom:.7rem;font-weight:500}
-  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
-  footer a:hover{color:#E69658;border-bottom-color:#E69658}
-  footer .ft-brand b{color:#E69658;font-family:var(--mono);font-weight:500;letter-spacing:.14em}
-  footer .ft-brand p{color:var(--ink-60);font-size:.92rem;max-width:30em;margin-bottom:.6rem}
-  footer .ft-meta{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-35)}
-  footer .ft-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:0;padding:0}
-  footer .ft-list li{margin:0}
-  footer .ft-list a{font-size:.95rem}
-  footer .ft-bottom{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--ink-line);
-    display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:center;
-    font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--ink-35);text-transform:uppercase}
-  @media (max-width:560px){footer .ft-bottom{justify-content:flex-start}}
-  footer .ft-bottom a{color:var(--ink-60)}
-  footer .ft-bottom a:hover{color:#E69658;border-bottom-color:#E69658}
+    /* === Dark CTA (form replaces chair drawing) === */
+    .cta{background:var(--blueprint-2);color:var(--ink);padding:clamp(2.4rem,5vw,4rem) var(--pad);position:relative;overflow:hidden}
+    .cta::before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgba(230,150,88,.18),transparent 70%)}
+    .cta::after{content:"";position:absolute;left:-10%;bottom:-30%;width:50%;height:70%;pointer-events:none;background:radial-gradient(closest-side,rgba(44,73,199,.16),transparent 72%)}
+    .cta-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,5vw,4rem);align-items:start;position:relative;z-index:1}
+    @media (max-width:860px){.cta-grid{grid-template-columns:1fr;gap:2.4rem}}
+    .caveat{font-family:var(--hand);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--amber);line-height:1;display:inline-block;transform:rotate(-2.5deg);margin-bottom:.8rem;letter-spacing:0}
+    .cta h2{color:var(--ink);max-width:14em}
+    .cta .lede{color:var(--ink-60);max-width:30em;margin-top:1.2rem}
+    .cta-form-wrap{padding:0}
+    .cta-form{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--ink-line);border-radius:.6rem;
+      padding:clamp(1.4rem,2.6vw,2.2rem);backdrop-filter:blur(6px);
+      box-shadow:0 30px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(234,240,255,.06)}
+    .cta-form-title{font-family:var(--display);font-weight:800;font-size:1.5rem;text-transform:uppercase;letter-spacing:.005em;margin:0 0 .35rem;color:var(--ink)}
+    .cta-form-sub{font-size:.92rem;font-style:italic;color:var(--ink-60);margin:0 0 1.4rem}
+    .field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem}
+    .field label{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60);display:flex;align-items:center;gap:.4rem}
+    .field .req{color:var(--amber);font-size:1rem;line-height:1}
+    .field input,.field textarea{font-family:var(--body);font-size:max(1rem,16px);padding:.75rem .9rem;
+      background:rgba(0,0,0,.22);border:1px solid var(--ink-line);border-bottom:2px solid transparent;border-radius:.3rem;
+      color:var(--ink);transition:border-color .2s,background .2s;width:100%;resize:vertical;line-height:1.5}
+    .field input::placeholder,.field textarea::placeholder{color:rgba(234,240,255,.32);font-style:italic}
+    .field input:focus,.field textarea:focus{outline:none;border-color:var(--cobalt);border-bottom-color:var(--cobalt);background:rgba(0,0,0,.32)}
+    .field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:var(--amber);border-bottom-color:var(--amber)}
+    .field .ferr{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--amber);margin:.15rem 0 0;min-height:0}
+    .field .ferr[hidden]{display:none}
+    .cta-submit{font-family:var(--display);font-weight:600;font-size:1rem;letter-spacing:.01em;color:#fff;
+      background:var(--cobalt);border:0;border-radius:.35rem;padding:.85rem 1.3rem;width:100%;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;transition:background .2s,transform .08s;
+      margin-top:.3rem;position:relative;min-height:3rem}
+    .cta-submit:hover:not(:disabled){background:#3a58e0}
+    .cta-submit:active:not(:disabled){transform:translateY(1px)}
+    .cta-submit:disabled{opacity:.7;cursor:wait}
+    .cta-submit-spinner{width:14px;height:14px;border:2px solid rgba(234,240,255,.3);border-top-color:var(--ink);border-radius:50%;display:none;animation:spin .7s linear infinite;position:absolute}
+    .cta-submit.is-loading .cta-submit-label{opacity:0}
+    .cta-submit.is-loading .cta-submit-spinner{display:block;position:absolute}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .cta-micro{margin-top:.9rem;font-size:.76rem;color:var(--ink-60);font-style:italic;line-height:1.5}
+    .cta-micro a{color:var(--ink);text-decoration:underline}
+    .cta-feedback{margin-top:1.2rem;padding:.9rem 1rem;border-radius:.3rem;font-size:.92rem;line-height:1.5}
+    .cta-feedback[hidden]{display:none}
+    .cta-feedback.success{background:rgba(44,73,199,.14);border:1px solid rgba(44,73,199,.4);color:#9DB1E5}
+    .cta-feedback.error{background:rgba(230,150,88,.12);border:1px solid rgba(230,150,88,.4);color:var(--amber)}
+    .cta-feedback b{color:inherit;font-weight:600}
+    .cta-feedback a{color:inherit;text-decoration:underline}
+    .cta-feedback button{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;
+      border:1px solid currentColor;color:inherit;padding:.4rem .85rem;border-radius:999px;cursor:pointer;margin-top:.6rem}
+    .cta-feedback button:hover{background:currentColor;color:var(--blueprint-2)}
+    .cta-form.is-sent .field,.cta-form.is-sent .cta-submit,.cta-form.is-sent .cta-micro,.cta-form.is-sent .cta-form-title,.cta-form.is-sent .cta-form-sub{display:none}
 
-  /* ---------- chapter bands ---------- */
-  .chap{position:relative;padding:clamp(3.5rem,8vw,6.5rem) var(--pad) clamp(1.2rem,3vw,2rem);overflow:hidden;background:var(--bone)}
-  .chap .num{position:absolute;right:calc(var(--pad) * .4);top:50%;transform:translateY(-50%);
-    font-family:var(--display);font-weight:900;
-    font-size:clamp(8rem,24vw,19rem);line-height:1;color:transparent;
-    -webkit-text-stroke:2px var(--chap-accent,var(--cobalt));opacity:.15;pointer-events:none;user-select:none}
-  /* chair viewer chapter hides the watermark — figure sits on the right */
-  .chap#cap-01 .num{display:none}
-  .chap .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--chap-accent,var(--cobalt));margin-bottom:.7rem}
-  .chap h2{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6vw,4.6rem);text-transform:uppercase;line-height:.95;max-width:12em}
-  .chap .cp{max-width:34em;margin-top:1rem;font-size:1.12rem;font-style:italic;color:var(--graphite-60)}
-  .chap .cp-tag{margin-top:1.1rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt);display:inline-block;padding:.35rem .7rem;border:1px solid var(--graphite-15);border-radius:999px;background:color-mix(in srgb,var(--cobalt) 4%,transparent)}
-  .chap.chap-b2{background:var(--bone-2)}
-  .chap.on-navy{background:var(--blueprint);color:var(--ink)}
-  .chap.on-navy .cp{color:var(--ink-60)}
+    /* === Footer === */
+    footer{background:var(--blueprint-2);color:var(--ink);padding:1.6rem var(--pad);border-top:1px solid var(--ink-line);font-size:.85rem}
+    .ft-grid{display:grid;grid-template-columns:auto 1fr 1fr 1fr auto;gap:1.6rem;align-items:center}
+    @media (max-width:860px){.ft-grid{grid-template-columns:1fr 1fr;gap:1rem;text-align:left}}
+    .ft-brand{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
+    .ft-brand b{color:var(--cobalt);font-weight:600}
+    .ft-cell{font-size:.78rem;line-height:1.4;color:var(--ink-60)}
+    .ft-cell b{display:block;color:var(--ink);font-weight:500;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.25rem}
+    .ft-cell.cta{display:flex;align-items:center;justify-content:flex-end;gap:.6rem;color:var(--ink)}
+    .ft-cell.cta svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
 
-  /* ---------- chapter 03 · two-col + chair viewer (port from index.html) ---------- */
-  .chap.two-col{display:grid;grid-template-columns:1fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:start}
-  .chap.two-col .text-col{position:relative;z-index:1}
-  @media (min-width:900px){
-    .chap.two-col{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,4vw,3.5rem);align-items:center}
-  }
+    /* === Mobile tweaks === */
+    @media (max-width:480px){
+      .bar .lang button{font-size:.7rem;padding:.4rem .7rem}
+      .row2 > *{padding:2rem 1.25rem}
+      .hero h1{font-size:clamp(1.85rem,8vw,2.4rem)}
+      h2{font-size:clamp(1.6rem,6vw,1.9rem)}
+      .deliv-grid{grid-template-columns:repeat(2,1fr)}
+      .gain-grid{grid-template-columns:1fr}
+      .audience{grid-template-columns:1fr}
+      .caveat{font-size:1.5rem}
+    }
 
-  /* chair figure — compact, sits inline on the right */
-  .chair{margin:0;display:flex;flex-direction:column;align-items:center;gap:.9rem;
-    align-self:start;justify-self:end;width:min(100%,360px)}
-
-  /* the 3D/2D stage — same approach as index.html, just smaller */
-  .fig-stage{position:relative;width:100%;aspect-ratio:56/66}
-  .fig-stage > svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:opacity .45s ease}
-  .fig-stage.mode3d > svg{opacity:0;pointer-events:none}
-
-  .scene{
-    position:absolute;inset:0;perspective:900px;
-    opacity:0;pointer-events:none;transition:opacity .45s ease;
-    touch-action:none;cursor:grab;
-  }
-  .scene.on{opacity:1;pointer-events:auto}
-  .scene:active{cursor:grabbing}
-  .obj{
-    position:absolute;left:50%;top:54%;width:0;height:0;
-    transform-style:preserve-3d;
-    transform:rotateX(var(--rx,16deg)) rotateY(var(--ry,-28deg));
-  }
-  .part{position:absolute;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.55,0,.15,1)}
-  .face{
-    position:absolute;left:50%;top:50%;
-    border:1px solid rgba(35,33,28,.5);
-    backface-visibility:hidden;
-  }
-  .gshadow{
-    position:absolute;width:280px;height:240px;left:-140px;top:-120px;
-    transform:rotateX(90deg) translateZ(-150px);
-    background:radial-gradient(closest-side,rgba(35,33,28,.32),rgba(35,33,28,0) 72%);
-  }
-
-  .fig-ui{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;width:100%}
-  .fig-toggle{display:flex;border:1px solid var(--graphite-35);border-radius:999px;overflow:hidden;background:var(--bone)}
-  .fig-toggle button,.fig-explode{
-    font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
-    padding:.38rem .75rem;border:0;background:transparent;color:var(--graphite-60);cursor:pointer;
-  }
-  .fig-toggle button[aria-pressed="true"]{background:var(--graphite);color:var(--bone)}
-  .fig-explode{border:1px solid var(--graphite-35);border-radius:999px;background:var(--bone)}
-  .fig-explode[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
-  .fig-spin{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:28px;height:28px;border:1px solid var(--graphite-35);border-radius:999px;
-    background:var(--bone);color:var(--graphite);
-    font-size:.95rem;line-height:1;cursor:pointer;
-    transition:transform .6s ease, background-color .12s ease, border-color .12s ease;
-  }
-  .fig-spin:hover{background:rgba(44,73,199,.06);border-color:var(--cobalt);color:var(--cobalt)}
-  .fig-spin.spinning{animation:fig-spin-rot 1.4s linear infinite;color:var(--cobalt);border-color:var(--cobalt)}
-  @keyframes fig-spin-rot{to{transform:rotate(360deg)}}
-  .fig-hint{color:var(--graphite-60);font-size:.58rem;letter-spacing:.08em}
-
-  /* chair SVG linework (port from index.html) */
-  .tk{stroke:var(--graphite);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .tk-thin{stroke:var(--graphite);stroke-width:1;fill:none;stroke-linecap:round}
-  .tk-dash{stroke:var(--graphite);stroke-width:1;fill:none;stroke-dasharray:.012 .014;opacity:.5}
-  .tk-dim{stroke:var(--cobalt);stroke-width:1.2;fill:none;opacity:.9}
-  .svg-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;fill:var(--graphite)}
-  .svg-dim-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;fill:var(--cobalt)}
-  .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.3s cubic-bezier(.5,0,.2,1) forwards;animation-delay:calc(var(--i)*.11s + .25s)}
-  @keyframes draw{to{stroke-dashoffset:0}}
-  .fade{opacity:0;animation:fadein .7s ease forwards;animation-delay:calc(var(--i)*.1s + 1.7s)}
-  @keyframes fadein{to{opacity:1}}
-
-  /* chair meta line above the stage */
-  .chair-meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;align-self:stretch;
-    font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--graphite-60)}
-  .chair-meta b{color:var(--cobalt);font-weight:600;letter-spacing:.18em}
-  .chair-meta .cm-r{text-align:right}
-
-  @media (prefers-reduced-motion:reduce){
-    .part{transition:none}
-    .draw{animation:none;stroke-dashoffset:0}
-    .fade{animation:none;opacity:1}
-  }
-
-  /* ---------- capítulo 01 · sketch collage ---------- */
-  .ideas{padding:1.5rem var(--pad) clamp(4rem,9vw,7rem);background:var(--bone)}
-  .sk-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.2rem,2.5vw,2.2rem);align-items:start;max-width:1240px}
-  .hookrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.4rem;margin-top:clamp(2.2rem,5vw,3.5rem);padding-top:1.2rem;border-top:1px solid var(--graphite-15)}
-  .hookrow p{font-style:italic;color:var(--graphite-60);font-size:1.05rem}
-  .hookrow a{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--cobalt);text-decoration:none;border-bottom:1px solid var(--cobalt);padding-bottom:.15rem;transition:color .25s}
-  .hookrow a:hover{color:#3a58e0}
-  .moods .hookrow{margin-left:var(--pad);margin-right:var(--pad)}
-  .sk-card{position:relative;margin:0;background:#fff;border:1px solid var(--graphite-15);
-    box-shadow:0 2px 6px rgba(35,33,28,.08),0 26px 50px -26px rgba(35,33,28,.38);
-    padding:.7rem .7rem 3rem;
-    transform:translate3d(0,var(--py,0px),0) rotate(var(--rot,0deg));
-    transition:box-shadow .45s}
-  .sk-card:hover{transform:translate3d(0,calc(var(--py,0px) - 8px),0) rotate(0deg) scale(1.015);
-    box-shadow:0 8px 18px rgba(35,33,28,.14),0 44px 80px -30px rgba(35,33,28,.5);z-index:2}
-  .sk-card img{display:block;width:100%;height:auto}
-  .sk-card.crop img{aspect-ratio:3/2;object-fit:cover;object-position:50% 100%}
-  .sk-card .tape{position:absolute;top:-13px;left:50%;width:120px;height:28px;
-    transform:translateX(-50%) rotate(-2deg);background:var(--tape,rgba(217,142,74,.5));
-    box-shadow:0 1px 3px rgba(35,33,28,.18)}
-  .sk-card figcaption{position:absolute;left:1rem;right:1rem;bottom:.9rem;display:flex;justify-content:space-between;gap:.6rem;
-    font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:var(--graphite-60)}
-  .sk-card figcaption b{color:var(--graphite);font-weight:500}
-  .sk-a{grid-column:1/span 6}
-  .sk-b{grid-column:8/span 4;margin-top:clamp(2rem,6vw,5rem)}
-  @media (max-width:860px){
-    .sk-a,.sk-b{grid-column:1/-1;margin-top:0}
-    .sk-a{max-width:540px}
-    .sk-b{max-width:390px;margin-left:auto}
-  }
-
-  /* ---------- capítulo 02 · moodboard marquee ---------- */
-  .moods{background:var(--bone-2);padding:1.5rem 0 clamp(4.5rem,9vw,7rem);overflow:hidden}
-  .mq-row{overflow-x:auto;overflow-y:hidden;padding:1.1rem 0;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-    scrollbar-width:none}
-  .mq-row::-webkit-scrollbar{display:none}
-  .mq{display:flex;gap:clamp(1rem,2vw,1.6rem);width:max-content;will-change:transform;
-    padding:0 var(--pad)}
-  .mq figure{position:relative;margin:0;height:clamp(220px,30vw,330px);flex:none;
-    border:1px solid var(--graphite-15);background:#fff;padding:.45rem .45rem 2.2rem;
-    box-shadow:0 2px 6px rgba(35,33,28,.08),0 18px 40px -22px rgba(35,33,28,.35);
-    transform:rotate(var(--rot,0deg));transition:transform .4s;
-    scroll-snap-align:start}
-  .mq figure:hover,.mq figure:focus-within{transform:rotate(0deg) scale(1.04);z-index:2}
-  .mq img{height:100%;width:auto;display:block}
-  .mq figcaption{position:absolute;left:.75rem;bottom:.65rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--graphite-60);white-space:nowrap}
-  .mq figcaption i{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--dot,var(--cobalt));margin-right:.45rem;vertical-align:middle}
-  .moods.static .mq{width:auto;flex-wrap:wrap;padding:0 var(--pad)}
-
-  /* reveals */
-  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
-  .rv.in{opacity:1;transform:none}
-  /* sketch cards keep their own transform through the reveal */
-  .sk-card.rv{opacity:0;transform:translate3d(0,calc(var(--py,0px) + 24px),0) rotate(var(--rot,0deg))}
-  .sk-card.rv.in{opacity:1;transform:translate3d(0,var(--py,0px),0) rotate(var(--rot,0deg))}
-  .sk-card.rv.in:hover{transform:translate3d(0,calc(var(--py,0px) - 8px),0) rotate(0deg) scale(1.015)}
-
-  @media (max-width:720px){
-    .stage .meta{display:none}
-    .checklist{right:auto;left:var(--pad);bottom:auto;top:calc(1rem + 3.4rem);flex-direction:row;flex-wrap:wrap;gap:.45rem .8rem;font-size:.6rem}
-    .hud{max-width:75vw;bottom:1.2rem}
-    .hud .ph-desc{display:none}
-    .stamp{right:1rem;top:16%}
-    .stage .pct{top:auto;bottom:1.2rem;right:var(--pad)}
-    .bar .sheetcode{display:none}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .rv{opacity:1;transform:none;transition:none}
-    .cue svg path{animation:none}
-    .hero.ready .drawn{animation:none;stroke-dashoffset:0}
-  }
-
-  /* =============================================================
-     MOBILE-FIRST REFINEMENTS
-     Applied at small viewports to fix:
-       - touch targets (44×44px minimum per Apple HIG / Material)
-       - scroll-margin-top so chip-nav lands below the fixed top bar
-       - hero typography at 320–375px
-       - chapter & contact-form padding for narrow screens
-       - chair-meta two-span row collapsing cleanly
-       - moodboard marquee pauses on touch
-     ============================================================= */
-
-  /* scroll-margin so in-page anchors land below the fixed top bar (~52px) */
-  #top, #hero, #cap-01, #cap-02, #cap-03, #contacto, section.sheet{scroll-margin-top:72px}
-
-  /* Touch-target minimums (44×44) for small interactive controls */
-  .chips a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem .85rem}
-  .bar .barcta{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1rem}
-  .bar .lang button{min-height:44px;min-width:44px;padding:.5rem .8rem;font-size:.72rem}
-  .fig-toggle button,.fig-explode{min-height:44px;padding:.55rem 1rem;font-size:.65rem}
-  .fig-spin{width:44px;height:44px}
-  .cta-feedback button{min-height:44px;padding:.55rem 1rem}
-
-  /* Field inputs — explicit 16px floor for iOS Safari (no auto-zoom on focus) */
-  .field input,.field textarea{font-size:max(1rem,16px)}
-
-  /* ---------- 720px and below (tablets portrait + large phones) ---------- */
-  @media (max-width:720px){
-    /* Less vertical breathing room on the chapter sections */
-    section.sheet{padding:clamp(3rem,8vw,5rem) var(--pad)}
-    /* Hero subtitle gets a tighter min so the hero doesn't push too far down */
-    .hero .sub{font-size:1.08rem;margin:1.1rem 0 1.8rem}
-    /* CTA caveat accent is rotated; on narrow screens, give it a touch of breathing room */
-    .caveat{font-size:1.5rem;margin-bottom:1rem}
-    /* Chair meta — let the two spans wrap on narrow viewports */
-    .chair-meta{flex-wrap:wrap;gap:.4rem 1rem}
-    .chair-meta .cm-r{text-align:left}
-    /* Slightly tighter CTA feedback padding */
-    .cta-feedback{padding:.9rem 1rem;font-size:.92rem}
-  }
-
-  /* ---------- 480px and below (phones) ---------- */
-  @media (max-width:480px){
-    /* Hero — bump H1 min so the 3-line stack stays legible on 320px */
-    .hero h1{font-size:clamp(1.45rem,8.2vw,6.5rem);line-height:.94}
-    .hero .eyebrow{font-size:.7rem;margin-bottom:.75rem}
-    /* Chip text slightly bigger for thumb-friendliness */
-    .chips a{font-size:.68rem;letter-spacing:.08em}
-    /* Sub — keep readable but a hair smaller */
-    .hero .sub{font-size:1.02rem;margin:1rem 0 1.6rem}
-    /* Footer bottom row stacks */
-    footer .ft-bottom{flex-direction:column;align-items:flex-start;gap:.5rem}
-    /* Bar — make the buildbar a hair thicker so it's visible on retina */
-    .buildbar{height:3px;bottom:-3px}
-  }
-
-  /* ---------- 380px and below (smallest phones — iPhone SE 1st gen, etc.) ---------- */
-  @media (max-width:380px){
-    /* Hero chips wrap to 2 lines if needed; trust list tighter */
-    .chips{gap:.4rem;margin-bottom:2rem}
-    .chips a{padding:.5rem .7rem;font-size:.64rem}
-    .trust{gap:.55rem;margin-top:1.5rem}
-    .trust li{font-size:.96rem;padding-left:1.3rem}
-  }
-</style>
+    /* === Reveal animations === */
+    .rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+    .rv.in{opacity:1;transform:none}
+    @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+  </style>
 </head>
-<body id="top">
+<body>
 
-<!-- ============ TOP BAR ============ -->
+<!-- ===================== TOP BAR ===================== -->
 <nav class="bar">
   <a class="wordmark" href="#top">DIERNUS</a>
-  <a class="barcta" href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="barCta">FALAR CONNOSCO</a>
-  <div class="lang" role="group" aria-label="Idioma / Language">
+  <a class="barcta" href="#contacto">FALAR CONNOSCO</a>
+  <div class="lang" role="group" aria-label="Idioma">
     <button type="button" data-lang="pt" aria-pressed="true">PT</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
   </div>
-  <div class="buildbar" aria-hidden="true"><i id="buildfill"></i></div>
 </nav>
 
-<!-- ============ HERO ============ -->
-<header class="hero" id="hero">
-  <p class="eyebrow" data-i="heroEyebrow">DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO</p>
-  <h1 data-i="heroH1">DESENHO TÉCNICO<br>PARA MOBILIÁRIO<br>POR MEDIDA</h1>
-  <p class="sub" data-i="heroSub">Desenvolvimento de documentação técnica para validação do projeto e apoio à produção de peças por medida.</p>
-  <div class="chips">
-    <a href="#cap-01" data-i="chip01">DESENHO TÉCNICO</a><a href="#cap-02" data-i="chip02">ESBOÇOS</a><a href="#cap-03" data-i="chip03">MOODBOARDS</a>
-  </div>
-  <div class="cue">
-    <svg viewBox="0 0 14 22"><path d="M2 3 L7 9 L12 3 M2 12 L7 18 L12 12"/></svg>
-    <span data-i="cue">SCROLL PARA COMEÇAR</span>
-  </div>
-</header>
+<!-- ===================== ROW 1: HERO + COMO TRABALHAMOS ===================== -->
+<section class="row2" id="top">
 
-<!-- ============ CAPÍTULO 01 · O DESENHO TÉCNICO ============ -->
-<section class="chap two-col" id="cap-01" style="--chap-accent:var(--cobalt)">
-  <span class="num" aria-hidden="true">01</span>
-  <div class="text-col">
-    <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 01</p>
-    <h2 class="rv" data-i="c3t">Desenhos que definem</h2>
-    <p class="cp rv" data-i="c3p">A informação necessária para produção: dimensões, materiais/acabamento, listas de união de componentes, detalhes construtivos e notas de produção.</p>
-  </div>
+  <!-- HERO (left) -->
+  <header class="hero">
+    <div>
+      <p class="kicker rv">ESTÚDIO DE DESENHO TÉCNICO</p>
+      <h1 class="rv">TRANSFORMAMOS<br>PROJETOS EM<br>DOCUMENTAÇÃO TÉCNICA</h1>
+    </div>
 
-  <!-- ============ CHAIR VIEWER (2D ↔ 3D) ============ -->
-  <figure class="chair rv">
-    <header class="chair-meta">
-      <span class="cm-l"><b>L-CH-01</b> · <span data-i="chPiece">CADEIRA</span></span>
-      <span class="cm-r" data-i="chSheet">FOLHA DE DETALHE · ESC 1:5</span>
-    </header>
-    <div class="fig-stage" id="chairStage">
-      <svg viewBox="0 0 560 660" role="img" aria-label="Desenho técnico de uma cadeira — alçado frontal">
-        <!-- centreline -->
-        <line class="tk-dash draw" style="--i:0" pathLength="1" x1="280" y1="24" x2="280" y2="636"/>
-
-        <!-- 01 backrest -->
-        <rect class="tk draw" style="--i:1" pathLength="1" x="180" y="36" width="200" height="64" rx="10"/>
-        <line class="tk-thin draw" style="--i:2" pathLength="1" x1="230" y1="52" x2="230" y2="84" opacity=".55"/>
-        <line class="tk-thin draw" style="--i:2" pathLength="1" x1="280" y1="52" x2="280" y2="84" opacity=".55"/>
-        <line class="tk-thin draw" style="--i:2" pathLength="1" x1="330" y1="52" x2="330" y2="84" opacity=".55"/>
-
-        <!-- back posts with tenons -->
-        <rect class="tk draw" style="--i:3" pathLength="1" x="170" y="130" width="18" height="120" rx="4"/>
-        <rect class="tk draw" style="--i:3" pathLength="1" x="372" y="130" width="18" height="120" rx="4"/>
-        <rect class="tk-thin draw" style="--i:4" pathLength="1" x="174" y="116" width="10" height="14"/>
-        <rect class="tk-thin draw" style="--i:4" pathLength="1" x="376" y="116" width="10" height="14"/>
-
-        <!-- 02 seat -->
-        <rect class="tk draw" style="--i:5" pathLength="1" x="150" y="286" width="260" height="20" rx="5"/>
-        <line class="tk-thin draw" style="--i:6" pathLength="1" x1="168" y1="296" x2="392" y2="296" opacity=".4"/>
-
-        <!-- dowels -->
-        <circle class="tk draw" style="--i:7" pathLength="1" cx="200" cy="336" r="6"/>
-        <circle class="tk draw" style="--i:7" pathLength="1" cx="360" cy="336" r="6"/>
-
-        <!-- 03 apron -->
-        <rect class="tk draw" style="--i:8" pathLength="1" x="168" y="362" width="224" height="28" rx="4"/>
-
-        <!-- 04 legs + stretcher -->
-        <path class="tk draw" style="--i:9" pathLength="1" d="M176 418 L196 418 L190 598 L181 598 Z"/>
-        <path class="tk draw" style="--i:9" pathLength="1" d="M364 418 L384 418 L379 598 L370 598 Z"/>
-        <line class="tk-dash draw" style="--i:10" pathLength="1" x1="216" y1="418" x2="212" y2="598"/>
-        <line class="tk-dash draw" style="--i:10" pathLength="1" x1="344" y1="418" x2="340" y2="598"/>
-        <rect class="tk-thin draw" style="--i:10" pathLength="1" x="196" y="512" width="168" height="12" rx="3"/>
-
-        <!-- ground line + hatching -->
-        <line class="tk-thin draw" style="--i:11" pathLength="1" x1="120" y1="606" x2="460" y2="606"/>
-        <g class="tk-thin draw" style="--i:12" opacity=".5">
-          <line pathLength="1" x1="150" y1="618" x2="162" y2="606"/>
-          <line pathLength="1" x1="205" y1="618" x2="217" y2="606"/>
-          <line pathLength="1" x1="260" y1="618" x2="272" y2="606"/>
-          <line pathLength="1" x1="315" y1="618" x2="327" y2="606"/>
-          <line pathLength="1" x1="370" y1="618" x2="382" y2="606"/>
-          <line pathLength="1" x1="425" y1="618" x2="437" y2="606"/>
-        </g>
-
-        <!-- alignment dashes -->
-        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="188" y1="106" x2="188" y2="282"/>
-        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="372" y1="106" x2="372" y2="282"/>
-        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="188" y1="310" x2="188" y2="358"/>
-        <line class="tk-dash draw" style="--i:13" pathLength="1" x1="372" y1="310" x2="372" y2="358"/>
-
-        <!-- dimension: height -->
-        <g class="fade" style="--i:0">
-          <line class="tk-dim" x1="486" y1="36" x2="486" y2="598"/>
-          <line class="tk-dim" x1="384" y1="36" x2="492" y2="36" opacity=".45"/>
-          <line class="tk-dim" x1="392" y1="598" x2="492" y2="598" opacity=".45"/>
-          <line class="tk-dim" x1="481" y1="41" x2="491" y2="31"/>
-          <line class="tk-dim" x1="481" y1="603" x2="491" y2="593"/>
-          <text class="svg-dim-label" transform="translate(504 340) rotate(-90)" text-anchor="middle">820 MM</text>
-        </g>
-        <!-- dimension: width -->
-        <g class="fade" style="--i:1">
-          <line class="tk-dim" x1="150" y1="634" x2="410" y2="634"/>
-          <line class="tk-dim" x1="145" y1="639" x2="155" y2="629"/>
-          <line class="tk-dim" x1="405" y1="639" x2="415" y2="629"/>
-          <text class="svg-dim-label" x="280" y="654" text-anchor="middle">440 MM</text>
-        </g>
-
-        <!-- part labels -->
-        <g class="fade" style="--i:2">
-          <text class="svg-label" x="30" y="72" data-i="svgL1">01 · ENCOSTO</text>
-          <line class="tk-thin" x1="136" y1="68" x2="176" y2="68" opacity=".5"/>
-        </g>
-        <g class="fade" style="--i:3">
-          <text class="svg-label" x="30" y="300" data-i="svgL2">02 · ASSENTO</text>
-          <line class="tk-thin" x1="134" y1="296" x2="146" y2="296" opacity=".5"/>
-        </g>
-        <g class="fade" style="--i:4">
-          <text class="svg-label" x="30" y="340" data-i="svgDowel">CAVILHA Ø8</text>
-          <line class="tk-thin" x1="122" y1="336" x2="190" y2="336" opacity=".5"/>
-        </g>
-        <g class="fade" style="--i:5">
-          <text class="svg-label" x="30" y="380" data-i="svgL3">03 · SAIA</text>
-          <line class="tk-thin" x1="98" y1="376" x2="164" y2="376" opacity=".5"/>
-        </g>
-        <g class="fade" style="--i:6">
-          <text class="svg-label" x="30" y="470" data-i="svgL4">04 · PERNA</text>
-          <line class="tk-thin" x1="110" y1="466" x2="176" y2="466" opacity=".5"/>
-        </g>
+    <div class="hero-draw rv">
+      <svg viewBox="0 0 560 380" width="100%" role="img" aria-label="Folha de detalhe — cadeira, alçado frontal com cotas 820×478mm" style="max-width:420px">
+        <line class="tk-dash" x1="280" y1="20" x2="280" y2="360" stroke="#2C49C7" stroke-width="1" stroke-dasharray="4 4" opacity=".6"/>
+        <rect x="170" y="170" width="220" height="18" rx="3" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <rect x="180" y="40" width="200" height="80" rx="6" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <line x1="220" y1="60" x2="220" y2="100" stroke="#23211C" stroke-width="0.7" opacity=".5"/>
+        <line x1="280" y1="60" x2="280" y2="100" stroke="#23211C" stroke-width="0.7" opacity=".5"/>
+        <line x1="340" y1="60" x2="340" y2="100" stroke="#23211C" stroke-width="0.7" opacity=".5"/>
+        <rect x="172" y="120" width="14" height="55" rx="2" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <rect x="374" y="120" width="14" height="55" rx="2" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <rect x="190" y="200" width="180" height="14" rx="2" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <path d="M195 214 L213 214 L208 360 L200 360 Z" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <path d="M347 214 L365 214 L360 360 L352 360 Z" fill="none" stroke="#23211C" stroke-width="1.5"/>
+        <line x1="226" y1="214" x2="222" y2="360" stroke="#2C49C7" stroke-width="0.7" stroke-dasharray="3 3" opacity=".5"/>
+        <line x1="334" y1="214" x2="338" y2="360" stroke="#2C49C7" stroke-width="0.7" stroke-dasharray="3 3" opacity=".5"/>
+        <line x1="140" y1="360" x2="420" y2="360" stroke="#23211C" stroke-width="1" opacity=".5"/>
+        <line x1="450" y1="40" x2="450" y2="360" stroke="#23211C" stroke-width=".7"/>
+        <text x="466" y="200" font-family="JetBrains Mono,monospace" font-size="12" fill="#23211C" transform="rotate(-90 466 200)" text-anchor="middle">820</text>
+        <line x1="170" y1="376" x2="390" y2="376" stroke="#23211C" stroke-width=".7"/>
+        <text x="280" y="392" font-family="JetBrains Mono,monospace" font-size="12" fill="#23211C" text-anchor="middle">478</text>
       </svg>
-      <div class="scene" id="chairScene" role="img" aria-label="Modelo 3D interativo de uma cadeira — arraste para rodar">
-        <div class="obj" id="chairObj"><div class="gshadow"></div></div>
+    </div>
+
+    <div>
+      <p class="lede rv">Cada desenho é desenvolvido para reduzir dúvidas, evitar erros e garantir que todas as peças chegam à fábrica com informação clara e consistente.</p>
+      <div class="hero-ctas rv">
+        <a class="primary" href="#contacto">ENVIAR PROJETO</a>
+        <a class="secondary" href="#como-trabalhamos">CONHECER O PROCESSO</a>
+      </div>
+      <div class="cue rv">
+        <svg viewBox="0 0 14 22"><path d="M2 3 L7 9 L12 3 M2 12 L7 18 L12 12"/></svg>
+        <span>SCROLL PARA EXPLORAR</span>
       </div>
     </div>
-    <div class="fig-ui">
-      <div class="fig-toggle" role="group" aria-label="Vista">
-        <button type="button" id="chairBtn2d" aria-pressed="true" data-i="figD2">DESENHO 2D</button>
-        <button type="button" id="chairBtn3d" aria-pressed="false" data-i="figD3">MODELO 3D</button>
+  </header>
+
+  <!-- COMO TRABALHAMOS (right) -->
+  <div id="como-trabalhamos">
+    <p class="kicker rv">COMO TRABALHAMOS</p>
+    <h2 class="rv">Do primeiro contacto<br>até à entrega final.</h2>
+    <div class="timeline">
+      <div class="step rv"><div class="num">01</div><div class="body"><h3>RECEBEMOS O PROJETO</h3><p>Pode ser um briefing, um modelo 3D, desenhos preliminares ou esboços.</p></div></div>
+      <div class="step rv"><div class="num">02</div><div class="body"><h3>ANALISAMOS</h3><p>Identificamos necessidades técnicas, métodos construtivos, materiais e nível de detalhe necessário.</p></div></div>
+      <div class="step rv"><div class="num">03</div><div class="body"><h3>DESENVOLVEMOS</h3><p>Criamos toda a documentação técnica necessária para uma produção segura, clara e eficiente.</p></div></div>
+      <div class="step rv"><div class="num">04</div><div class="body"><h3>VALIDAMOS</h3><p>Revemos medidas, pormenores e consistência para garantir a fiabilidade da informação.</p></div></div>
+      <div class="step rv"><div class="num">05</div><div class="body"><h3>ENTREGAMOS</h3><p>Ficheiros organizados, identificados e prontos para produção.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROW 2: O QUE ENTREGAMOS + O QUE GANHA ===================== -->
+<section class="row2">
+  <div>
+    <p class="kicker rv">O QUE ENTREGAMOS</p>
+    <h2 class="rv">Documentação completa.<br>Produção sem dúvidas.</h2>
+    <div class="deliv-grid">
+      <div><svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24"/><line x1="6" y1="8" x2="34" y2="8"/><line x1="6" y1="32" x2="34" y2="32"/><line x1="6" y1="8" x2="6" y2="32"/><line x1="34" y1="8" x2="34" y2="32"/></svg><span>PLANTAS TÉCNICAS</span></div>
+      <div><svg viewBox="0 0 40 40"><path d="M14 8 L26 8 L26 22 L32 22 L32 32 L8 32 L8 22 L14 22 Z"/><line x1="12" y1="14" x2="22" y2="14"/><line x1="12" y1="18" x2="22" y2="18"/></svg><span>CORTES E SECÇÕES</span></div>
+      <div><svg viewBox="0 0 40 40"><rect x="10" y="6" width="20" height="28"/><line x1="14" y1="6" x2="14" y2="34"/><line x1="20" y1="6" x2="20" y2="34"/><line x1="26" y1="6" x2="26" y2="34"/><line x1="10" y1="14" x2="30" y2="14"/><line x1="10" y1="26" x2="30" y2="26"/></svg><span>ALÇADOS</span></div>
+      <div><svg viewBox="0 0 40 40"><circle cx="14" cy="14" r="6"/><line x1="20" y1="14" x2="34" y2="14"/><path d="M30 14 L26 11 M30 14 L26 17"/><line x1="14" y1="20" x2="14" y2="34"/><path d="M14 30 L11 26 M14 30 L17 26"/></svg><span>PORMENORES CONSTRUTIVOS</span></div>
+      <div><svg viewBox="0 0 40 40"><rect x="8" y="6" width="24" height="6"/><rect x="6" y="14" width="28" height="6"/><rect x="4" y="22" width="32" height="6"/><rect x="2" y="30" width="36" height="6"/></svg><span>EXPLOSÕES</span></div>
+      <div><svg viewBox="0 0 40 40"><rect x="10" y="6" width="20" height="28"/><line x1="14" y1="12" x2="26" y2="12"/><line x1="14" y1="18" x2="26" y2="18"/><line x1="14" y1="24" x2="22" y2="24"/><line x1="14" y1="30" x2="24" y2="30"/></svg><span>LISTA DE COMPONENTES</span></div>
+      <div><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="5"/><line x1="20" y1="19" x2="20" y2="32"/><line x1="14" y1="26" x2="26" y2="26"/><line x1="14" y1="32" x2="26" y2="32"/></svg><span>FERRAGENS E ACESSÓRIOS</span></div>
+      <div><svg viewBox="0 0 40 40"><rect x="6" y="8" width="28" height="24"/><line x1="10" y1="14" x2="18" y2="14" stroke-width="2"/><line x1="22" y1="20" x2="30" y2="20" stroke-width="2"/><line x1="14" y1="26" x2="26" y2="26" stroke-width="2"/></svg><span>MATERIAIS E ACABAMENTOS</span></div>
+      <div><svg viewBox="0 0 40 40"><line x1="6" y1="20" x2="34" y2="20"/><path d="M6 20 L10 17 M6 20 L10 23"/><path d="M34 20 L30 17 M34 20 L30 23"/><line x1="10" y1="14" x2="10" y2="26"/><line x1="30" y1="14" x2="30" y2="26"/><text x="20" y="36" text-anchor="middle" font-size="8" font-family="JetBrains Mono,monospace">↔</text></svg><span>MEDIÇÕES</span></div>
+      <div><svg viewBox="0 0 40 40"><path d="M10 6 L26 6 L30 12 L30 34 L10 34 Z"/><line x1="14" y1="16" x2="26" y2="16"/><line x1="14" y1="22" x2="26" y2="22"/><line x1="14" y1="28" x2="22" y2="28"/></svg><span>NOTAS TÉCNICAS</span></div>
+      <div><svg viewBox="0 0 40 40"><path d="M8 10 L8 32 L32 32 L32 14 L26 8 L8 8 Z"/><line x1="14" y1="16" x2="26" y2="16"/><line x1="14" y1="22" x2="26" y2="22"/><line x1="14" y1="28" x2="22" y2="28"/><line x1="18" y1="8" x2="18" y2="14"/><line x1="26" y1="8" x2="26" y2="14"/></svg><span>ORGANIZAÇÃO DE FICHEIROS</span></div>
+      <div><svg viewBox="0 0 40 40"><path d="M6 12 L20 12 L24 16 L34 16 L34 32 L6 32 Z"/><line x1="12" y1="20" x2="28" y2="20"/><line x1="12" y1="26" x2="28" y2="26"/></svg><span>SUPORTE À FICHEIROS</span></div>
+    </div>
+  </div>
+
+  <div>
+    <p class="kicker rv">O QUE GANHA O CLIENTE</p>
+    <h2 class="rv">Mais controlo, mais eficiência,<br>melhores resultados.</h2>
+    <div class="gain-grid">
+      <div class="rv"><svg viewBox="0 0 32 32"><path d="M6 22 L12 28 L26 10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="12"/></svg><h3>REDUÇÃO DE ERROS</h3><p>Menos dúvidas na interpretação do projeto.</p></div>
+      <div class="rv"><svg viewBox="0 0 32 32"><circle cx="16" cy="17" r="10"/><line x1="16" y1="17" x2="16" y2="9"/><line x1="16" y1="17" x2="22" y2="20"/><line x1="16" y1="3" x2="16" y2="5"/><line x1="16" y1="29" x2="16" y2="31"/><line x1="2" y1="17" x2="4" y2="17"/><line x1="28" y1="17" x2="30" y2="17"/></svg><h3>MAIOR RAPIDEZ NA PRODUÇÃO</h3><p>Informação clara acelera todo o processo.</p></div>
+      <div class="rv"><svg viewBox="0 0 32 32"><path d="M4 10 L16 10 L16 22 L4 22 Z"/><path d="M16 14 L28 14 L28 26 L16 26 Z"/></svg><h3>COMUNICAÇÃO CLARA</h3><p>Todos trabalham com a mesma informação.</p></div>
+      <div class="rv"><svg viewBox="0 0 32 32"><path d="M22 6 L8 20 M8 20 L11 23 M8 20 L11 17"/><circle cx="16" cy="16" r="12"/><path d="M22 12 L24 14" stroke-dasharray="2 2"/></svg><h3>MENOS RETRABALHO</h3><p>Evita correções e perdas de materiais.</p></div>
+      <div class="rv"><svg viewBox="0 0 32 32"><path d="M16 4 L26 8 L26 17 C26 22 22 26 16 28 C10 26 6 22 6 17 L6 8 Z"/><path d="M12 16 L15 19 L21 13" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>MAIOR CONTROLO DO PROJETO</h3><p>Tudo documentado, organizado e validado.</p></div>
+      <div class="rv"><svg viewBox="0 0 32 32"><path d="M6 10 L6 26 L26 26 L26 12 L22 8 L8 8 Z"/><line x1="10" y1="14" x2="20" y2="14"/><line x1="10" y1="18" x2="22" y2="18"/><line x1="10" y1="22" x2="18" y2="22"/></svg><h3>DOCUMENTAÇÃO ORGANIZADA</h3><p>Ficheiros estruturados e fáceis de utilizar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROW 3: NOSSO MÉTODO + PARA QUEM TRABALHAMOS ===================== -->
+<section class="row2">
+  <div>
+    <p class="kicker rv">O NOSSO MÉTODO</p>
+    <h2 class="rv">Rigor técnico.<br>Organização. Confiança.</h2>
+    <div class="method-grid">
+      <div class="lede rv">
+        <p>Não fazemos apenas desenhos. Criamos documentação técnica preparada para utilização real em fábrica.</p>
+        <p>Acreditamos que um bom desenho técnico é uma ferramenta de comunicação entre todos os intervenientes do projeto.</p>
+        <p>Cada documento é organizado, identificado e desenvolvido para que qualquer pessoa envolvida na produção consiga interpretar a informação de forma clara.</p>
       </div>
-      <button type="button" class="fig-explode" id="chairExplode" aria-pressed="false" data-i="figExplode" hidden>VISTA EXPLODIDA</button>
-      <button type="button" class="fig-spin" id="chairSpin" aria-label="Voltar a rodar" title="Voltar a rodar" hidden>↻</button>
-      <span class="fig-hint mono" id="chairHint" data-i="figHint" hidden>ARRASTE PARA RODAR</span>
-    </div>
-  </figure>
-</section>
-
-<!-- ============ CAPÍTULO 02 · A IDEIA ============ -->
-<section class="chap" id="cap-02" style="--chap-accent:#E69658">
-  <span class="num" aria-hidden="true">02</span>
-  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 02</p>
-  <h2 class="rv" data-i="c1t">EXPLORAÇÃO CONCEPTUAL</h2>
-  <p class="cp rv" data-i="c1p">Os esboços permitem explorar ideias, proporções e detalhes a partir do briefing do cliente, servindo de base ao desenvolvimento do projeto quando a fase conceptual assim o exige.</p>
-</section>
-<section class="ideas">
-  <div class="sk-grid">
-    <figure class="sk-card sk-a rv" data-speed="0.05" style="--rot:-1.2deg;--tape:rgba(217,142,74,.55)">
-      <span class="tape" aria-hidden="true"></span>
-      <img src="assets/sketch-vitrine.jpg" width="1024" height="724" loading="lazy" alt="Apresentação de design 'Concept Unit 12' — vitrine alta com estrutura metálica em latão patinado, painel de nogueira com marchetaria, painel têxtil escultural, vidro texturado canelado e base em granito verde brasileiro">
-      <figcaption><b data-i="g_sk1">VITRINE · CONCEITO 12</b><span><span data-i="skLbl">ESBOÇO</span> 01</span></figcaption>
-    </figure>
-    <figure class="sk-card sk-b rv" data-speed="0.09" style="--rot:1.4deg;--tape:rgba(127,164,118,.5)">
-      <span class="tape" aria-hidden="true"></span>
-      <img src="assets/sketch-cama-ab.jpg" width="1024" height="559" loading="lazy" alt="Apresentação de design de cama — cabeceira estofada em linho acolchoado, estrutura em nogueira, base em plinto de terrazzo, com três opções de tecido de estofos (terracota, navy, sage green)">
-      <figcaption><b data-i="g_sk2">CAMA · CONCEITO</b><span><span data-i="skLbl">ESBOÇO</span> 02</span></figcaption>
-    </figure>
-  </div>
-  <div class="hookrow rv">
-    <p data-i="hook1">Tens uma peça na cabeça? Nós pomo-la no papel.</p>
-    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
-  </div>
-</section>
-
-<!-- ============ CAPÍTULO 03 · A CONCEÇÃO ============ -->
-<section class="chap chap-b2" id="cap-03" style="--chap-accent:#2C49C7">
-  <span class="num" aria-hidden="true">03</span>
-  <p class="eyebrow rv"><span data-i="capLbl">CAPÍTULO</span> 03</p>
-  <h2 class="rv" data-i="c2t">MOODBOARDS DE APRESENTAÇÃO</h2>
-  <p class="cp rv" data-i="c2p">Mediante necessidade do projeto, disponibilizamos apresentações visuais que reúnem mobiliário, materiais e referências, permitindo avaliar o ambiente antes da execução.</p>
-  <p class="cp-tag rv" data-i="c2Tag">SERVIÇO COMPLEMENTAR</p>
-</section>
-<section class="moods" id="moods">
-  <div class="mq-row">
-    <div class="mq" data-dir="1">
-      <figure style="--rot:-.5deg"><img src="assets/mood-sala-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala de estar: sofás, cortinados, carpete e aparador em carvalho"><figcaption><i style="--dot:#E69658"></i><span data-i="g_m1">SALA DE ESTAR · I</span></figcaption></figure>
-      <figure style="--rot:.6deg"><img src="assets/mood-quarto-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto principal: cabeceira estofada, nogueira e carvalho claro"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m3">QUARTO PRINCIPAL · I</span></figcaption></figure>
-      <figure style="--rot:-.4deg"><img src="assets/mood-escritorio-1.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório: secretária em raiz de nogueira e candeeiros de pé"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m6">ESCRITÓRIO · I</span></figcaption></figure>
-      <figure style="--rot:.5deg"><img src="assets/mood-quarto-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto: cortinados, poltrona de pele verde e mesa de cabeceira preta"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m4">QUARTO PRINCIPAL · II</span></figcaption></figure>
-      <figure style="--rot:-.6deg"><img src="assets/mood-crianca.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de quarto de criança: cama verde, nogueira e secretária com cadeira vermelha"><figcaption><i style="--dot:#B3232E"></i><span data-i="g_m5">QUARTO DE CRIANÇA</span></figcaption></figure>
-      <figure style="--rot:.4deg"><img src="assets/mood-sala-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de sala com lareira, candeeiro suspenso e poltrona"><figcaption><i style="--dot:#E69658"></i><span data-i="g_m2">SALA DE ESTAR · II</span></figcaption></figure>
-      <figure style="--rot:-.5deg"><img src="assets/mood-escritorio-2.jpg" width="1600" height="1131" loading="lazy" alt="Moodboard de escritório com cadeiras e poltronas de pele"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m7">ESCRITÓRIO · II</span></figcaption></figure>
-      <figure style="--rot:.5deg"><img src="assets/mood-escritorio-3.jpg" width="1131" height="1600" loading="lazy" alt="Painel de escritório: cadeiras, tecidos e estantes em carvalho"><figcaption><i style="--dot:#2C49C7"></i><span data-i="g_m8">ESCRITÓRIO · III</span></figcaption></figure>
+      <div class="method-draw rv">
+        <svg viewBox="0 0 240 280" width="100%" style="max-width:280px" role="img" aria-label="Detalhe construtivo com raios R3 e medidas 25 e 32">
+          <g fill="none" stroke="#23211C" stroke-width="1.4" stroke-linejoin="round">
+            <path d="M50 30 L180 30 L180 100 L160 100 L160 60 L50 60 Z"/>
+            <path d="M160 100 L160 200 L50 200 L50 60"/>
+            <line x1="50" y1="100" x2="160" y2="100"/>
+            <path d="M177 33 A3 3 0 0 1 180 30"/>
+            <line x1="180" y1="30" x2="180" y2="36" stroke="#2C49C7" stroke-dasharray="2 2"/>
+            <text x="186" y="32" font-family="JetBrains Mono,monospace" font-size="9" fill="#23211C">R3</text>
+            <line x1="200" y1="30" x2="200" y2="60" stroke="#2C49C7" stroke-width="0.7"/>
+            <line x1="196" y1="30" x2="204" y2="30" stroke="#23211C" stroke-width="0.7"/>
+            <line x1="196" y1="60" x2="204" y2="60" stroke="#23211C" stroke-width="0.7"/>
+            <text x="212" y="48" font-family="JetBrains Mono,monospace" font-size="10" fill="#23211C">25</text>
+            <line x1="200" y1="100" x2="200" y2="200" stroke="#2C49C7" stroke-width="0.7"/>
+            <line x1="196" y1="100" x2="204" y2="100" stroke="#23211C" stroke-width="0.7"/>
+            <line x1="196" y1="200" x2="204" y2="200" stroke="#23211C" stroke-width="0.7"/>
+            <text x="212" y="153" font-family="JetBrains Mono,monospace" font-size="10" fill="#23211C">32</text>
+            <line x1="40" y1="30" x2="40" y2="200" stroke="#2C49C7" stroke-width="0.7"/>
+            <line x1="36" y1="30" x2="44" y2="30" stroke="#23211C" stroke-width="0.7"/>
+            <line x1="36" y1="200" x2="44" y2="200" stroke="#23211C" stroke-width="0.7"/>
+            <text x="22" y="120" font-family="JetBrains Mono,monospace" font-size="10" fill="#23211C" transform="rotate(-90 22 120)" text-anchor="middle">50</text>
+            <circle cx="50" cy="60" r="1" fill="#23211C"/>
+            <text x="44" y="55" font-family="JetBrains Mono,monospace" font-size="8" fill="#23211C" text-anchor="end">R0</text>
+            <line x1="160" y1="220" x2="50" y2="220" stroke="#2C49C7" stroke-width="0.7"/>
+            <text x="105" y="234" font-family="JetBrains Mono,monospace" font-size="10" fill="#23211C" text-anchor="middle">70</text>
+          </g>
+          <text x="170" y="20" font-family="JetBrains Mono,monospace" font-size="8" fill="#23211C" text-anchor="end" letter-spacing="2">DETALHE A · ESC. 1:2</text>
+        </svg>
+      </div>
     </div>
   </div>
-  <div class="hookrow rv">
-    <p data-i="hook2">O teu espaço podia estar neste carrossel.</p>
-    <a href="mailto:estudio@diernus.com?subject=Novo%20projeto%20de%20mobili%C3%A1rio" data-i="hookBtn">Falar com o estúdio →</a>
+
+  <div>
+    <p class="kicker rv">PARA QUEM TRABALHAMOS</p>
+    <h2 class="rv">Soluções técnicas para<br>profissionais exigentes.</h2>
+    <div class="audience">
+      <a class="rv" href="mailto:geral@diernus.com?subject=Arquiteto%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>ARQUITETOS</h3><p>Transformamos projetos em documentação pronta para produção.</p></div><svg viewBox="0 0 18 18"><path d="M3 9 L15 9 M10 4 L15 9 L10 14"/></svg></a>
+      <a class="rv" href="mailto:geral@diernus.com?subject=Designer%20de%20Interiores%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>DESIGNERS DE INTERIORES</h3><p>Desenvolvemos todos os detalhes construtivos necessários.</p></div><svg viewBox="0 0 18 18"><path d="M3 9 L15 9 M10 4 L15 9 L10 14"/></svg></a>
+      <a class="rv" href="mailto:geral@diernus.com?subject=Fabricante%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>FABRICANTES</h3><p>Recebem documentação organizada, clara e consistente.</p></div><svg viewBox="0 0 18 18"><path d="M3 9 L15 9 M10 4 L15 9 L10 14"/></svg></a>
+      <a class="rv" href="mailto:geral@diernus.com?subject=Carpintaria%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>CARPINTARIAS E OFICINAS</h3><p>Menos dúvidas. Menos erros. Mais rapidez na produção.</p></div><svg viewBox="0 0 18 18"><path d="M3 9 L15 9 M10 4 L15 9 L10 14"/></svg></a>
+    </div>
   </div>
 </section>
 
-<!-- ============ CTA / Contact form ============ -->
-<section class="sheet cta" id="contacto">
+<!-- ===================== DARK CTA + CONTACT FORM ===================== -->
+<section class="cta" id="contacto">
   <div class="cta-grid">
-    <div class="cta-info">
-      <p class="caveat rv" data-i="ctaCaveat">olá, vamos falar</p>
-      <p class="kicker rv" data-i="ctaKicker">CONTACTO · RESPOSTA EM 24H ÚTEIS</p>
-      <h2 class="rv" data-i="ctaTitle">Vamos falar do teu <em>próximo</em> projeto.</h2>
-      <p class="lede rv" data-i="ctaLede">Partilha connosco a informação do teu projeto. A partir da documentação fornecida, desenvolvemos uma solução técnica ajustada às necessidades de cada projeto.</p>
+    <div>
+      <p class="caveat rv">vamos falar?</p>
+      <h2 class="rv">VAMOS FALAR DO<br>TEU PRÓXIMO PROJETO.</h2>
+      <p class="lede rv">Partilha connosco a informação do teu projeto. A partir da documentação fornecida, desenvolvemos uma solução técnica ajustada às necessidades de cada projeto.</p>
     </div>
     <div class="cta-form-wrap rv">
       <form class="cta-form" id="ctaForm" novalidate>
-        <h3 class="cta-form-title" data-i="ctaFormT">Enviar mensagem</h3>
-        <p class="cta-form-sub" data-i="ctaFormSub">Três campos. Sem linha de assunto, sem número de cliente.</p>
+        <h3 class="cta-form-title">Enviar mensagem</h3>
+        <p class="cta-form-sub">Três campos. Sem linha de assunto, sem número de cliente.</p>
         <div class="field">
-          <label for="cf-name" data-i="ctaLblName">Nome</label>
-          <input id="cf-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Como te chamamos?" data-i-ph="ctaPhName" aria-describedby="cf-name-err">
+          <label for="cf-name">Nome</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Como te chamamos?">
           <p class="ferr" id="cf-name-err" hidden></p>
         </div>
         <div class="field">
-          <label for="cf-email" data-i="ctaLblEmail">Email <span class="req" aria-hidden="true">*</span></label>
-          <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="nome@empresa.pt" data-i-ph="ctaPhEmail" aria-describedby="cf-email-err">
+          <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="nome@empresa.pt">
           <p class="ferr" id="cf-email-err" hidden></p>
         </div>
         <div class="field">
-          <label for="cf-msg" data-i="ctaLblMsg">Mensagem <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="cf-msg" name="message" rows="5" required maxlength="2000" placeholder="Conta-nos o que precisas…" data-i-ph="ctaPhMsg" aria-describedby="cf-msg-err"></textarea>
+          <label for="cf-msg">Mensagem <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="cf-msg" name="message" rows="5" required maxlength="2000" placeholder="Conta-nos o que precisas…"></textarea>
           <p class="ferr" id="cf-msg-err" hidden></p>
         </div>
         <button type="submit" class="cta-submit">
-          <span class="cta-submit-label" data-i="ctaSubmit">Enviar mensagem →</span>
+          <span class="cta-submit-label">Enviar mensagem →</span>
           <span class="cta-submit-spinner" aria-hidden="true"></span>
         </button>
-        <p class="cta-micro" data-i="ctaMicro">Ao enviar, concordas com a nossa política de privacidade. Não partilhamos os teus dados.</p>
+        <p class="cta-micro">Ao enviar, concordas com a nossa <a href="/privacidade/">política de privacidade</a>. Não partilhamos os teus dados.</p>
         <div class="cta-feedback" id="ctaFeedback" role="status" aria-live="polite" hidden></div>
       </form>
     </div>
   </div>
 </section>
 
+<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="ft-grid">
-    <div class="ft-brand">
-      <h4 data-i="ftH">Diernus</h4>
-      <p data-i="ftBrand">Estúdio de desenho de mobiliário por medida. Da ideia à peça montada, em Portugal.</p>
-      <p class="ft-meta" data-i="ftLocation">Gandra, Portugal</p>
+    <div class="ft-brand">DIERNUS</div>
+    <div class="ft-cell">
+      <b>Estúdio de desenho técnico</b>
+      para mobiliário e interiores
     </div>
-    <div>
-      <h4 data-i="ftLegal">Legal</h4>
-      <ul class="ft-list">
-        <li><a href="/privacidade/" data-i="ftL1">Privacidade</a></li>
-        <li><a href="/termos/" data-i="ftL2">Termos e condições</a></li>
-        <li><a href="/cookies/" data-i="ftL3">Cookies</a></li>
-        <li><a href="/aviso-legal/" data-i="ftL4">Aviso legal</a></li>
-      </ul>
+    <div class="ft-cell">
+      <b>EMAIL</b>
+      geral@diernus.com
     </div>
-    <div>
-      <h4 data-i="ftContact">Contacto</h4>
-      <ul class="ft-list">
-        <li><a href="mailto:estudio@diernus.com">estudio@diernus.com</a></li>
-        <li><a href="/#contacto" data-i="ftCta">Formulário de contacto</a></li>
-        <li><a href="https://portal.diernus.com" data-i="ftPortal">Portal do cliente</a></li>
-      </ul>
+    <div class="ft-cell">
+      <b>RESPOSTA</b>
+      em 24h úteis
     </div>
-  </div>
-  <div class="ft-bottom">
-    <span>© 2026 Diernus, Lda. · <span data-i="ftCopy">Todos os direitos reservados</span></span>
-    <span><b>DIERNUS</b> · <span data-i="ftTag">DESENHADO AO MILÍMETRO</span></span>
+    <div class="ft-cell cta">
+      <span>INSTAGRAM</span>
+      <a href="https://instagram.com/diernus.studio" target="_blank" rel="noopener" style="color:inherit;display:inline-flex;align-items:center;gap:.4rem">
+        @diernus.studio
+        <svg viewBox="0 0 14 14"><path d="M3 11 L11 3 M5 3 L11 3 L11 9"/></svg>
+      </a>
+    </div>
   </div>
 </footer>
 
 <script>
-(function(){
-"use strict";
+  // === API endpoint (read from meta tag — change one line at cutover) ===
+  var API_BASE = (document.querySelector('meta[name="api-base"]') || {}).content || '';
 
-/* ==================================================================
-   0 · i18n — same pattern & storage key as index.html
-================================================================== */
-var dict = {
-  pt: {
-    heroEyebrow:"DIERNUS · ESTÚDIO DE DESENHO DE MOBILIÁRIO",
-    heroH1:"DESENHO TÉCNICO<br>PARA MOBILIÁRIO<br>POR MEDIDA",
-    heroSub:'Desenvolvimento de documentação técnica para validação do projeto e apoio à produção de peças por medida.',
-    chip01:"DESENHO TÉCNICO", chip02:"ESBOÇOS", chip03:"MOODBOARDS",
-    cue:"SCROLL PARA COMEÇAR",
-    capLbl:"CAPÍTULO", skLbl:"ESBOÇO",
-    c1t:"EXPLORAÇÃO CONCEPTUAL",
-    c1p:"Os esboços permitem explorar ideias, proporções e detalhes a partir do briefing do cliente, servindo de base ao desenvolvimento do projeto quando a fase conceptual assim o exige.",
-    c2t:"MOODBOARDS DE APRESENTAÇÃO",
-    c2p:"Mediante necessidade do projeto, disponibilizamos apresentações visuais que reúnem mobiliário, materiais e referências, permitindo avaliar o ambiente antes da execução.",
-    c2Tag:"SERVIÇO COMPLEMENTAR",
-    c3t:"Desenhos que definem",
-    c3p:"A informação necessária para produção: dimensões, materiais/acabamento, listas de união de componentes, detalhes construtivos e notas de produção.",
-    chPiece:"CADEIRA", chSheet:"FOLHA DE DETALHE · ESC 1:5",
-    chBackrest:"ENCOSTO", chSeat:"ASSENTO", chSkirt:"SAIA", chLeg:"PERNA",
-    chMode2d:"DESENHO 2D", chMode3d:"MODELO 3D",
-    svgL1:"01 · ENCOSTO", svgL2:"02 · ASSENTO", svgL3:"03 · SAIA", svgL4:"04 · PERNA", svgDowel:"CAVILHA Ø8",
-    figD2:"DESENHO 2D", figD3:"MODELO 3D", figExplode:"VISTA EXPLODIDA", figHint:"ARRASTE PARA RODAR",
-    g_sk1:"VITRINE · CONCEITO 12", g_sk2:"CAMA · CONCEITO",
-    hook1:"Tens uma peça na cabeça? Nós pomo-la no papel.",
-    hook2:"O teu espaço podia estar neste carrossel.",
-    hookBtn:"Falar com o estúdio →", barCta:"FALAR CONNOSCO",
-    g_m1:"SALA DE ESTAR · I", g_m2:"SALA DE ESTAR · II", g_m3:"QUARTO PRINCIPAL · I", g_m4:"QUARTO PRINCIPAL · II",
-    g_m5:"QUARTO DE CRIANÇA", g_m6:"ESCRITÓRIO · I", g_m7:"ESCRITÓRIO · II", g_m8:"ESCRITÓRIO · III",
-    ctaKicker:"CONTACTO · RESPOSTA EM 24H ÚTEIS", ctaTitle:"Vamos falar do teu <em>próximo</em> projeto.",
-    ctaLede:"Partilha connosco a informação do teu projeto. A partir da documentação fornecida, desenvolvemos uma solução técnica ajustada às necessidades de cada projeto.",
-    ctaFormT:"Enviar mensagem", ctaFormSub:"Três campos. Sem linha de assunto, sem número de cliente.",
-    ctaLblName:"Nome", ctaLblEmail:"Email", ctaLblMsg:"Mensagem",
-    ctaPhName:"Como te chamamos?", ctaPhEmail:"nome@empresa.pt", ctaPhMsg:"Conta-nos o que precisas…",
-    ctaSubmit:"Enviar mensagem →", ctaSending:"A enviar…",
-    ctaMicro:"Ao enviar, concordas com a nossa política de privacidade. Não partilhamos os teus dados.",
-    ctaOk:"<b>Obrigado.</b> Recebemos a tua mensagem e respondemos dentro de 24h úteis. Podes fechar esta janela.",
-    ctaFail:"<b>Não conseguimos enviar agora.</b> Tenta de novo, ou escreve directamente para <a href='mailto:estudio@diernus.com'>estudio@diernus.com</a>.",
-    ctaRetry:"TENTAR OUTRA VEZ",
-    ctaCaveat:"olá, vamos falar",
-    ftH:"Diernus",
-    ftBrand:"Estúdio de desenho de mobiliário por medida. Da ideia à peça montada, em Portugal.",
-    ftLegal:"Legal", ftContact:"Contacto",
-    ftL1:"Privacidade", ftL2:"Termos e condições", ftL3:"Cookies", ftL4:"Aviso legal",
-    ftCta:"Formulário de contacto", ftPortal:"Portal do cliente",
-    ftLocation:"Gandra, Portugal",
-    ftCopy:"Todos os direitos reservados",
-    ftTag:"DESENHADO AO MILÍMETRO",
-  },
-  en: {
-    heroEyebrow:"DIERNUS · FURNITURE DRAWING STUDIO",
-    heroH1:"TECHNICAL DRAWING<br>FOR BESPOKE<br>FURNITURE",
-    heroSub:'Development of technical documentation for project validation and production support of custom-made pieces.',
-    chip01:"TECHNICAL DRAWING", chip02:"SKETCHES", chip03:"MOODBOARDS",
-    cue:"SCROLL TO START",
-    capLbl:"CHAPTER", skLbl:"SKETCH",
-    c1t:"CONCEPTUAL EXPLORATION",
-    c1p:"Sketches let us explore ideas, proportions and details from the client's brief, providing the foundation for project development whenever the conceptual phase calls for it.",
-    c2t:"PRESENTATION MOODBOARDS",
-    c2p:"When the project calls for it, we deliver visual presentations that bring together furniture, materials and references — letting you evaluate the space before execution.",
-    c2Tag:"COMPLEMENTARY SERVICE",
-    c3t:"Drawings that define",
-    c3p:"The information needed for production: dimensions, materials/finish, component joint lists, construction details and production notes.",
-    chPiece:"CHAIR", chSheet:"DETAIL SHEET · SCALE 1:5",
-    chBackrest:"BACKREST", chSeat:"SEAT", chSkirt:"SKIRT", chLeg:"LEG",
-    chMode2d:"2D DRAWING", chMode3d:"3D MODEL",
-    svgL1:"01 · BACKREST", svgL2:"02 · SEAT", svgL3:"03 · APRON", svgL4:"04 · LEG", svgDowel:"DOWEL Ø8",
-    figD2:"2D DRAWING", figD3:"3D MODEL", figExplode:"EXPLODED VIEW", figHint:"DRAG TO ROTATE",
-    g_sk1:"DISPLAY CASE · CONCEPT 12", g_sk2:"BED · CONCEPT",
-    hook1:"Got a piece in your head? We'll put it on paper.",
-    hook2:"Your space could be on this reel.",
-    hookBtn:"Talk to the studio →", barCta:"TALK TO US",
-    g_m1:"LIVING ROOM · I", g_m2:"LIVING ROOM · II", g_m3:"MAIN BEDROOM · I", g_m4:"MAIN BEDROOM · II",
-    g_m5:"KIDS' ROOM", g_m6:"HOME OFFICE · I", g_m7:"HOME OFFICE · II", g_m8:"HOME OFFICE · III",
-    ctaKicker:"GET IN TOUCH · 24H REPLY", ctaTitle:"Let's talk about your <em>next</em> project.",
-    ctaLede:"Share your project information with us. Based on the documentation you provide, we develop a technical solution tailored to each project's needs.",
-    ctaStatus:"We read everything · reply by email",
-    ctaFormT:"Send a message", ctaFormSub:"Three fields. No subject line, no customer number.",
-    ctaLblName:"Name", ctaLblEmail:"Email", ctaLblMsg:"Message",
-    ctaPhName:"What should we call you?", ctaPhEmail:"name@company.com", ctaPhMsg:"Tell us what you need…",
-    ctaSubmit:"Send message →", ctaSending:"Sending…",
-    ctaMicro:"By sending, you agree to our privacy policy. We never share your data.",
-    ctaOk:"<b>Thanks.</b> We got your message and reply within 24h business hours. You can close this tab.",
-    ctaFail:"<b>Something went wrong.</b> Try again, or email us directly at <a href='mailto:estudio@diernus.com'>estudio@diernus.com</a>.",
-    ctaRetry:"TRY AGAIN",
-    ctaCaveat:"hello, let's talk",
-    ftH:"Diernus",
-    ftBrand:"Bespoke furniture design studio. From idea to finished piece, in Portugal.",
-    ftLegal:"Legal", ftContact:"Contact",
-    ftL1:"Privacy", ftL2:"Terms and conditions", ftL3:"Cookies", ftL4:"Legal notice",
-    ftCta:"Contact form", ftPortal:"Client portal",
-    ftLocation:"Gandra, Portugal",
-    ftCopy:"All rights reserved",
-    ftTag:"DRAWN TO THE MILLIMETRE",
-  }
-};
-var lang = "pt";
-try { lang = localStorage.getItem("diernus-lang") || "pt"; } catch(e){}
-if (!dict[lang]) lang = "pt";
-
-function applyLang(){
-  document.documentElement.lang = lang;
-  var d = dict[lang];
-  document.querySelectorAll("[data-i]").forEach(function(el){
-    var k = el.getAttribute("data-i");
-    if (d[k] != null) el.innerHTML = d[k];
-  });
-  document.querySelectorAll("[data-i-ph]").forEach(function(el){
-    var k = el.getAttribute("data-i-ph");
-    if (d[k] != null) el.setAttribute("placeholder", d[k]);
-  });
-  document.querySelectorAll(".bar .lang button").forEach(function(b){
-    b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
-  });
-  refreshLabels();
-  lastPhase = -1; /* force HUD re-render */
-}
-document.querySelectorAll(".bar .lang button").forEach(function(b){
-  b.addEventListener("click", function(){
-    lang = b.dataset.lang;
-    try { localStorage.setItem("diernus-lang", lang); } catch(e){}
-    applyLang();
-  });
-});
-
-/* ==================================================================
-   0.5 · Chair viewer (cap 03) — ported from index.html
-   SVG 2D front-elevation + CSS 3D scene with drag-rotate + explode
-================================================================== */
-(function(){
-  var stage      = document.getElementById("chairStage");
-  var scene      = document.getElementById("chairScene");
-  var chair      = document.getElementById("chairObj");
-  var btn2d      = document.getElementById("chairBtn2d");
-  var btn3d      = document.getElementById("chairBtn3d");
-  var btnExplode = document.getElementById("chairExplode");
-  var btnSpin    = document.getElementById("chairSpin");
-  var figHint    = document.getElementById("chairHint");
-  if (!stage || !chair) return;
-
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* [w,h,d, x,y,z, explodeX,explodeY,explodeZ] — chair in mm-ish px, y down */
-  var PARTS = [
-    [170, 60, 14,    0,-118, -93,    0, -70, -40],  /* backrest */
-    [ 16,150, 16,  -93, -75, -93,  -34, -26, -26],  /* back posts */
-    [ 16,150, 16,   93, -75, -93,   34, -26, -26],
-    [220, 14,200,    0,   7,   0,    0,   0,   0],  /* seat */
-    [180, 24, 12,    0,  34,  80,    0,  34,  48],  /* aprons */
-    [180, 24, 12,    0,  34, -80,    0,  34, -48],
-    [ 12, 24,160,  -84,  34,   0,  -46,  34,   0],
-    [ 12, 24,160,   84,  34,   0,   46,  34,   0],
-    [ 16,168, 16,  -93,  98,  93,  -30,  70,  30],  /* legs */
-    [ 16,168, 16,   93,  98,  93,   30,  70,  30],
-    [ 16,168, 16,  -93,  98, -93,  -30,  70, -30],
-    [ 16,168, 16,   93,  98, -93,   30,  70, -30],
-    [ 12, 12,150,  -93, 140,   0,  -60,  96,   0],  /* stretchers */
-    [ 12, 12,150,   93, 140,   0,   60,  96,   0],
-    [174, 12, 12,    0, 152,   0,    0, 116,   0]
-  ];
-  var FACE_BG = {
-    top:    "var(--wood-top)",
-    bottom: "var(--wood-bottom)",
-    front:  "var(--wood-front)",
-    back:   "var(--wood-front)",
-    left:   "var(--wood-side)",
-    right:  "var(--wood-side)"
-  };
-
-  function face(w, h, t, bg){
-    var f = document.createElement("div");
-    f.className = "face";
-    f.style.width  = w + "px";
-    f.style.height = h + "px";
-    f.style.transform = t;
-    f.style.background = bg;
-    return f;
-  }
-  function cuboid(p){
-    var w=p[0], h=p[1], d=p[2], x=p[3], y=p[4], z=p[5], ex=p[6], ey=p[7], ez=p[8];
-    var el = document.createElement("div");
-    el.className = "part";
-    el.style.transform =
-      "translate3d(" +
-        "calc(" + x + "px + var(--ex,0)*" + ex + "px)," +
-        "calc(" + y + "px + var(--ex,0)*" + ey + "px)," +
-        "calc(" + z + "px + var(--ex,0)*" + ez + "px))";
-    var C = "translate(-50%,-50%) ";
-    el.appendChild(face(w, h, C + "translateZ(" +  d/2 + "px)", FACE_BG.front));
-    el.appendChild(face(w, h, C + "rotateY(180deg) translateZ(" +  d/2 + "px)", FACE_BG.back));
-    el.appendChild(face(d, h, C + "rotateY(90deg)  translateZ(" +  w/2 + "px)", FACE_BG.right));
-    el.appendChild(face(d, h, C + "rotateY(-90deg) translateZ(" +  w/2 + "px)", FACE_BG.left));
-    el.appendChild(face(w, d, C + "rotateX(90deg)  translateZ(" +  h/2 + "px)", FACE_BG.top));
-    el.appendChild(face(w, d, C + "rotateX(-90deg) translateZ(" +  h/2 + "px)", FACE_BG.bottom));
-    return el;
-  }
-
-  var built = false, mode3d = false, exploded = false;
-  var rx = 16, ry = -28, autoSpin = false, dragging = false, rafId = null;
-  // The chair is static by default in its 3/4 view. The ↻ button starts a
-  // timed tour that does exactly one full 360° rotation and returns to
-  // the start angle — so the chair always lands back on the flattering
-  // 3/4 view, never stuck at the back.
-  var SPIN_TOUR_MS   = 12000;  // 12 seconds for one full rotation (gentle)
-  var SPIN_TOUR_DEG  = 360;    // always a full revolution
-  var spinStartTime  = 0;
-  var spinStartAngle = 0;
-
-  function render(){
-    chair.style.setProperty("--rx", rx.toFixed(2) + "deg");
-    chair.style.setProperty("--ry", ry.toFixed(2) + "deg");
-  }
-  function loop(now){
-    if (!mode3d) { rafId = null; return; }
-    if (autoSpin && !dragging && !reduceMotion) {
-      var elapsed = now - spinStartTime;
-      var t = Math.min(1, elapsed / SPIN_TOUR_MS);
-      ry = spinStartAngle + SPIN_TOUR_DEG * t;
-      render();
-      if (t >= 1) {
-        autoSpin = false;
-        ry = spinStartAngle;  // ensure clean 360° snap to start
-        render();
-        btnSpin.classList.remove("spinning");
-      }
-    }
-    rafId = requestAnimationFrame(loop);
-  }
-  function build(){
-    /* avoid double-build if user toggles back to 2D then to 3D again */
-    if (built) return;
-    PARTS.forEach(function(p){ chair.appendChild(cuboid(p)); });
-    built = true;
-  }
-  function setExploded(on){
-    exploded = on;
-    chair.style.setProperty("--ex", on ? 1 : 0);
-    btnExplode.setAttribute("aria-pressed", String(on));
-  }
-  function setMode(m3){
-    mode3d = m3;
-    if (m3) {
-      build();
-      if (!reduceMotion) {
-        /* assembly moment: parts fly in from exploded positions */
-        chair.style.setProperty("--ex", 1);
-        void chair.offsetWidth;
-        requestAnimationFrame(function(){ chair.style.setProperty("--ex", 0); });
-      }
-      /* Chair stays in the 3/4 view by default — no auto-spin on entry.
-         The user starts a tour manually with the ↻ button. */
-      autoSpin = false;
-      btnSpin.classList.remove("spinning");
-    } else {
-      autoSpin = false;
-      btnSpin.classList.remove("spinning");
-    }
-    stage.classList.toggle("mode3d", m3);
-    scene.classList.toggle("on", m3);
-    btn2d.setAttribute("aria-pressed", String(!m3));
-    btn3d.setAttribute("aria-pressed", String(m3));
-    btnExplode.hidden = !m3;
-    btnSpin.hidden    = !m3;
-    figHint.hidden   = !m3;
-    render();
-    if (m3 && rafId === null) rafId = requestAnimationFrame(loop);
-  }
-
-  btn2d.addEventListener("click", function(){ setMode(false); });
-  btn3d.addEventListener("click", function(){ setMode(true); });
-  btnExplode.addEventListener("click", function(){ setExploded(!exploded); });
-  btnSpin.addEventListener("click", function(){
-    if (!mode3d) return;
-    /* Start a 12-second full rotation from the current angle. After
-       360° the chair snaps back to exactly where it started — so the
-       3/4 view is always preserved as the resting state. */
-    autoSpin = true;
-    spinStartTime  = performance.now();
-    spinStartAngle = ry;
-    btnSpin.classList.add("spinning");
-    if (rafId === null) rafId = requestAnimationFrame(loop);
-  });
-
-  /* drag-to-rotate */
-  var px = 0, py = 0;
-  scene.addEventListener("pointerdown", function(e){
-    dragging = true; autoSpin = false;
-    btnSpin.classList.remove("spinning");
-    px = e.clientX; py = e.clientY;
-    try { scene.setPointerCapture(e.pointerId); } catch(_){}
-  });
-  scene.addEventListener("pointermove", function(e){
-    if (!dragging) return;
-    ry += (e.clientX - px) * 0.4;
-    rx = Math.min(55, Math.max(-8, rx - (e.clientY - py) * 0.3));
-    px = e.clientX; py = e.clientY;
-    render();
-  });
-  ["pointerup","pointercancel"].forEach(function(ev){
-    scene.addEventListener(ev, function(){ dragging = false; });
-  });
-
-  setMode(false);
-  /* honour ?fig=3d from URL, same as index.html */
-  try {
-    if (new URLSearchParams(location.search).get("fig") === "3d") setMode(true);
-  } catch(e){}
-})();
-
-/* ==================================================================
-   4 · Hero draw-in, reveals, counters
-================================================================== */
-requestAnimationFrame(function(){ document.getElementById("hero").classList.add("ready"); });
-
-var rvs = document.querySelectorAll(".rv");
-if ("IntersectionObserver" in window){
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
-    });
-  }, {threshold:.12});
-  rvs.forEach(function(el2){ io.observe(el2); });
-} else rvs.forEach(function(el2){ el2.classList.add("in"); });
-
-applyLang();
-refreshLabels();
-window.addEventListener("load", refreshLabels); /* re-measure once webfonts are in */
-render(0);
-
-/* debug/test hook: force a build state synchronously */
-window.__lse = {
-  render: function(p){ window.__lse.frozen = true; target = p; current = p; render(p); },
-  setP: function(p){
-    var y = wrap.offsetTop + p * (wrap.offsetHeight - window.innerHeight);
-    window.scrollTo({top:y, behavior:"instant"});
-    target = p; current = p; render(p);
-  }
-};
-
-/* ==================================================================
-   5 · Contact form — POSTs to the portal worker, swaps to a
-   success state in place. Validation runs on blur + submit; the
-   server is the source of truth so we always trust its 200.
-================================================================== */
-(function(){
-  var form   = document.getElementById("ctaForm");
-  if (!form) return;
-  var fb     = document.getElementById("ctaFeedback");
-  var submit = form.querySelector(".cta-submit");
-  var label  = form.querySelector(".cta-submit-label");
-  var fName    = form.querySelector("#cf-name");
-  var fEmail   = form.querySelector("#cf-email");
-  var fMsg     = form.querySelector("#cf-msg");
-  var eName    = form.querySelector("#cf-name-err");
-  var eEmail   = form.querySelector("#cf-email-err");
-  var eMsg     = form.querySelector("#cf-msg-err");
-  var EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var ERR_EMPTY = {pt:"Preenche este campo.", en:"Please fill this in."};
-  var ERR_EMAIL = {pt:"Email inválido.", en:"Invalid email."};
-  var ERR_SHORT = {pt:"Conta-nos um pouco mais — pelo menos 10 caracteres.", en:"Tell us a bit more — at least 10 characters."};
-  function showErr(el, msg){
-    el.textContent = msg;
-    el.hidden = !msg;
-  }
-  function validateField(f, errEl, opts){
-    var v = f.value.trim();
-    var msg = "";
-    if (opts.required && !v) msg = ERR_EMPTY[lang] || ERR_EMPTY.pt;
-    else if (opts.type === "email" && v && !EMAIL_RX.test(v)) msg = ERR_EMAIL[lang] || ERR_EMAIL.pt;
-    else if (opts.min && v && v.length < opts.min) msg = ERR_SHORT[lang] || ERR_SHORT.pt;
-    f.setAttribute("aria-invalid", msg ? "true" : "false");
-    showErr(errEl, msg);
-    return !msg;
-  }
-  function validateAll(){
-    var ok = true;
-    if (!validateField(fName,  eName,  {required:false, type:"text"}))  ok = false;
-    if (!validateField(fEmail, eEmail, {required:true,  type:"email"})) ok = false;
-    if (!validateField(fMsg,   eMsg,   {required:true,  type:"text", min:10})) ok = false;
-    return ok;
-  }
-  [fName, fEmail, fMsg].forEach(function(f){
-    f.addEventListener("blur",  function(){ if (f.value.trim()) validateField(f, form.querySelector("#" + f.id + "-err"), {required: f.required, type: f.type, min: f === fMsg ? 10 : 0}); });
-    f.addEventListener("input", function(){
-      if (f.getAttribute("aria-invalid") === "true") validateField(f, form.querySelector("#" + f.id + "-err"), {required: f.required, type: f.type, min: f === fMsg ? 10 : 0});
-    });
-  });
-  function setSending(on){
-    submit.disabled = on;
-    submit.classList.toggle("is-loading", on);
-    label.textContent = on ? (dict[lang].ctaSending || "A enviar…") : (dict[lang].ctaSubmit || "Enviar mensagem →");
-  }
-  form.addEventListener("submit", function(ev){
-    ev.preventDefault();
-    if (!validateAll()){
-      var first = form.querySelector('[aria-invalid="true"]');
-      if (first) first.focus();
+  // === Reveal on scroll ===
+  (function(){
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
       return;
     }
-    fb.hidden = true;
-    setSending(true);
-    var endpoint = "https://diernus-portal-api.diernus.com";
-    var payload  = {
-      name:    fName.value.trim(),
-      email:   fEmail.value.trim(),
-      message: fMsg.value.trim(),
-      source:  "diernus.com"
-    };
-    fetch(endpoint + "/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-    .then(function(r){
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.json().catch(function(){ return {ok:true}; });
-    })
-    .then(function(){
-      form.classList.add("is-sent");
-      fb.className = "cta-feedback success";
-      fb.innerHTML = dict[lang].ctaOk || "Obrigado. Recebemos a sua mensagem.";
-      fb.hidden = false;
-    })
-    .catch(function(){
-      setSending(false);
-      fb.className = "cta-feedback error";
-      fb.innerHTML = (dict[lang].ctaFail || "Não conseguimos enviar agora.") +
-        "<br><button type=\"button\" id=\"ctaRetryBtn\">" + (dict[lang].ctaRetry || "TENTAR OUTRA VEZ") + "</button>";
-      fb.hidden = false;
-      var btn = document.getElementById("ctaRetryBtn");
-      if (btn) btn.addEventListener("click", function(){
-        fb.hidden = true;
-        fMsg.focus();
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  })();
+
+  // === Lang switcher (visual only for now) ===
+  document.querySelectorAll('.bar .lang button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.bar .lang button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed','true');
     });
   });
-})();
-})();
+
+  // === Contact form — POSTs to the portal worker, swaps to success in place ===
+  (function(){
+    var form   = document.getElementById('ctaForm');
+    if (!form) return;
+    var fb     = document.getElementById('ctaFeedback');
+    var submit = form.querySelector('.cta-submit');
+    var label  = form.querySelector('.cta-submit-label');
+    var fName  = form.querySelector('#cf-name');
+    var fEmail = form.querySelector('#cf-email');
+    var fMsg   = form.querySelector('#cf-msg');
+    var eName  = form.querySelector('#cf-name-err');
+    var eEmail = form.querySelector('#cf-email-err');
+    var eMsg   = form.querySelector('#cf-msg-err');
+    var EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var ERR_EMPTY = 'Preenche este campo.';
+    var ERR_EMAIL = 'Email inválido.';
+    var ERR_SHORT = 'Conta-nos um pouco mais — pelo menos 10 caracteres.';
+    function showErr(el, msg){ el.textContent = msg; el.hidden = !msg; }
+    function validateField(f, errEl, opts){
+      var v = f.value.trim();
+      var msg = '';
+      if (opts.required && !v) msg = ERR_EMPTY;
+      else if (opts.type === 'email' && v && !EMAIL_RX.test(v)) msg = ERR_EMAIL;
+      else if (opts.min && v && v.length < opts.min) msg = ERR_SHORT;
+      f.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      showErr(errEl, msg);
+      return !msg;
+    }
+    function validateAll(){
+      var ok = true;
+      if (!validateField(fName,  eName,  {required:false, type:'text'})) ok = false;
+      if (!validateField(fEmail, eEmail, {required:true,  type:'email'})) ok = false;
+      if (!validateField(fMsg,   eMsg,   {required:true,  type:'text', min:10})) ok = false;
+      return ok;
+    }
+    [fName, fEmail, fMsg].forEach(function(f){
+      var opts = {required: f.required, type: f.type, min: f === fMsg ? 10 : 0};
+      var errEl = form.querySelector('#' + f.id + '-err');
+      f.addEventListener('blur',  function(){ if (f.value.trim()) validateField(f, errEl, opts); });
+      f.addEventListener('input', function(){
+        if (f.getAttribute('aria-invalid') === 'true') validateField(f, errEl, opts);
+      });
+    });
+    function setSending(on){
+      submit.disabled = on;
+      submit.classList.toggle('is-loading', on);
+      label.textContent = on ? 'A enviar…' : 'Enviar mensagem →';
+    }
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if (!validateAll()){
+        var first = form.querySelector('[aria-invalid="true"]');
+        if (first) first.focus();
+        return;
+      }
+      fb.hidden = true;
+      setSending(true);
+      var payload = {
+        name:    fName.value.trim(),
+        email:   fEmail.value.trim(),
+        message: fMsg.value.trim(),
+        source:  'diernus.com'
+      };
+      fetch(API_BASE + '/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(r){
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json().catch(function(){ return {ok:true}; });
+      })
+      .then(function(){
+        form.classList.add('is-sent');
+        fb.className = 'cta-feedback success';
+        fb.innerHTML = 'Obrigado. Recebemos a sua mensagem — respondemos dentro de 24h úteis.';
+        fb.hidden = false;
+      })
+      .catch(function(){
+        setSending(false);
+        fb.className = 'cta-feedback error';
+        fb.innerHTML = 'Não conseguimos enviar agora.' +
+          '<br><button type="button" id="ctaRetryBtn">TENTAR OUTRA VEZ</button>';
+        fb.hidden = false;
+        var btn = document.getElementById('ctaRetryBtn');
+        if (btn) btn.addEventListener('click', function(){
+          fb.hidden = true;
+          fMsg.focus();
+        });
+      });
+    });
+  })();
 </script>
+
 </body>
 </html>
