@@ -78,14 +78,18 @@
     .cue svg path{stroke:var(--cobalt);stroke-width:2;fill:none;animation:cue 1.6s ease-in-out infinite}
     @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(6px);opacity:.4}}
 
-    /* === How we work (right of row 1) === */
-    .timeline{position:relative;display:flex;flex-direction:column;gap:1.6rem;margin-top:1.2rem}
-    .step{display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:start}
-    .step .num{width:34px;height:34px;border-radius:50%;border:1px solid var(--cobalt);color:var(--cobalt);font-family:var(--mono);font-size:.72rem;display:inline-flex;align-items:center;justify-content:center;font-weight:500;background:var(--bone);position:relative;z-index:1}
+    /* === How we work (right of row 1) — fills the right column to match the hero === */
+    #como-trabalhamos{display:flex;flex-direction:column;min-height:0}
+    .timeline{position:relative;display:grid;grid-template-rows:repeat(5,1fr);
+      flex:1;margin-top:1.2rem;padding-left:0}
+    /* Single vertical line behind the 5 numbered circles, spans from
+       center-of-first-num to center-of-last-num */
+    .timeline::before{content:"";position:absolute;left:17px;top:17px;bottom:17px;width:1px;background:var(--graphite-15);z-index:0}
+    .step{display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:center;min-height:0}
+    .step .num{width:34px;height:34px;border-radius:50%;border:1px solid var(--cobalt);color:var(--cobalt);font-family:var(--mono);font-size:.72rem;display:inline-flex;align-items:center;justify-content:center;font-weight:500;background:var(--bone);position:relative;z-index:1;flex:none}
     .step .body{padding-top:.25rem}
     .step h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;color:var(--graphite);text-transform:uppercase;font-weight:600;margin-bottom:.4rem}
     .step p{font-size:.96rem;line-height:1.5;color:var(--graphite-60)}
-    .step + .step .num::before{content:"";position:absolute;left:50%;top:-1.6rem;height:1.6rem;width:1px;background:var(--graphite-15);transform:translateX(-50%)}
 
     /* === What we deliver (left of row 2) === */
     .deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--graphite-15);border:1px solid var(--graphite-15);margin-top:1.8rem}
