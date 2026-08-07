@@ -121,17 +121,19 @@
     @media (max-width:720px){.audience{grid-template-columns:1fr}}
 
     /* === Portal do cliente (between row 3 and dark CTA) === */
-    .portal-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2.4rem,5vw,4.5rem);align-items:center}
-    @media (max-width:860px){.portal-grid{grid-template-columns:1fr;gap:2.4rem}}
-    .portal-list{margin:1.8rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.85rem;max-width:34em}
+    .portal-inner{display:flex;flex-direction:column;gap:clamp(2.4rem,4vw,3.5rem);grid-column:1 / -1}
+    .portal-head{max-width:52em;margin:0 auto;width:100%;text-align:center}
+    .portal-head h2{margin:0 auto}
+    .portal-head .lede{margin:1.2rem auto 0;max-width:36em}
+    .portal-head .portal-list{margin:1.8rem auto 0;text-align:left;max-width:36em}
+    .portal-head .portal-cta{margin:1.8rem auto 0}
+    .portal-list{padding:0;list-style:none;display:flex;flex-direction:column;gap:.85rem;max-width:36em}
     .portal-list li{display:flex;align-items:flex-start;gap:.8rem;font-size:1rem;line-height:1.5;color:var(--graphite)}
     .portal-list svg{width:20px;height:20px;color:var(--cobalt);stroke-width:1.6;flex-shrink:0;margin-top:.18rem}
-    .portal-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.2rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--cobalt);padding:.85rem 1.3rem;border-radius:999px;min-height:44px;border:0;transition:background .2s}
+    .portal-cta{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--cobalt);padding:.85rem 1.3rem;border-radius:999px;min-height:44px;border:0;transition:background .2s}
     .portal-cta:hover{background:#3a58e0}
     .portal-cta svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
-    .portal-mockup{position:relative;display:flex;align-items:center;justify-content:center}
-    .portal-mockup svg{width:100%;max-width:520px;height:auto;display:block}
-    .portal-features{grid-column:1 / -1;padding-top:clamp(2rem,4vw,3rem);margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--graphite-15)}
+    .portal-features{padding-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--graphite-15)}
     .portal-features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--graphite-15);border:1px solid var(--graphite-15);margin-top:1.4rem}
     .portal-features-grid > div{background:var(--bone);padding:1.4rem 1rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.7rem;text-align:center;min-height:120px}
     .portal-features-grid svg{width:38px;height:38px;color:var(--graphite);stroke-width:1.5;fill:none;stroke:currentColor}
@@ -521,8 +523,8 @@
 
 <!-- ===================== PORTAL DO CLIENTE ===================== -->
 <section class="row2" id="portal">
-  <div class="portal-grid">
-    <div>
+  <div class="portal-inner">
+    <div class="portal-head rv">
       <p class="kicker rv">PORTAL DO CLIENTE</p>
       <h2 class="rv">O TEU PROJETO,<br>SEMPRE ACESSÍVEL.</h2>
       <p class="lede rv">Todos os clientes Diernus têm acesso a um portal dedicado onde podem acompanhar o progresso do seu projeto em qualquer momento — onde quer que estejam.</p>
@@ -536,125 +538,16 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
-    <div class="portal-mockup rv">
-      <svg viewBox="0 0 480 300" role="img" aria-label="Mockup do portal do cliente: quadro kanban com três colunas (A fazer, Em progresso, Concluído)">
-        <!-- Browser frame -->
-        <rect x="0" y="0" width="480" height="300" rx="8" fill="#FFFFFF" stroke="#E4E0D6" stroke-width="1"/>
-        <!-- Browser top bar -->
-        <path d="M0 8 A8 8 0 0 1 8 0 H472 A8 8 0 0 1 480 8 V28 H0 Z" fill="#F4F1EA"/>
-        <line x1="0" y1="28" x2="480" y2="28" stroke="#E4E0D6" stroke-width="1"/>
-        <!-- Traffic lights (Diernus brand) -->
-        <circle cx="16" cy="14" r="4" fill="#E69658"/>
-        <circle cx="30" cy="14" r="4" fill="#B3232E"/>
-        <circle cx="44" cy="14" r="4" fill="#A98250"/>
-        <!-- URL bar -->
-        <rect x="74" y="6" width="332" height="16" rx="3" fill="#FFFFFF" stroke="#E4E0D6"/>
-        <text x="84" y="17" font-family="JetBrains Mono, monospace" font-size="9" fill="#23211C">portal.diernus.com/board</text>
-        <!-- Sidebar -->
-        <rect x="0" y="28" width="116" height="272" fill="#12235B"/>
-        <text x="14" y="50" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#EDEAE3">DIERNUS</text>
-        <line x1="14" y1="58" x2="102" y2="58" stroke="#2C49C7" stroke-width="1" opacity="0.4"/>
-        <text x="14" y="76" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7A8AC0">PROJETOS</text>
-        <text x="14" y="94" font-family="Figtree, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">Mesa Operária</text>
-        <text x="14" y="110" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Cadeira L-SE-01</text>
-        <text x="14" y="126" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Armário Roupeiro</text>
-        <text x="14" y="142" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Estante Sala</text>
-        <text x="14" y="170" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7A8AC0">EQUIPA</text>
-        <text x="14" y="188" font-family="Figtree, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">Andre</text>
-        <text x="14" y="204" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Natalina</text>
-        <text x="14" y="220" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Miguel</text>
-        <text x="14" y="248" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7A8AC0">FICHEIROS</text>
-        <text x="14" y="266" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">12 documentos</text>
-        <text x="14" y="282" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">3 modelos</text>
-        <!-- Main area background -->
-        <rect x="116" y="28" width="364" height="272" fill="#FFFFFF"/>
-        <!-- Project title -->
-        <text x="132" y="52" font-family="Figtree, sans-serif" font-size="12" font-weight="800" fill="#23211C" letter-spacing="0.3">MESA OPERÁRIA</text>
-        <text x="248" y="52" font-family="JetBrains Mono, monospace" font-size="9" fill="#7A7A7A">· Quadro Geral</text>
-        <!-- Status pills next to title -->
-        <rect x="356" y="40" width="58" height="16" rx="8" fill="#E4E0D6"/>
-        <text x="385" y="51" font-family="JetBrains Mono, monospace" font-size="7" fill="#23211C" text-anchor="middle" letter-spacing="1">EM CURSO</text>
-        <text x="424" y="51" font-family="JetBrains Mono, monospace" font-size="7" fill="#2C49C7" text-anchor="middle" letter-spacing="1">8 CARTÕES</text>
-        <!-- Column headers -->
-        <text x="132" y="80" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#2C49C7">A FAZER</text>
-        <text x="132" y="92" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">3</text>
-        <text x="258" y="80" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#2C49C7">EM PROGRESSO</text>
-        <text x="258" y="92" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">2</text>
-        <text x="384" y="80" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#2C49C7">CONCLUÍDO</text>
-        <text x="384" y="92" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">3</text>
-        <line x1="250" y1="70" x2="250" y2="290" stroke="#E4E0D6" stroke-width="1"/>
-        <line x1="376" y1="70" x2="376" y2="290" stroke="#E4E0D6" stroke-width="1"/>
-        <!-- Cards in A FAZER -->
-        <g>
-          <rect x="132" y="100" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="132" y="100" width="3" height="56" fill="#2C49C7"/>
-          <text x="142" y="118" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Pormenores</text>
-          <text x="142" y="131" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">construtivos</text>
-          <text x="142" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">02/08 · 8h · Andre</text>
-        </g>
-        <g>
-          <rect x="132" y="164" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="132" y="164" width="3" height="56" fill="#2C49C7"/>
-          <text x="142" y="182" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Lista de</text>
-          <text x="142" y="195" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">componentes</text>
-          <text x="142" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">05/08 · 4h · Andre</text>
-        </g>
-        <g>
-          <rect x="132" y="228" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="132" y="228" width="3" height="56" fill="#2C49C7"/>
-          <text x="142" y="246" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Notas técnicas</text>
-          <text x="142" y="259" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">de produção</text>
-          <text x="142" y="276" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">07/08 · 2h</text>
-        </g>
-        <!-- Cards in EM PROGRESSO -->
-        <g>
-          <rect x="258" y="100" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="258" y="100" width="3" height="56" fill="#E69658"/>
-          <text x="268" y="118" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Cortes e</text>
-          <text x="268" y="131" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">secções</text>
-          <text x="268" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">01/08 · 12h · Miguel</text>
-        </g>
-        <g>
-          <rect x="258" y="164" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="258" y="164" width="3" height="56" fill="#E69658"/>
-          <text x="268" y="182" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Materiais e</text>
-          <text x="268" y="195" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">acabamentos</text>
-          <text x="268" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">04/08 · 6h · Andre</text>
-        </g>
-        <!-- Cards in CONCLUÍDO -->
-        <g>
-          <rect x="384" y="100" width="80" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="384" y="100" width="3" height="56" fill="#A98250"/>
-          <text x="394" y="118" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Alçados</text>
-          <text x="394" y="131" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">+ revisão</text>
-          <text x="394" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">28/07 · 6h</text>
-        </g>
-        <g>
-          <rect x="384" y="164" width="80" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="384" y="164" width="3" height="56" fill="#A98250"/>
-          <text x="394" y="182" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Plantas</text>
-          <text x="394" y="195" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">técnicas</text>
-          <text x="394" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">25/07 · 10h</text>
-        </g>
-        <g>
-          <rect x="384" y="228" width="80" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
-          <rect x="384" y="228" width="3" height="56" fill="#A98250"/>
-          <text x="394" y="246" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Medições</text>
-          <text x="394" y="259" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">+ briefing</text>
-          <text x="394" y="276" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">22/07 · 4h</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="portal-features rv">
-    <p class="kicker rv">O QUE ENCONTRA NO PORTAL</p>
-    <div class="portal-features-grid">
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v14"/><path d="M12 3v8"/><path d="M19 3v18"/></svg><span>QUADRO KANBAN</span></div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"/><path d="M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"/></svg><span>FICHEIROS</span></div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></svg><span>COMENTÁRIOS</span></div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg><span>REGISTO DE TEMPO</span></div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg><span>NOTIFICAÇÕES</span></div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg><span>HISTÓRICO</span></div>
+    <div class="portal-features rv">
+      <p class="kicker rv">O QUE ENCONTRA NO PORTAL</p>
+      <div class="portal-features-grid">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v14"/><path d="M12 3v8"/><path d="M19 3v18"/></svg><span>QUADRO KANBAN</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"/><path d="M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"/></svg><span>FICHEIROS</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></svg><span>COMENTÁRIOS</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg><span>REGISTO DE TEMPO</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg><span>NOTIFICAÇÕES</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg><span>HISTÓRICO</span></div>
+      </div>
     </div>
   </div>
 </section>
