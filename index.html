@@ -120,6 +120,18 @@
     .audience p{font-size:.85rem;line-height:1.4;margin-top:.4rem;opacity:.8}
     @media (max-width:720px){.audience{grid-template-columns:1fr}}
 
+    /* === Portal do cliente (between row 3 and dark CTA) === */
+    .portal-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2.4rem,5vw,4.5rem);align-items:center}
+    @media (max-width:860px){.portal-grid{grid-template-columns:1fr;gap:2.4rem}}
+    .portal-list{margin:1.8rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.85rem;max-width:34em}
+    .portal-list li{display:flex;align-items:flex-start;gap:.8rem;font-size:1rem;line-height:1.5;color:var(--graphite)}
+    .portal-list svg{width:20px;height:20px;color:var(--cobalt);stroke-width:1.6;flex-shrink:0;margin-top:.18rem}
+    .portal-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.2rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--cobalt);padding:.85rem 1.3rem;border-radius:999px;min-height:44px;border:0;transition:background .2s}
+    .portal-cta:hover{background:#3a58e0}
+    .portal-cta svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+    .portal-mockup{position:relative;display:flex;align-items:center;justify-content:center}
+    .portal-mockup svg{width:100%;max-width:520px;height:auto;display:block}
+
     /* === Dark CTA (form replaces chair drawing) === */
     .cta{background:var(--blueprint-2);color:var(--ink);padding:clamp(2.4rem,5vw,4rem) var(--pad);position:relative;overflow:hidden}
     .cta::before{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgba(230,150,88,.18),transparent 70%)}
@@ -496,6 +508,135 @@
       <a class="rv" href="mailto:geral@diernus.com?subject=Designer%20de%20Interiores%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>DESIGNERS DE INTERIORES</h3><p>Desenvolvemos todos os detalhes construtivos necessários.</p></div></a>
       <a class="rv" href="mailto:geral@diernus.com?subject=Fabricante%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>FABRICANTES</h3><p>Recebem documentação organizada, clara e consistente.</p></div></a>
       <a class="rv" href="mailto:geral@diernus.com?subject=Carpintaria%20-%20pedido%20de%20documenta%C3%A7%C3%A3o%20t%C3%A9cnica"><div><h3>CARPINTARIAS E OFICINAS</h3><p>Menos dúvidas. Menos erros. Mais rapidez na produção.</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PORTAL DO CLIENTE ===================== -->
+<section class="row2" id="portal">
+  <div class="portal-grid">
+    <div>
+      <p class="kicker rv">PORTAL DO CLIENTE</p>
+      <h2 class="rv">O TEU PROJETO,<br>SEMPRE ACESSÍVEL.</h2>
+      <p class="lede rv">Todos os clientes Diernus têm acesso a um portal dedicado onde podem acompanhar o progresso do seu projeto em qualquer momento — onde quer que estejam.</p>
+      <ul class="portal-list rv">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>Quadro geral com o estado de cada peça.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comentários diretos com a equipa.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg>Documentação técnica sempre disponível.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>Histórico organizado do projeto.</li>
+      </ul>
+      <a class="portal-cta rv" href="https://portal.diernus.com" target="_blank" rel="noopener">Aceda ao portal
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="portal-mockup rv">
+      <svg viewBox="0 0 480 300" role="img" aria-label="Mockup do portal do cliente: quadro kanban com três colunas (A fazer, Em progresso, Concluído)">
+        <!-- Browser frame -->
+        <rect x="0" y="0" width="480" height="300" rx="8" fill="#FFFFFF" stroke="#E4E0D6" stroke-width="1"/>
+        <!-- Browser top bar -->
+        <path d="M0 8 A8 8 0 0 1 8 0 H472 A8 8 0 0 1 480 8 V28 H0 Z" fill="#F4F1EA"/>
+        <line x1="0" y1="28" x2="480" y2="28" stroke="#E4E0D6" stroke-width="1"/>
+        <!-- Traffic lights (Diernus brand) -->
+        <circle cx="16" cy="14" r="4" fill="#E69658"/>
+        <circle cx="30" cy="14" r="4" fill="#B3232E"/>
+        <circle cx="44" cy="14" r="4" fill="#A98250"/>
+        <!-- URL bar -->
+        <rect x="74" y="6" width="332" height="16" rx="3" fill="#FFFFFF" stroke="#E4E0D6"/>
+        <text x="84" y="17" font-family="JetBrains Mono, monospace" font-size="9" fill="#23211C">portal.diernus.com/board</text>
+        <!-- Sidebar -->
+        <rect x="0" y="28" width="116" height="272" fill="#12235B"/>
+        <text x="14" y="50" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#EDEAE3">DIERNUS</text>
+        <line x1="14" y1="58" x2="102" y2="58" stroke="#2C49C7" stroke-width="1" opacity="0.4"/>
+        <text x="14" y="76" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7A8AC0">PROJETOS</text>
+        <text x="14" y="94" font-family="Figtree, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">Mesa Operária</text>
+        <text x="14" y="110" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Cadeira L-SE-01</text>
+        <text x="14" y="126" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Armário Roupeiro</text>
+        <text x="14" y="142" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Estante Sala</text>
+        <text x="14" y="170" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7A8AC0">EQUIPA</text>
+        <text x="14" y="188" font-family="Figtree, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF">Andre</text>
+        <text x="14" y="204" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Natalina</text>
+        <text x="14" y="220" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">Miguel</text>
+        <text x="14" y="248" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7A8AC0">FICHEIROS</text>
+        <text x="14" y="266" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">12 documentos</text>
+        <text x="14" y="282" font-family="Figtree, sans-serif" font-size="10" fill="#9DB1E5">3 modelos</text>
+        <!-- Main area background -->
+        <rect x="116" y="28" width="364" height="272" fill="#FFFFFF"/>
+        <!-- Project title -->
+        <text x="132" y="52" font-family="Figtree, sans-serif" font-size="12" font-weight="800" fill="#23211C" letter-spacing="0.3">MESA OPERÁRIA</text>
+        <text x="248" y="52" font-family="JetBrains Mono, monospace" font-size="9" fill="#7A7A7A">· Quadro Geral</text>
+        <!-- Status pills next to title -->
+        <rect x="356" y="40" width="58" height="16" rx="8" fill="#E4E0D6"/>
+        <text x="385" y="51" font-family="JetBrains Mono, monospace" font-size="7" fill="#23211C" text-anchor="middle" letter-spacing="1">EM CURSO</text>
+        <text x="424" y="51" font-family="JetBrains Mono, monospace" font-size="7" fill="#2C49C7" text-anchor="middle" letter-spacing="1">8 CARTÕES</text>
+        <!-- Column headers -->
+        <text x="132" y="80" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#2C49C7">A FAZER</text>
+        <text x="132" y="92" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">3</text>
+        <text x="258" y="80" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#2C49C7">EM PROGRESSO</text>
+        <text x="258" y="92" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">2</text>
+        <text x="384" y="80" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5" fill="#2C49C7">CONCLUÍDO</text>
+        <text x="384" y="92" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">3</text>
+        <line x1="250" y1="70" x2="250" y2="290" stroke="#E4E0D6" stroke-width="1"/>
+        <line x1="376" y1="70" x2="376" y2="290" stroke="#E4E0D6" stroke-width="1"/>
+        <!-- Cards in A FAZER -->
+        <g>
+          <rect x="132" y="100" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="132" y="100" width="3" height="56" fill="#2C49C7"/>
+          <text x="142" y="118" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Pormenores</text>
+          <text x="142" y="131" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">construtivos</text>
+          <text x="142" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">02/08 · 8h · Andre</text>
+        </g>
+        <g>
+          <rect x="132" y="164" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="132" y="164" width="3" height="56" fill="#2C49C7"/>
+          <text x="142" y="182" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Lista de</text>
+          <text x="142" y="195" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">componentes</text>
+          <text x="142" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">05/08 · 4h · Andre</text>
+        </g>
+        <g>
+          <rect x="132" y="228" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="132" y="228" width="3" height="56" fill="#2C49C7"/>
+          <text x="142" y="246" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Notas técnicas</text>
+          <text x="142" y="259" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">de produção</text>
+          <text x="142" y="276" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">07/08 · 2h</text>
+        </g>
+        <!-- Cards in EM PROGRESSO -->
+        <g>
+          <rect x="258" y="100" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="258" y="100" width="3" height="56" fill="#E69658"/>
+          <text x="268" y="118" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Cortes e</text>
+          <text x="268" y="131" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">secções</text>
+          <text x="268" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">01/08 · 12h · Miguel</text>
+        </g>
+        <g>
+          <rect x="258" y="164" width="110" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="258" y="164" width="3" height="56" fill="#E69658"/>
+          <text x="268" y="182" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Materiais e</text>
+          <text x="268" y="195" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">acabamentos</text>
+          <text x="268" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">04/08 · 6h · Andre</text>
+        </g>
+        <!-- Cards in CONCLUÍDO -->
+        <g>
+          <rect x="384" y="100" width="80" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="384" y="100" width="3" height="56" fill="#A98250"/>
+          <text x="394" y="118" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Alçados</text>
+          <text x="394" y="131" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">+ revisão</text>
+          <text x="394" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">28/07 · 6h</text>
+        </g>
+        <g>
+          <rect x="384" y="164" width="80" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="384" y="164" width="3" height="56" fill="#A98250"/>
+          <text x="394" y="182" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Plantas</text>
+          <text x="394" y="195" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">técnicas</text>
+          <text x="394" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">25/07 · 10h</text>
+        </g>
+        <g>
+          <rect x="384" y="228" width="80" height="56" rx="2" fill="#F4F1EA" stroke="#E4E0D6"/>
+          <rect x="384" y="228" width="3" height="56" fill="#A98250"/>
+          <text x="394" y="246" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">Medições</text>
+          <text x="394" y="259" font-family="Figtree, sans-serif" font-size="9" font-weight="700" fill="#23211C">+ briefing</text>
+          <text x="394" y="276" font-family="JetBrains Mono, monospace" font-size="7" fill="#7A7A7A">22/07 · 4h</text>
+        </g>
+      </svg>
     </div>
   </div>
 </section>
